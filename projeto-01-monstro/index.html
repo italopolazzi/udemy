@@ -6,11 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Projeto Monstro</title>
-    <link rel="stylesheets" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://unpkg.com/vue"></script>
 </head>
 
 <body>
+    <div id="app">
+        <section id="jogo">
+            <div id="resultados">
+                <div id="jogador" class="card">
+                    <span class="title">Jogador</span>
+                    <progress value="22" max="100"></progress>
+                </div>
+                <div id="monstro" class="card">
+                    <span class="title">Monstro</span>
+                    <progress value="88" max="100"></progress>
+                </div>
+            </div>
+            <div id="acoes" class="card">
+                <button class="round" id="btn_ataque">Ataque</button>
+                <button class="round" id="btn_ataque_especial">Ataque especial</button>
+                <button class="round" id="btn_curar">Curar</button>
+                <button class="round" id="btn_desistir">Desistir</button>
+            </div>
+        </section>
+        <section id="log" class="card">
+            <ul>
+                <li class="monstro">LINHA</li>
+                <li class="jogador">LINHA</li>
+                <hr>
+                <li class="monstro">LINHA</li>
+                <li class="jogador">LINHA</li>
+                <hr>
+                <li class="monstro">LINHA</li>
+                <li class="jogador">LINHA</li>
+                <hr>
+            </ul>
+        </section>
+    </div>
+
 
     <script src="./app.js"></script>
 </body>
