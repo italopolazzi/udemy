@@ -16,10 +16,11 @@ button {
 .card {
     box-shadow: 0 0.5em 0.5em -0.25em rgba(0, 0, 0, 0.4);
     border-radius: 0.25rem;
-    background-color: khaki
+    background-color: white;
 }
 
 body {
+    background-color: khaki;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
