@@ -7,6 +7,8 @@
 
 :root {
     --padding-005-100: 0.5rem 1rem;
+    --theme-success: greenyellow;
+    --theme-error: red;
 }
 
 button {
@@ -98,4 +100,18 @@ body {
 
 .jogador {
     background-color: lightblue;
+}
+
+.fim {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success {
+    color: var(--theme-success)
+}
+
+.error {
+    color: var(--theme-error)
 }

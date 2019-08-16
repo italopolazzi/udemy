@@ -1,18 +1,33 @@
+const MONSTRO = {
+    name: "Monstro",
+    code: 0
+}
+const JOGADOR = {
+    name: "Jogador",
+    code: 1
+}
+const EMPATE = {
+    name: "Empate",
+    code: -1
+}
+const ATTACKED_ACTION = "atingiu"
+const CURED_ACTION = "curou"
+const MAX_LIFE = 100
+const NO_WINNER = null
+
 new Vue({
     el: "#app",
     data: {
-        vencedor: null,
+        vencedor: NO_WINNER,
         jogadores: {
             jogador: {
-                life: 100
+                life: MAX_LIFE
             },
             monstro: {
-                life: 100
+                life: MAX_LIFE
             }
         },
-        log: [
-
-        ]
+        log: []
     },
     computed: {
         logNaoVazio() {
@@ -20,16 +35,33 @@ new Vue({
         },
         logDesc() {
             return this.log.reverse()
+        },
+        finalMessage() {
+            switch (this.vencedor) {
+                case MONSTRO:
+                    return `${MONSTRO.name} venceu!`
+                case JOGADOR:
+                    return `${JOGADOR.name} venceu!`
+                default:
+                    return "Empatou!"
+            }
+        },
+        finalMessageClass() {
+            if (this.vencedor == JOGADOR) {
+                return 'success'
+            } else if (this.vencedor == MONSTRO) {
+                return 'error'
+            }
         }
     },
     methods: {
         testEnd() {
             if (this.jogadores.monstro.life <= 0 && this.jogadores.jogador.life <= 0) {
-                this.vencedor = "Empatou"
+                this.vencedor = EMPATE
             } else if (this.jogadores.monstro.life <= 0) {
-                this.vencedor = "Jogador"
+                this.vencedor = JOGADOR
             } else if (this.jogadores.jogador.life <= 0) {
-                this.vencedor = "Monstro"
+                this.vencedor = MONSTRO
             }
         },
         random10: () => Math.round(Math.random()) * 10,
@@ -59,7 +91,7 @@ new Vue({
 
             this.execAction(player_av, monster_av)
 
-            this.pushToLog({ name: "Jogador", action: "atingiu", action_value: player_av }, { name: "Monstro", action: "atingiu", action_value: monster_av })
+            this.pushToLog({ name: JOGADOR.name, action: ATTACKED_ACTION, action_value: player_av }, { name: MONSTRO.name, action: ATTACKED_ACTION, action_value: monster_av })
         },
 
         ataque_especial() {
@@ -68,7 +100,7 @@ new Vue({
 
             this.execAction(player_av, monster_av)
 
-            this.pushToLog({ name: "Jogador", action: "atingiu", action_value: player_av }, { name: "Monstro", action: "atingiu", action_value: monster_av })
+            this.pushToLog({ name: JOGADOR.name, action: ATTACKED_ACTION, action_value: player_av }, { name: MONSTRO.name, action: ATTACKED_ACTION, action_value: monster_av })
         },
 
         curar() {
@@ -77,13 +109,13 @@ new Vue({
 
             this.execActionCurar(player_av, monster_av)
 
-            this.pushToLog({ name: "Jogador", action: "curou", action_value: player_av }, { name: "Monstro", action: "atingiu", action_value: monster_av })
+            this.pushToLog({ name: JOGADOR.name, action: CURED_ACTION, action_value: player_av }, { name: MONSTRO.name, action: ATTACKED_ACTION, action_value: monster_av })
         },
         reset() {
             this.log = []
-            this.jogadores.monstro.life = 100
-            this.jogadores.jogador.life = 100
-            this.vencedor = null
+            this.jogadores.monstro.life = MAX_LIFE
+            this.jogadores.jogador.life = MAX_LIFE
+            this.vencedor = NO_WINNER
         },
         desistir() {
             this.reset()
