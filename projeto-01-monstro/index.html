@@ -24,15 +24,22 @@
                 </div>
             </div>
             <div id="acoes" class="card">
-                <button @click="ataque" class="round" id="btn_ataque">Ataque</button>
-                <button @click="ataque_especial" class="round" id="btn_ataque_especial">Ataque especial</button>
-                <button @click="curar" class="round" id="btn_curar">Curar</button>
-                <button @click="desistir" class="round" id="btn_desistir">Desistir</button>
+                <template v-if="vencedor">
+                  {{vencedor}} venceu!
+                  <button @click="iniciarNovoJogo" class="round" id="btn_iniciarNovoJogo">Iniciar novo jogo!</button>
+
+                </template>
+                <template v-else>
+                  <button @click="ataque" class="round" id="btn_ataque">Ataque</button>
+                  <button @click="ataque_especial" class="round" id="btn_ataque_especial">Ataque especial</button>
+                  <button @click="curar" class="round" id="btn_curar">Curar</button>
+                  <button @click="desistir" class="round" id="btn_desistir">Desistir</button>
+                </template>
             </div>
         </section>
         <section v-if="logNaoVazio" id="log" class="card">
             <ul>
-                <template v-for="(item, index) in log">
+                <template v-for="(item, index) in logDesc">
                   <li class="monstro">{{item[0]}}</li>
                   <li class="jogador">{{item[1]}}</li>
                   <hr>
