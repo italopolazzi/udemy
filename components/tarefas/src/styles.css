@@ -10,8 +10,10 @@
     /* CORREÇÕES */
     --space-correction: 2rem;
     /* PADRÕES */
-    --default-padding-input: 0 1rem;
-    --default-margin: 1rem;
+    --default-space: 1rem;
+    --default-padding: var(--default-space);
+    --default-padding-input: 0 var(--default-padding);
+    --default-margin: var(--default-space);
     /* ÚTILS */
     --infinity9: 99999999px;
 }
