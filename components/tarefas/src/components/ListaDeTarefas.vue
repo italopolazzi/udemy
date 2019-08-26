@@ -12,21 +12,12 @@
 
 <script>
 export default {
+  props: ["tarefas"],
   methods: {
     statusDeConclusao: v => (v ? "concluida" : "nao-concluida"),
     inverterStatus(index) {
       this.tarefas[index].status = !this.tarefas[index].status;
     }
-  },
-  data() {
-    return {
-      tarefas: [
-        { legenda: "Lavar o carro", status: true },
-        { legenda: "Limpar a casa", status: false },
-        { legenda: "Concluir o curso", status: false },
-        { legenda: "Ir no centro", status: false }
-      ]
-    };
   }
 };
 </script>

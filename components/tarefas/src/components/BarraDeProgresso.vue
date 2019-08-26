@@ -6,12 +6,14 @@
 
 <script>
 export default {
-  data() {
-    return {
-      porcentagem: 30
-    };
-  },
+  props: ["tarefas"],
   computed: {
+    porcentagem() {
+      const total_de_concluidas = this.tarefas.filter(v => v.status).length;
+      const total_de_tarefas = this.tarefas.length;
+      const resultado = total_de_concluidas / total_de_tarefas;
+      return resultado * 100;
+    },
     widthProgresso() {
       return {
         "--width-progresso": `${this.porcentagem}%`
@@ -22,7 +24,6 @@ export default {
 </script>
 
 <style>
-
 #barra-de-progresso {
   width: 100%;
   height: var(--bar-size);
