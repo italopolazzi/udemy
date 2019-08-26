@@ -22,13 +22,11 @@ export default {
 </script>
 
 <style>
-:root {
-  --opacity: 0.1;
-}
+
 #barra-de-progresso {
   width: 100%;
-  height: 4rem;
-  background: rgba(255, 255, 255, var(--opacity));
+  height: var(--bar-size);
+  background: var(--opacity-light-color);
   display: flex;
   flex-flow: column nowrap;
   align-items: center;

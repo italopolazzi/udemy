@@ -1,0 +1,23 @@
+:root {
+    /* OPACIDADE */
+    --opacity: 0.2;
+    /* CORES */
+    --opacity-light-color: rgba(255, 255, 255, var(--opacity));
+    --opacity-dark-color: rgba(0, 0, 0, var(--opacity));
+    /* TAMANHO DE BARRAS */
+    --bar-size: 4rem;
+    /* CORREÇÕES */
+    --space-correction: 2rem;
+    /* PADRÕES */
+    --default-padding-input: 0 1rem;
+    --default-margin: 1rem;
+    /* ÚTILS */
+    --infinity9: 99999999px;
+}
+
+.super-round {
+    border-bottom-right-radius: var(--infinity9);
+    border-bottom-left-radius: var(--infinity9);
+    border-top-right-radius: var(--infinity9);
+    border-top-left-radius: var(--infinity9);
+}
