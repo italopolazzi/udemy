@@ -16,11 +16,13 @@
             <div id="resultados">
                 <div id="jogador" class="card">
                     <span class="title">Jogador</span>
-                    <progress :value="jogadores.jogador.life" max="100"></progress>
+                    <progress :class="jogadores.jogador.life > 20 ? 'error-background' : 'error-background'" :value="jogadores.jogador.life" max="100"></progress>
+                    <span>{{jogadores.jogador.life}}</span>
                 </div>
                 <div id="monstro" class="card">
                     <span class="title">Monstro</span>
-                    <progress :value="jogadores.monstro.life" max="100"></progress>
+                    <progress :class="jogadores.monstro.life > 20 ? 'error-background' : 'error-background'" :value="jogadores.monstro.life" max="100"></progress>
+                    <span>{{jogadores.monstro.life}}</span>
                 </div>
             </div>
             <div id="acoes" class="card">
