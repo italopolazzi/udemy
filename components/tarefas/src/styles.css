@@ -4,6 +4,7 @@
     /* CORES */
     --opacity-light-color: rgba(255, 255, 255, var(--opacity));
     --opacity-dark-color: rgba(0, 0, 0, var(--opacity));
+    --theme-opacity-color: var(--opacity-dark-color);
     /* TAMANHO DE BARRAS */
     --bar-size: 4rem;
     /* CORREÇÕES */

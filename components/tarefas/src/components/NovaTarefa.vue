@@ -22,7 +22,7 @@ export default {};
 #entrada {
   padding: var(--default-padding-input);
   padding-right: var(--space-correction);
-  background: var(--opacity-light-color);
+  background: var(--theme-opacity-color);
 }
 #adicionar {
   width: var(--bar-size);

@@ -26,7 +26,7 @@ ListaDeTarefas
 <style>
 	body {
 		font-family: 'Lato', sans-serif;
-		background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
+		background: linear-gradient(to bottom, #e1eec3, #f05053);
 		color: #FFF;
 	}
 
