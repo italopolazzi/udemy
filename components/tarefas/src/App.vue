@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Tarefas</h1>
+    <h1 class="dark">Tarefas</h1>
 
     <BarraDeProgresso :tarefas="tarefas" />
     <NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
@@ -43,26 +43,3 @@ export default {
 	}
 };
 </script>
-
-<style>
-body {
-  font-family: "Lato", sans-serif;
-  background: linear-gradient(to bottom, #e1eec3, #f05053);
-  color: #fff;
-}
-
-#app {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-#app h1 {
-  margin-bottom: 5px;
-  font-weight: 300;
-  font-size: 3rem;
-}
-</style>

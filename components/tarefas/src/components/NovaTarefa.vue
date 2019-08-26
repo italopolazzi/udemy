@@ -9,7 +9,7 @@
       placeholder="Legenda da nova tarefa"
       @keydown.enter="emitirNovaTarefa"
     />
-    <button id="adicionar" class="super-round" @click="emitirNovaTarefa">+</button>
+    <button id="adicionar" class="super-round" @click="emitirNovaTarefa"><i class="material-icons md-18">add</i></button>
   </div>
 </template>
 
@@ -22,9 +22,10 @@ export default {
   },
   methods: {
     emitirNovaTarefa() {
-      let valor = this.nova_tarefa || this.$refs.entrada.value;
+      let valor = this.nova_tarefa;
       if (valor != "") {
         this.$emit("novaTarefaAdicionada", valor);
+        this.nova_tarefa = "";
       }
     }
   }
@@ -45,6 +46,7 @@ export default {
   background: var(--theme-opacity-color);
 }
 #adicionar {
+  font-size: 2em;
   width: var(--bar-size);
   border-radius: var(--bar-size);
   margin-left: calc(var(--space-correction) * -1);

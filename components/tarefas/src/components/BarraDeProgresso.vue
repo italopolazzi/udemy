@@ -1,6 +1,8 @@
 <template>
-  <div id="barra-de-progresso" :style="widthProgresso">
-    <span id="porcentagem">{{porcentagem}}%</span>
+  <div class="barra-container">
+    <div id="barra-de-progresso" :style="widthProgresso">
+      <span id="porcentagem">{{porcentagem}}%</span>
+    </div>
   </div>
 </template>
 
@@ -24,6 +26,12 @@ export default {
 </script>
 
 <style>
+.barra-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 #barra-de-progresso {
   width: 100%;
   height: var(--bar-size);
