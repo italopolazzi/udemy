@@ -7,6 +7,7 @@
       class="super-round"
       v-model="nova_tarefa"
       placeholder="Legenda da nova tarefa"
+      @keydown.enter="emitirNovaTarefa"
     />
     <button id="adicionar" class="super-round" @click="emitirNovaTarefa">+</button>
   </div>

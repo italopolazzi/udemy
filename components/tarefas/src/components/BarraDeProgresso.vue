@@ -11,8 +11,8 @@ export default {
     porcentagem() {
       const total_de_concluidas = this.tarefas.filter(v => v.status).length;
       const total_de_tarefas = this.tarefas.length;
-      const resultado = total_de_concluidas / total_de_tarefas;
-      return resultado * 100;
+      const resultado = (total_de_concluidas / total_de_tarefas) * 100;
+      return resultado.toFixed(2);
     },
     widthProgresso() {
       return {
