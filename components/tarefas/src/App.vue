@@ -1,9 +1,12 @@
 <template>
   <div id="app">
+    
+		<NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
+
+
     <h1 class="dark">Tarefas</h1>
 
     <BarraDeProgresso :tarefas="tarefas" />
-    <NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
     <ListaDeTarefas :tarefas="tarefas" />
   </div>
 </template>
@@ -22,10 +25,16 @@ export default {
   data() {
     return {
       tarefas: [
-        { legenda: "Lavar o carro", status: true },
-        { legenda: "Limpar a casa", status: false },
-        { legenda: "Concluir o curso", status: false },
-        { legenda: "Ir no centro", status: false }
+        { legenda: "Criar componentes", status: true },
+        { legenda: "Inserção com enter", status: true },
+        { legenda: "Progresso e mensagens", status: true },
+        { legenda: "Estilização", status: true },
+        { legenda: "Salvar itens off", status: false },
+        { legenda: "Inverter ordem", status: false },
+        { legenda: "Separar categorias", status: false },
+        { legenda: "Adicionar datas", status: false },
+        { legenda: "Acessibilidade", status: false },
+        { legenda: "Enviar", status: false }
       ]
     };
   },
@@ -37,8 +46,6 @@ export default {
 	watch:{
 		tarefas(n, o){
 			console.log(n, o);
-			
-
 		}
 	}
 };

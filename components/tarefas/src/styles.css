@@ -5,13 +5,15 @@
     /* CORES */
     --opacity-light-color: rgba(255, 255, 255, var(--opacity));
     --opacity-dark-color: rgba(0, 0, 0, var(--opacity));
-    --theme-opacity-color: var(--opacity-dark-color);
+    --theme-opacity-color: var(--opacity-light-color);
     --color-dark: black;
     --color-light: white;
+    --color-negative: crimson;
+    --color-positive: greenyellow;
     /* TAMANHO DE BARRAS */
     --bar-size: 2rem;
     /* CORREÇÕES */
-    --space-correction: 2rem;
+    --space-correction: 4rem;
     /* PADRÕES */
     --default-size: 1rem;
     --default-space: var(--default-size);
@@ -37,6 +39,10 @@ body {
     margin: 0;
     padding: 0;
     color: #fff;
+}
+
+button {
+    cursor: pointer;
 }
 
 #app {

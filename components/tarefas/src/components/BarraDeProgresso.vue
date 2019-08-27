@@ -14,7 +14,10 @@ export default {
       const total_de_concluidas = this.tarefas.filter(v => v.status).length;
       const total_de_tarefas = this.tarefas.length;
       const resultado = (total_de_concluidas / total_de_tarefas) * 100;
-      return resultado.toFixed(2);
+      const valido = resultado ? resultado : 0;
+      const arredondado = valido.toFixed(2);
+      
+      return arredondado;
     },
     widthProgresso() {
       return {
@@ -26,7 +29,7 @@ export default {
 </script>
 
 <style>
-.barra-container{
+.barra-container {
   position: absolute;
   top: 0;
   left: 0;
