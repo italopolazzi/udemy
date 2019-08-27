@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    
-		<NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
-
+    <NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
 
     <h1 class="dark">Tarefas</h1>
 
@@ -24,29 +22,26 @@ export default {
   },
   data() {
     return {
-      tarefas: [
-        { legenda: "Criar componentes", status: true },
-        { legenda: "Inserção com enter", status: true },
-        { legenda: "Progresso e mensagens", status: true },
-        { legenda: "Estilização", status: true },
-        { legenda: "Salvar itens off", status: false },
-        { legenda: "Inverter ordem", status: false },
-        { legenda: "Separar categorias", status: false },
-        { legenda: "Adicionar datas", status: false },
-        { legenda: "Acessibilidade", status: false },
-        { legenda: "Enviar", status: false }
-      ]
+      tarefas: []
     };
   },
   methods: {
     adicionarNovaTarefa(valor) {
       this.tarefas.push({ legenda: valor, status: false });
     }
-	},
-	watch:{
-		tarefas(n, o){
-			console.log(n, o);
-		}
-	}
+  },
+  watch: {
+    tarefas: {
+      deep: true,
+      handler() {
+        const string = JSON.stringify(this.tarefas);
+        localStorage.setItem("tarefas", string);
+      }
+    }
+  },
+  created() {
+    this.tarefas = JSON.parse(localStorage.getItem("tarefas") || []);
+  }
 };
 </script>
+
