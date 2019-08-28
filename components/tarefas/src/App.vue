@@ -34,9 +34,9 @@ export default {
       tarefas: [],
       filtro_selecionado: 0,
       botoes: [
-        { nome: "Todos", filtro: item => item },
-        { nome: "Concluídos", filtro: item => item.status },
-        { nome: "Não concluídos", filtro: item => !item.status }
+        { nome: "Todos", icon: "home", filtro: item => item },
+        { nome: "Concluídos", icon: "done", filtro: item => item.status },
+        { nome: "Não concluídos", icon: "block", filtro: item => !item.status }
       ]
     };
   },
