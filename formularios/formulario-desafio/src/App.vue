@@ -5,10 +5,7 @@
       <form v-if="!enviou" class="painel">
         <div class="cabecalho">Formulário</div>
         <!-- INPUT nome_completo -->
-        <Rotulo nome="Nome completo">
-          <input type="text" name="nome_completo" v-model="usuario.nome_completo" />
-        </Rotulo>
-
+        <NomeCompleto v-model="usuario.nome_completo" />
         <!-- INPUT email -->
         <Rotulo nome="E-mail">
           <input type="email" name="email" v-model="usuario.email" />
@@ -30,21 +27,34 @@
       </form>
       <div v-else class="painel">
         <div class="cabecalho">Resultado</div>
-        <p>{{usuario.nome_completo}}</p>
-        <p>{{usuario.email}}</p>
-        <p>{{usuario.senha}}</p>
-        <p>{{usuario.armazenar_dados}}</p>
+        <!-- INPUT nome_completo -->
+        <Rotulo nome="Nome completo">
+          <p>{{usuario.nome_completo}}</p>
+        </Rotulo>
+        <!-- INPUT email -->
+        <Rotulo nome="E-mail">
+          <p>{{usuario.email}}</p>
+        </Rotulo>
+        <!-- INPUT senha -->
+        <Rotulo nome="Senha">
+          <p>{{usuario.senha}}</p>
+        </Rotulo>
+        <!-- INPUT armazenar_dados -->
+        <Rotulo nome="Armazenar dados?">
+          <p>{{usuario.armazenar_dados}}</p>
+        </Rotulo>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import NomeCompleto from "./components/NomeCompleto.vue";
 import Rotulo from "./components/Rotulo.vue";
 
 export default {
   name: "app",
-  components: { Rotulo },
+  components: { Rotulo, NomeCompleto },
   data() {
     return {
       usuario: {
