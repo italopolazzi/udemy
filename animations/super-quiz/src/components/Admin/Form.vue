@@ -10,10 +10,22 @@
           <input type="text" name="text" v-model.trim.lazy="text" />
         </label>
 
-        <label class="form-input" for="answer">
-          <span>Answer</span>
-          <input type="text" name="answer" v-model.trim.lazy="answer" />
-        </label>
+        <div class="form-input">
+          <input type="text" name="answer-text" v-model="answers.texts[0]" />
+          <input type="radio" name="answer-correct" value="0" v-model="answers.correct" />
+        </div>
+        <div class="form-input">
+          <input type="text" name="answer-text" v-model="answers.texts[1]" />
+          <input type="radio" name="answer-correct" value="1" v-model="answers.correct" />
+        </div>
+        <div class="form-input">
+          <input type="text" name="answer-text" v-model="answers.texts[2]" />
+          <input type="radio" name="answer-correct" value="2" v-model="answers.correct" />
+        </div>
+        <div class="form-input">
+          <input type="text" name="answer-text" v-model="answers.texts[3]" />
+          <input type="radio" name="answer-correct" value="3" v-model="answers.correct" />
+        </div>
       </div>
 
       <div class="card-controls">
@@ -29,46 +41,68 @@
     </div>
     <hr />
     <br />
-    {{text}}
+    {{$data}}
     <br />
-    {{answer}}
-    <br />
-    {{final}}
   </div>
 </template>
 
 <script>
+import errors from "@/util/errors";
 export default {
   data() {
     return {
-      text: "COmo?",
-      answer: "a; b; c; d",
+      text: "",
+      answers: { correct: null, texts: [] },
       final: null,
       messages: []
     };
   },
   methods: {
-    embaralhar(array) {
-      return array.sort((a, b) => Math.floor(Math.random() * 10));
-    },
     enviar() {
       this.messages = [];
-      const answers = this.answer.split(";");
       if (this.text == "") {
-        this.messages.push("A pergunta não deve ficar vazia");
-      } else if (answers.length != 4) {
-        this.messages.push("Você deve criar 4 possiveis respostas");
+        this.messages.push(errors.questionTextEmpty);
+      } else if (this.answers.correct == null) {
+        this.messages.push(errors.notCorrectAnswerSelected);
       } else {
-        // A primeira resposta será marcada como a verdadeira
-        let isFirst = true;
-        let temp = [];
-        answers.forEach(answer => {
-          temp.push({ text: answer, correct: isFirst });
-          isFirst = false;
-        });
-
-        this.final = { text: this.text, answers: this.embaralhar(temp) };
+        if (this.validarRespostas()) {
+          this.final = { text: this.text, answers: this.montarRespostas() };
+          this.persistir();
+        } else {
+          this.messages.push(errors.fildsEmptyOrWithRepetition);
+        }
       }
+    },
+    montarRespostas() {
+      let answers = [];
+      for (let i in this.answers.texts) {
+        answers.push({
+          text: this.answers.texts[i],
+          correct: i == this.answers.correct
+        });
+      }
+      return answers;
+    },
+    persistir() {
+      this.$http
+        .post("questoes.json", this.final)
+        .then(res => {
+          console.log(res);
+          this.resetForm();
+        })
+        .catch(err => console.error(err));
+    },
+    validarRespostas(array = this.answers.texts) {
+      if (array.length != 4) return false;
+      let temp = array.filter((item, index) => array.indexOf(item) == index);
+      return temp.length == array.length;
+    },
+    resetForm() {
+      this.answers.texts = [];
+      this.answers.correct = null;
+      this.text = [];
+      this.final = null;
+      this.messages = [];
     }
   }
 };
