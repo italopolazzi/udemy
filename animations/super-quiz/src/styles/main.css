@@ -10,3 +10,74 @@ body {
     margin: 0;
     overflow: hidden;
 }
+
+button {
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+button,
+.componente {
+    background: white;
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.componente {
+    min-width: 50vw;
+    overflow: hidden;
+}
+
+@keyframes flip-out {
+    from {
+        transform: rotateX(0);
+    }
+    to {
+        transform: rotateX(90deg);
+    }
+}
+
+@keyframes flip-in {
+    from {
+        transform: rotateX(90deg);
+    }
+    to {
+        transform: rotateX(0);
+    }
+}
+
+.flip-enter-active {
+    animation: flip-in 0.2s ease;
+}
+
+.flip-leave-active {
+    animation: flip-out 0.2s ease;
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(6rem);
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(6rem);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.slide-enter-active {
+    animation: slide-in 0.4s ease;
+}
+
+.slide-leave-active {
+    animation: slide-out 0.4s ease;
+}

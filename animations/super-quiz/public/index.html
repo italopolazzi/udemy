@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,600" rel="stylesheet">
     <title>Super Quiz</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <noscript>
       <strong>We're sorry but super-quiz doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-  </body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBv_5BYyXgXdHIbCOLAuB3qx5HQhfWKQhE",
+            authDomain: "my-vue-course.firebaseapp.com",
+            databaseURL: "https://my-vue-course.firebaseio.com",
+            projectId: "my-vue-course",
+            storageBucket: "my-vue-course.appspot.com",
+            messagingSenderId: "549609989900",
+            appId: "1:549609989900:web:3b9a1edcadb2039d"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</body>
+
 </html>
