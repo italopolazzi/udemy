@@ -1,6 +1,7 @@
 <template>
   <div id="user">
     <!-- <h2>Painel do usuário</h2> -->
+    <div class="score">Pontuação: {{pontos}}</div>
     <transition name="flip" mode="out-in" appear>
       <div v-if="questao == null" class="carregando">Carregando...</div>
       <component
@@ -21,6 +22,14 @@
         id="reiniciar"
       >Reiniciar</button>
     </transition>
+    <div class="game-mode">
+      <button
+        tabindex="1"
+        accesskey="a"
+        @click="random = !random"
+      >Modo atual: {{ random ? 'Aleatório' : 'Sequencial' }}</button>
+      <button tabindex="1" accesskey="n" @click="outraQuestao">Outra</button>
+    </div>
   </div>
 </template>
 
@@ -40,11 +49,32 @@ export default {
     },
     respondeu(indice) {
       this.resposta_do_jogador = indice;
+      if (this.questao.answers[indice].correct) this.pontos++;
       this.component = Result;
     },
     gerarQuestao() {
-      const indice = parseInt(Math.random() * this.questoes.length);
-      this.questao = this.questoes[indice];
+      let indice;
+      if (this.random) {
+        /**
+         * todo: retirar do array um número aleatório e marcar como jogado
+         * sempre que trazer questões novas estas estarão com o bool = false
+         * assim o jogador poderá jogar com ela
+         */
+        indice = parseInt(Math.random() * this.questoes.length);
+      } else {
+        this.indice++;
+        indice = this.indice;
+      }
+
+      this.questao = this.pegarQuestaoERemover(indice);
+    },
+    pegarQuestaoERemover(indice) {
+      const temp = this.questoes[indice];
+      this.questoes.splice(indice, 1);
+      return temp;
+    },
+    outraQuestao() {
+      this.gerarQuestao();
     }
   },
   data() {
@@ -52,7 +82,10 @@ export default {
       component: Question,
       resposta_do_jogador: null,
       questao: null,
-      questoes: []
+      indice: -1,
+      random: false,
+      questoes: [],
+      pontos: 0
     };
   },
   created() {

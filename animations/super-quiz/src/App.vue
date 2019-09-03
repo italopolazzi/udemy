@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      admin: true
+      admin: false
     };
   },
   created() {}
