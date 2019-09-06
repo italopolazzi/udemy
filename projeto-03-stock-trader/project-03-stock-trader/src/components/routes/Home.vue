@@ -1,13 +1,12 @@
 <template>
-  <h1>{{$route.name}}</h1>
+  <div id="home">
+    {{$store.state.hello_world}}
+  </div>
 </template>
 
 <script>
-export default {
 
-}
 </script>
 
 <style>
-
 </style>
