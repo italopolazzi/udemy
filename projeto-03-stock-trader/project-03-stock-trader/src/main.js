@@ -14,6 +14,9 @@ import router from '@/router/index'
 // -------------------------------
 // STORE
 import store from '@/store/index'
+// -------------------------------
+// FILTERS
+import '@/filters/index'
 
 Vue.config.productionTip = false
 
