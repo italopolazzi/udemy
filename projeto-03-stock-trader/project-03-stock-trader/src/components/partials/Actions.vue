@@ -1,5 +1,6 @@
 <template>
   <div id="actions">
+    <slot></slot>
     <button id="button1" @click="endDay()">Finalizar dia</button>
     <button id="button2" @click="expand()">Expandir</button>
   </div>

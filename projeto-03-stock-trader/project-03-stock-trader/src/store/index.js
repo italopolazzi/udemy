@@ -42,11 +42,20 @@ const store = new Vuex.Store({
         }
     },
     mutations: {
-
+        BUY_QUANTITY(state, { key, quantity }) {
+            state.portfolio[key].quantity += quantity
+        },
+        REMOVE_FUNDS_AND_QUANTITY_OF_STOCK(state, { key, total, quantity }) {
+            state.stock[key].quantity -= quantity
+            state.funds -= total
+        },
+        ADD_TO_PORTFOLIO(state, item) {
+            item.quantity = 0
+            state.portfolio[item.key] = item
+        }
     },
     actions: {
         buyItem({ commit, state }, { item, quantity }) {
-
             const total = quantity * item.price
             const key = item.key
 
@@ -57,20 +66,13 @@ const store = new Vuex.Store({
             }
 
             // retira do estoque
-            state.stock[key].quantity -= quantity
-            state.funds -= total
+            commit('REMOVE_FUNDS_AND_QUANTITY_OF_STOCK', { key, total, quantity })
 
             // adiciona no portfolio
-
-            if (state.portfolio.hasOwnProperty(key)) {
-                state.portfolio[key].quantity += quantity
-            } else {
-                const temp_item = state.stock[key]
-                temp_item.quantity = quantity
-                state.portfolio[key] = temp_item
+            if (!state.portfolio.hasOwnProperty(key)) {
+                commit('ADD_TO_PORTFOLIO', item)
             }
-            console.log(state);
-
+            commit('BUY_QUANTITY', { key, quantity })
         }
     },
     getters: {
