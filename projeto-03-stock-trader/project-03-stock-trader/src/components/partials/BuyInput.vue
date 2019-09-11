@@ -1,0 +1,70 @@
+<template>
+  <div class="buy-input">
+    <input type="number" min="1" :max="item.quantity" v-model.number="quantity" />
+    <button
+      :class="{'super-round':true, 'invalid': button.disabled}"
+      :disabled="button.disabled"
+      @click="buy"
+    >{{button.text}}</button>
+
+    <!-- <p>quantity: {{quantity}}</p>
+    <p>item: {{item}}</p>
+    <p>button: {{button}}</p>-->
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      quantity: 1
+    };
+  },
+  computed: {
+    button() {
+      const config =
+        this.quantity < 1
+          ? { text: "Inválido", disabled: true }
+          : this.quantity > this.item.quantity
+          ? { text: "Indisponível", disabled: true }
+          : { text: "Comprar", disabled: false };
+      return {
+        ...config
+      };
+    }
+  },
+  methods: {
+    buy() {      
+      this.$store.dispatch("buyItem", { item: this.item, quantity: this.quantity });
+    }
+  }
+};
+</script>
+
+<style scoped lang="stylus">
+button, input {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.super-round {
+  // border-top-left-radius: 99999999999px;
+  border-top-right-radius: 99999999999px;
+  // border-bottom-left-radius: 99999999999px;
+  border-bottom-right-radius: 99999999999px;
+}
+
+.invalid {
+  background: red;
+}
+</style>

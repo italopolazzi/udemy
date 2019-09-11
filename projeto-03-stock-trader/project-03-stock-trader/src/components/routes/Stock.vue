@@ -3,18 +3,25 @@
     <h1>{{$route.name}}</h1>
     <div class="container">
       <Card v-for="(item, key) in stock" :key="key">
-        <h2 slot="card-title">Card {{key}}</h2>
-        <p slot="card-content">{{item}}</p>
+        <Toolbar slot="card-title">
+          <h3 slot="title">Card {{key}}</h3>
+        </Toolbar>
+        <div slot="card-content">
+          <BuyInput :item="{key, ...item}"></BuyInput>
+        </div>
       </Card>
     </div>
   </section>
 </template>
 
 <script>
+import Toolbar from "@/components/components/Toolbar";
 import Card from "@/components/components/Card";
+import BuyInput from "@/components/partials/BuyInput"
+
 import { mapGetters } from "vuex";
 export default {
-  components: { Card },
+  components: { Card, Toolbar, BuyInput },
   computed: {
     ...mapGetters(["stock"])
   }
