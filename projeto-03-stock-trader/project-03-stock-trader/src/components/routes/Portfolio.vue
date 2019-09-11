@@ -6,7 +6,7 @@
         <Toolbar slot="card-title">
           <h3 slot="title">Card {{key}}</h3>
         </Toolbar>
-        <div slot="card-content">
+        <div>
           <SellInput :item="item"></SellInput>
         </div>
       </Card>

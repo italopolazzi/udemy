@@ -7,7 +7,7 @@
       <slot name="card-media" />
     </div>
     <div class="card-content">
-      <slot name="card-content" />
+      <slot />
     </div>
     <div class="card-footer">
       <slot name="card-footer" />
@@ -20,7 +20,7 @@ export default {};
 </script>
 
 <style scoped>
-.card-title{
+.card-title {
   font-size: 3rem;
 }
 </style>

@@ -1,21 +1,20 @@
 <template>
   <div id="home">
-    <div class="card">
-      <div class="card-title"></div>
-      <div class="card-media"></div>
-      <div class="card-content"></div>
-      <div class="card-controls">
-        <div class="total-funds">
-          Total funds:
-          {{$store.state.funds | money }}
-        </div>
+    <Card>
+      <div>
+        Total funds:
+        {{$store.state.funds | money }}
       </div>
-    </div>
-    <span></span>
+    </Card>
   </div>
 </template>
 
 <script>
+import Card from "@/components/components/Card";
+
+export default {
+  components: { Card }
+};
 </script>
 
 <style>

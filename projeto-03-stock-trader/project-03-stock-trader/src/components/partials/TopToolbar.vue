@@ -2,7 +2,9 @@
   <Toolbar>
     <h1 slot="title">{{$route.name}}</h1>
     <Menu slot="menu" />
-    <Actions slot="actions">{{funds}}</Actions>
+    <Actions slot="actions">
+      {{funds | money}} 
+    </Actions>
   </Toolbar>
 </template>
 

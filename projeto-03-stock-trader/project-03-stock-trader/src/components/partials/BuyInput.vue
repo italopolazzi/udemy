@@ -2,7 +2,8 @@
   <div class="buy-input">
     <input type="number" min="1" :max="item.quantity" v-model.number="quantity" />
     <button
-      :class="{'super-round':true, 'invalid': button.disabled}"
+      class="sr-tl sr-bl"
+      :class="{'invalid': button.disabled}"
       :disabled="button.disabled"
       @click="buy"
     >{{button.text}}</button>
@@ -40,8 +41,11 @@ export default {
     }
   },
   methods: {
-    buy() {      
-      this.$store.dispatch("buyItem", { item: this.item, quantity: this.quantity });
+    buy() {
+      this.$store.dispatch("buyItem", {
+        item: this.item,
+        quantity: this.quantity
+      });
     }
   }
 };
@@ -55,13 +59,6 @@ button, input {
   background: rgba(255, 255, 255, 0.4);
   font-size: 1rem;
   font-weight: bold;
-}
-
-.super-round {
-  // border-top-left-radius: 99999999999px;
-  border-top-right-radius: 99999999999px;
-  // border-bottom-left-radius: 99999999999px;
-  border-bottom-right-radius: 99999999999px;
 }
 
 .invalid {
