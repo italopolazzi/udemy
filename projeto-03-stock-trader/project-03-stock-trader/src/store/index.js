@@ -42,16 +42,29 @@ const store = new Vuex.Store({
         }
     },
     mutations: {
+        // BUY
         BUY_QUANTITY(state, { key, quantity }) {
             state.portfolio[key].quantity += quantity
         },
-        REMOVE_FUNDS_AND_QUANTITY_OF_STOCK(state, { key, total, quantity }) {
-            state.stock[key].quantity -= quantity
+        REMOVE_FUNDS(state, total) {
             state.funds -= total
+        },
+        REMOVE_QUANTITY_OF_STOCK(state, { key, quantity }) {
+            state.stock[key].quantity -= quantity
         },
         ADD_TO_PORTFOLIO(state, item) {
             item.quantity = 0
             state.portfolio[item.key] = item
+        },
+        // SELL
+        SELL_QUANTITY(state, { key, quantity }) {
+            state.stock[key].quantity += quantity
+        },
+        ADD_FUNDS(state, total) {
+            state.funds += total
+        },
+        REMOVE_QUANTITY_IN_PORTFOLIO(state, { key, quantity }) {
+            state.portfolio[key].quantity -= quantity
         }
     },
     actions: {
@@ -66,13 +79,32 @@ const store = new Vuex.Store({
             }
 
             // retira do estoque
-            commit('REMOVE_FUNDS_AND_QUANTITY_OF_STOCK', { key, total, quantity })
+            commit('REMOVE_FUNDS', total)
+            commit('REMOVE_QUANTITY_OF_STOCK', { key, quantity })
 
             // adiciona no portfolio
             if (!state.portfolio.hasOwnProperty(key)) {
                 commit('ADD_TO_PORTFOLIO', item)
             }
             commit('BUY_QUANTITY', { key, quantity })
+        },
+        sellItem({ commit, state }, { item, quantity }) {
+            const key = item.key
+
+            // verificar se possuo a quantidade para vender
+            // devolver o dinheiro para minha conta
+            // remover a quantidade do meu portfolio
+
+            if (state.portfolio[key].quantity < quantity) {
+                throw Error('Você não possui está quantidade para vender')
+            } else if (quantity < 1) {
+                throw Error('Você não pode vender uma quantidade nula ou negativa')
+            }
+
+            const total = quantity * item.price
+
+
+
         }
     },
     getters: {

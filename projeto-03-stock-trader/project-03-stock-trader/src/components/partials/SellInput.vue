@@ -8,7 +8,7 @@
 
     <!-- <p>quantity: {{quantity}}</p>
     <p>item: {{item}}</p>
-    <p>button: {{button}}</p> -->
+    <p>button: {{button}}</p>-->
   </div>
 </template>
 
@@ -37,6 +37,12 @@ export default {
       return {
         ...config
       };
+    },
+    sell() {
+      this.$store.dispatch("sellItem", {
+        item: this.item,
+        quantity: this.quantity
+      });
     }
   }
 };

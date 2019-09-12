@@ -11,6 +11,8 @@ import './styles/main.styl'
 // -------------------------------
 // ROUTER
 import router from '@/router/index'
+// AXIOS
+import '@/plugins/index'
 // -------------------------------
 // STORE
 import store from '@/store/index'
