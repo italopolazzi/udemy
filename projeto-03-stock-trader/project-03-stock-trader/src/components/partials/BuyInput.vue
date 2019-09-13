@@ -1,5 +1,7 @@
 <template>
   <div class="buy-input">
+    {{item.price | money}}
+    <br />
     <input type="number" min="1" :max="item.quantity" v-model.number="quantity" />
     <button
       class="sr-tr sr-br"

@@ -3,6 +3,13 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+function randomNumber(limit) {
+    return Math.floor(Math.random() * limit)
+}
+Array.prototype.sample = function() {
+    return this[randomNumber(this.length)]
+}
+
 const store = new Vuex.Store({
     state: {
         funds: 10000,
@@ -18,25 +25,25 @@ const store = new Vuex.Store({
             twitter: {
                 id: 1,
                 quantity: 5,
-                price: 15.00,
+                price: 1500.00,
                 name: 'Twitter'
             },
             google: {
                 id: 1,
                 quantity: 5,
-                price: 15.00,
+                price: 1500.00,
                 name: 'Google'
             },
             bmw: {
                 id: 1,
                 quantity: 5,
-                price: 15.00,
+                price: 1500.00,
                 name: 'BMW'
             },
             facebook: {
                 id: 1,
                 quantity: 5,
-                price: 15.00,
+                price: 1500.00,
                 name: 'Facebook Inc.'
             },
         }
@@ -65,6 +72,16 @@ const store = new Vuex.Store({
         },
         REMOVE_QUANTITY_IN_PORTFOLIO(state, { key, quantity }) {
             state.portfolio[key].quantity -= quantity
+        },
+        FLOAT_STOCK(state, stock) {
+            // operação randomica -1 ou 1
+            const random_operator = [1, -1].sample()
+            const _10p_stock_price = 0.1 * stock.price
+                // número randomico
+            const random_number = randomNumber(_10p_stock_price)
+                // total
+            const total = random_operator * random_number
+            stock.price += total
         }
     },
     actions: {
@@ -102,9 +119,11 @@ const store = new Vuex.Store({
             }
 
             const total = quantity * item.price
-
-
-
+        },
+        endDay({ state, commit }) {
+            for (let key in state.stock) {
+                commit('FLOAT_STOCK', state.stock[key])
+            }
         }
     },
     getters: {
