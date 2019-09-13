@@ -1,9 +1,13 @@
 <template>
-  <div class="buy-input">
+  <div class="sell-input">
+    {{item.price | money}}
+    <br />
     <input type="number" min="1" :max="item.quantity" v-model.number="quantity" />
     <button
-      :class="{'super-round':true, 'invalid': button.disabled}"
+      class="sr-tr sr-br"
+      :class="{'invalid': button.disabled}"
       :disabled="button.disabled"
+      @click="sell"
     >{{button.text}}</button>
 
     <!-- <p>quantity: {{quantity}}</p>
@@ -23,7 +27,6 @@ export default {
   data() {
     return {
       quantity: 1
-      // button:{}
     };
   },
   computed: {
@@ -37,7 +40,9 @@ export default {
       return {
         ...config
       };
-    },
+    }
+  },
+  methods: {
     sell() {
       this.$store.dispatch("sellItem", {
         item: this.item,
@@ -56,13 +61,6 @@ button, input {
   background: rgba(255, 255, 255, 0.4);
   font-size: 1rem;
   font-weight: bold;
-}
-
-.super-round {
-  // border-top-left-radius: 99999999999px;
-  border-top-right-radius: 99999999999px;
-  // border-bottom-left-radius: 99999999999px;
-  border-bottom-right-radius: 99999999999px;
 }
 
 .invalid {

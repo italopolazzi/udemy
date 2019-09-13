@@ -12,6 +12,9 @@ Array.prototype.sample = function() {
 
 const store = new Vuex.Store({
     state: {
+        global: {
+            messages: []
+        },
         funds: 10000,
         portfolio: {
             twitter: {
@@ -65,7 +68,7 @@ const store = new Vuex.Store({
         },
         // SELL
         SELL_QUANTITY(state, { key, quantity }) {
-            state.stock[key].quantity += quantity
+            state.portfolio[key].quantity -= quantity
         },
         ADD_FUNDS(state, total) {
             state.funds += total
@@ -73,15 +76,21 @@ const store = new Vuex.Store({
         REMOVE_QUANTITY_IN_PORTFOLIO(state, { key, quantity }) {
             state.portfolio[key].quantity -= quantity
         },
+        // FLOAT
         FLOAT_STOCK(state, stock) {
             // operação randomica -1 ou 1
             const random_operator = [1, -1].sample()
-            const _10p_stock_price = 0.1 * stock.price
+            const _10perc_stock_price = 0.1 * stock.price
                 // número randomico
-            const random_number = randomNumber(_10p_stock_price)
+            const random_number = randomNumber(_10perc_stock_price)
                 // total
             const total = random_operator * random_number
             stock.price += total
+        },
+        THROW_ERROR(state, text) {
+            state.global.messages.push({ type: 'error', text })
+            throw Error(text)
+
         }
     },
     actions: {
@@ -90,9 +99,9 @@ const store = new Vuex.Store({
             const key = item.key
 
             if (state.stock[key] < quantity) {
-                throw Error('Estoque insuficiente!')
+                commit('THROW_ERROR', 'Estoque insuficiente!')
             } else if (state.funds < total) {
-                throw Error('Saldo insuficiente!')
+                commit('THROW_ERROR', 'Saldo insuficiente!')
             }
 
             // retira do estoque
@@ -113,12 +122,18 @@ const store = new Vuex.Store({
             // remover a quantidade do meu portfolio
 
             if (state.portfolio[key].quantity < quantity) {
-                throw Error('Você não possui está quantidade para vender')
+                commit('THROW_ERROR', 'Você não possui está quantidade para vender')
             } else if (quantity < 1) {
-                throw Error('Você não pode vender uma quantidade nula ou negativa')
+                commit('THROW_ERROR', 'Você não pode vender uma quantidade nula ou negativa')
+            } else if (!state.portfolio.hasOwnProperty(key)) {
+                commit('THROW_ERROR', 'Você não possui este item para vender')
             }
 
             const total = quantity * item.price
+
+            commit('SELL_QUANTITY', { key, quantity })
+            commit('ADD_FUNDS', total)
+
         },
         endDay({ state, commit }) {
             for (let key in state.stock) {
@@ -130,6 +145,7 @@ const store = new Vuex.Store({
         funds: state => state.funds,
         portfolio: state => state.portfolio,
         stock: state => state.stock,
+        global_messages: state => state.global.messages
     }
 })
 

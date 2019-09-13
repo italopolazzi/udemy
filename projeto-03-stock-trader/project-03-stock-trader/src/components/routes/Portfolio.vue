@@ -1,13 +1,14 @@
 <template>
   <section id="portfolio">
     <h1>{{$route.name}}</h1>
+    {{portfolio}}
     <div class="container">
       <Card v-for="(item, key) in portfolio" :key="key">
         <Toolbar slot="card-title">
           <h3 slot="title">Card {{key}}</h3>
         </Toolbar>
         <div>
-          <SellInput :item="item"></SellInput>
+          <SellInput :item="{key, ...item}"></SellInput>
         </div>
       </Card>
     </div>
@@ -17,7 +18,7 @@
 <script>
 import Toolbar from "@/components/components/Toolbar";
 import Card from "@/components/components/Card";
-import SellInput from "@/components/partials/SellInput"
+import SellInput from "@/components/partials/SellInput";
 
 import { mapGetters } from "vuex";
 export default {
