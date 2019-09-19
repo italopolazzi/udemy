@@ -1,22 +1,21 @@
-@import './colors'
+@import './colors';
 
 dimentions = {
   default: 1rem
-}
-
+};
 theme = {
   light: {
     super: white,
-    body_color: color_dark_5,
-    body_color_background: color_light_5,
+    body_color: colors.dark.dark_5,
+    body_color_background: colors.light.light_5,
     link_color: red,
     link_color_hover: orange,
     link_color_active: yellow
   },
   dark: {
     super: black,
-    body_color: color_light_5,
-    body_color_background: color_dark_5,
+    body_color: colors.light.light_5,
+    body_color_background: colors.dark.dark_5,
     link_color: blue,
     link_color_hover: purple,
     link_color_active: green
@@ -25,5 +24,11 @@ theme = {
     margin: dimentions.default,
     padding: dimentions.default,
     font: dimentions.default
+  },
+  colors: {
+    danger: colors.commom.danger,
+    info: colors.commom.info,
+    success: colors.commom.success,
+    alert: colors.commom.alert
   }
-}
+};

@@ -4,11 +4,11 @@
       <BubbleLoader />
     </template>
     <template v-else>
-      <div class="global_messages" v-if="global_messages.length">
+      <!-- <div class="global-messages" v-if="global_messages.length">
         <ul>
           <li v-for="(message, index) in global_messages" :key="index">{{index}}-{{message.text}}</li>
         </ul>
-      </div>
+      </div> -->
       <LeftDrawer />
 
       <router-view />
@@ -42,20 +42,3 @@ export default {
   }
 };
 </script>
-
-<style lang="stylus">
-#app {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background :red;
-}
-
-.global_messages {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  background: red;
-  padding: 1rem;
-}
-</style>

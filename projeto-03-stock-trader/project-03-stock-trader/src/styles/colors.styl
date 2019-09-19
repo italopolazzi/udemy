@@ -1,23 +1,32 @@
-// LIGHT
-main_light = white
-color_light_1 = lighten(main_light, 40)
-color_light_2 = lighten(main_light, 30)
-color_light_3 = lighten(main_light, 20)
-color_light_4 = lighten(main_light, 10)
-color_light_5 = main_light
-color_light_6 = darken(main_light, 10)
-color_light_7 = darken(main_light, 20)
-color_light_8 = darken(main_light, 30)
-color_light_9 = darken(main_light, 40)
-
-// DARK
-main_dark = #2c3e50
-color_dark_1 = lighten(main_dark, 40)
-color_dark_2 = lighten(main_dark, 30)
-color_dark_3 = lighten(main_dark, 20)
-color_dark_4 = lighten(main_dark, 10)
-color_dark_5 = main_dark
-color_dark_6 = darken(main_dark, 10)
-color_dark_7 = darken(main_dark, 20)
-color_dark_8 = darken(main_dark, 30)
-color_dark_9 = darken(main_dark, 40)
+main_light = white;
+main_dark = #2c3e50;
+colors = {
+  light: {
+    light_1: lighten(main_light, 40),
+    light_2: lighten(main_light, 30),
+    light_3: lighten(main_light, 20),
+    light_4: lighten(main_light, 10),
+    light_5: main_light,
+    light_6: darken(main_light, 10),
+    light_7: darken(main_light, 20),
+    light_8: darken(main_light, 30),
+    light_9: darken(main_light, 40)
+  },
+  dark: {
+    dark_1: lighten(main_dark, 40),
+    dark_2: lighten(main_dark, 30),
+    dark_3: lighten(main_dark, 20),
+    dark_4: lighten(main_dark, 10),
+    dark_5: main_dark,
+    dark_6: darken(main_dark, 10),
+    dark_7: darken(main_dark, 20),
+    dark_8: darken(main_dark, 30),
+    dark_9: darken(main_dark, 40)
+  },
+  commom: {
+    danger: red,
+    info: blue,
+    success: green,
+    alert: yellow
+  }
+};
