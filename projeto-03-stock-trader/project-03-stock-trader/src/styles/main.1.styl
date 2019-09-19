@@ -4,7 +4,6 @@
 @import './theme';
 @import './components';
 @import './sizes';
-@import './alignments';
 
 body {
   background: theme[theme_type].body_color_background;
@@ -77,5 +76,17 @@ button {
 
 .column {
   display: flex;
-  flex-direction: column;
+  flex-direction: column.column;
+}
+
+alignment = {
+  align-items: stretch center flex-start flex-end baseline initial inherit,
+  justify-content: flex-start flex-end center space-between space-around initial inherit,
+  text-align: left right center justify initial inherit
+};
+
+for num in (0 .. (length(alignment.align-items) - 1)) {
+  .test{num} {
+    color: white;
+  }
 }

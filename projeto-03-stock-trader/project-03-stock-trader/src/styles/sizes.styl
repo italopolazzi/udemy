@@ -1,17 +1,13 @@
-cols = 12;
-types = {
-  xs: 0px,
-  sm: 480px,
-  md: 600px,
-  lg: 996px,
-  xl: 1200px
-};
-
-for key, value in types {
+cols = theme.sizes.grid_cols;
+for key, value in theme.sizes.media {
   @media (min-width: value) {
     for i in (1 .. cols) {
+      result = (100 / cols * i)%
       .{key}{i} {
-        flex-basis: (100% / cols * i)
+        flex-basis: result;
+      }
+      .offset-{key}{i} {
+        margin-left: result;
       }
     }
   }

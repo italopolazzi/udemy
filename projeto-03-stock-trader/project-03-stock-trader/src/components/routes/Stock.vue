@@ -2,7 +2,7 @@
   <section id="portfolio">
     <h1>{{$route.name}}</h1>
     <div class="container">
-      <Card v-for="(item, key) in stock" :key="key" class="xs4">
+      <Card v-for="(item, key) in stock" :key="key" class="offset-md6 xs12 sm6 md4">
         <h3 slot="card-title">Card {{key}}</h3>
         <div>
           <BuyInput :item="{key, ...item}"></BuyInput>
