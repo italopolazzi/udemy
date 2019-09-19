@@ -37,8 +37,4 @@ export default {
   flex-flow: row wrap;
   box-sizing: border-box;
 }
-
-.card {
-  flex: 0 1 50%;
-}
 </style>

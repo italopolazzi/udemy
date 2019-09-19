@@ -1,0 +1,18 @@
+cols = 12;
+types = {
+  xs: 0px,
+  sm: 480px,
+  md: 600px,
+  lg: 996px,
+  xl: 1200px
+};
+
+for key, value in types {
+  @media (min-width: value) {
+    for i in (1 .. cols) {
+      .{key}{i} {
+        flex-basis: (100% / cols * i)
+      }
+    }
+  }
+}
