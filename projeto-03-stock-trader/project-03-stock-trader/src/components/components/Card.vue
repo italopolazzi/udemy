@@ -18,9 +18,3 @@
 <script>
 export default {};
 </script>
-
-<style scoped>
-.card-title {
-  font-size: 3rem;
-}
-</style>

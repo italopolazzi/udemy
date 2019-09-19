@@ -16,7 +16,7 @@ const store = new Vuex.Store({
             messages: []
         },
         funds: 10000,
-        loading: true,
+        loading: false,
         portfolio: {
             twitter: {
                 id: 1,
@@ -155,13 +155,13 @@ const store = new Vuex.Store({
         },
         loadAll({ state, commit }, vm) {
             console.log("loadAll");
-            commit('SET_LOADING', true)
+            commit('SET_LOADING', false)
             vm.$firebase('stock-trader.json')
                 .then(res =>
                     state = res.data['-Lowh4zsRq4xON3JTpDw']
                 )
                 .catch(err => console.error(err))
-                .finally(() => commit('SET_LOADING', true))
+                .finally(() => commit('SET_LOADING', false))
                 // commit('SET_LOADING')
         },
         saveAll({ state, commit }, vm) {

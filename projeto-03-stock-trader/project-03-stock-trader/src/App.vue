@@ -9,7 +9,7 @@
           <li v-for="(message, index) in global_messages" :key="index">{{index}}-{{message.text}}</li>
         </ul>
       </div>
-      <TopToolbar />
+      <LeftDrawer />
 
       <router-view />
     </template>
@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import TopToolbar from "@/components/partials/TopToolbar";
+import LeftDrawer from "@/components/partials/LeftDrawer";
 import BubbleLoader from "@/components/partials/BubbleLoader";
 import { mapGetters } from "vuex";
 
 export default {
   name: "app",
   components: {
-    TopToolbar,
+    LeftDrawer,
     BubbleLoader
   },
   created() {
@@ -44,6 +44,13 @@ export default {
 </script>
 
 <style lang="stylus">
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background :red;
+}
+
 .global_messages {
   position: absolute;
   right: 1rem;

@@ -4,6 +4,7 @@ import App from './App.vue'
 // -------------------------------
 // STYLES
 // -------------------------------
+import './styles/reset.styl'
 import './styles/main.styl'
 
 // -------------------------------
