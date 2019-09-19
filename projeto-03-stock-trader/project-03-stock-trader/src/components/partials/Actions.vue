@@ -4,7 +4,8 @@
       <slot />
     </span>
     <button id="button1" class="sr" @click="endDay()">Finalizar dia</button>
-    <button id="button2" class="sr" @click="expand()">Expandir</button>
+    <button id="button2" class="sr" @click="loadAll()">Carregar</button>
+    <button id="button2" class="sr" @click="saveAll()">Salvar</button>
   </div>
 </template>
 
@@ -14,8 +15,11 @@ export default {
     endDay() {
       this.$store.dispatch("endDay");
     },
-    expand() {
-      alert("expand");
+    loadAll() {
+      this.$store.dispatch("loadAll", this);
+    },
+    saveAll() {
+      this.$store.dispatch("saveAll", this);
     }
   }
 };

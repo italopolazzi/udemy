@@ -16,37 +16,39 @@ const store = new Vuex.Store({
             messages: []
         },
         funds: 10000,
+        loading: true,
         portfolio: {
             twitter: {
                 id: 1,
                 quantity: 12,
-                price: 12.00,
                 name: 'Twitter'
             }
+        },
+        price_refs: {
+            twitter: 120.00,
+            google: 1300.00,
+            bmw: 3000.00,
+            facebook: 740.00
         },
         stock: {
             twitter: {
                 id: 1,
                 quantity: 5,
-                price: 1500.00,
                 name: 'Twitter'
             },
             google: {
-                id: 1,
+                id: 2,
                 quantity: 5,
-                price: 1500.00,
                 name: 'Google'
             },
             bmw: {
-                id: 1,
+                id: 3,
                 quantity: 5,
-                price: 1500.00,
                 name: 'BMW'
             },
             facebook: {
-                id: 1,
+                id: 4,
                 quantity: 5,
-                price: 1500.00,
                 name: 'Facebook Inc.'
             },
         }
@@ -54,7 +56,10 @@ const store = new Vuex.Store({
     mutations: {
         // BUY
         BUY_QUANTITY(state, { key, quantity }) {
+            console.log(state);
+
             state.portfolio[key].quantity += quantity
+            state.stock[key].quantity -= quantity
         },
         REMOVE_FUNDS(state, total) {
             state.funds -= total
@@ -68,6 +73,9 @@ const store = new Vuex.Store({
         },
         // SELL
         SELL_QUANTITY(state, { key, quantity }) {
+            console.log(state);
+
+            state.stock[key].quantity += quantity
             state.portfolio[key].quantity -= quantity
         },
         ADD_FUNDS(state, total) {
@@ -77,26 +85,31 @@ const store = new Vuex.Store({
             state.portfolio[key].quantity -= quantity
         },
         // FLOAT
-        FLOAT_STOCK(state, stock) {
+        FLOAT_PRICE_REF(state, key) {
             // operação randomica -1 ou 1
             const random_operator = [1, -1].sample()
-            const _10perc_stock_price = 0.1 * stock.price
+            const _10perc_price_ref = 0.1 * state.price_refs[key]
                 // número randomico
-            const random_number = randomNumber(_10perc_stock_price)
+            const random_number = randomNumber(_10perc_price_ref)
                 // total
             const total = random_operator * random_number
-            stock.price += total
+            state.price_refs[key] += total
         },
         THROW_ERROR(state, text) {
             state.global.messages.push({ type: 'error', text })
             throw Error(text)
-
+        },
+        SET_LOADING(state, bool) {
+            setTimeout(() => {
+                state.loading = bool
+            }, 5000);
         }
+
     },
     actions: {
         buyItem({ commit, state }, { item, quantity }) {
-            const total = quantity * item.price
             const key = item.key
+            const total = quantity * state.price_refs[key]
 
             if (state.stock[key] < quantity) {
                 commit('THROW_ERROR', 'Estoque insuficiente!')
@@ -129,23 +142,39 @@ const store = new Vuex.Store({
                 commit('THROW_ERROR', 'Você não possui este item para vender')
             }
 
-            const total = quantity * item.price
+            const total = quantity * state.price_refs[key]
 
             commit('SELL_QUANTITY', { key, quantity })
             commit('ADD_FUNDS', total)
 
         },
         endDay({ state, commit }) {
-            for (let key in state.stock) {
-                commit('FLOAT_STOCK', state.stock[key])
+            for (let key in state.price_refs) {
+                commit('FLOAT_PRICE_REF', key)
             }
+        },
+        loadAll({ state, commit }, vm) {
+            console.log("loadAll");
+            commit('SET_LOADING', true)
+            vm.$firebase('stock-trader.json')
+                .then(res =>
+                    state = res.data['-Lowh4zsRq4xON3JTpDw']
+                )
+                .catch(err => console.error(err))
+                .finally(() => commit('SET_LOADING', true))
+                // commit('SET_LOADING')
+        },
+        saveAll({ state, commit }, vm) {
+            vm.$firebase.put('stock-trader.json', { '-Lowh4zsRq4xON3JTpDw': state }).then(res => console.log(res)).catch(err => console.error(err))
         }
     },
     getters: {
         funds: state => state.funds,
         portfolio: state => state.portfolio,
         stock: state => state.stock,
-        global_messages: state => state.global.messages
+        global_messages: state => state.global.messages,
+        price_ref: state => key => state.price_refs[key],
+        is_loading: state => state.loading
     }
 })
 

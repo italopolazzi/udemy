@@ -1,6 +1,6 @@
 <template>
   <div class="buy-input">
-    {{item.price | money}}
+    {{price | money}}
     <br />
     <input type="number" min="1" :max="item.quantity" v-model.number="quantity" />
     <button
@@ -9,10 +9,6 @@
       :disabled="button.disabled"
       @click="buy"
     >{{button.text}}</button>
-
-    <!-- <p>quantity: {{quantity}}</p>
-    <p>item: {{item}}</p>
-    <p>button: {{button}}</p>-->
   </div>
 </template>
 
@@ -40,6 +36,9 @@ export default {
       return {
         ...config
       };
+    },
+    price() {
+      return this.$store.getters.price_ref(this.item.key);
     }
   },
   methods: {

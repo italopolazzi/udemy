@@ -3,13 +3,13 @@ import axios from 'axios'
 
 Vue.use({
     install(Vue) {
-        Vue.prototype.$http = axios.create({
-                baseURL: '',
+        Vue.prototype.$firebase = axios.create({
+                baseURL: 'https://my-vue-course.firebaseio.com/',
                 headers: {
 
                 }
             }),
-            Vue.prototype.$http.interceptors.response.use(config => {
+            Vue.prototype.$firebase.interceptors.response.use(config => {
                 console.log(config)
                 return config
             }, error => Promise.reject(error))
