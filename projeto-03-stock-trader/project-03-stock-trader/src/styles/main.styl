@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,700&display=swap')
+@import './config'
 @import './colors'
 @import './theme'
-
-theme_type = 'light'
+@import './components'
 
 body
   background: theme[theme_type].body_color_background
@@ -28,18 +28,6 @@ h5
   font-size: 1.6rem
 h6
   font-size: 1.2rem
-
-.router-link
-  text-decoration: none
-  color: theme[theme_type].link_color
-  margin: theme.sizes.margin
-  &:hover
-    color: theme[theme_type].link_color_hover
-
-
-.router-link-exact-active
-  color: theme[theme_type].link_color_active
-
 
 .sr
   border-top-left-radius: 99999999999px

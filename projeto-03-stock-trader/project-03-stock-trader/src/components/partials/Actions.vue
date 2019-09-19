@@ -29,8 +29,6 @@ export default {
 <style lang="stylus" scoped>
 button, .funds {
   padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.4);
   margin-right: 1rem;
-  color: white;
 }
 </style>

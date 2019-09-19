@@ -11,7 +11,5 @@ export default {};
 </script>
 
 <style lang="stylus" scoped>
-.drawer {
 
-}
 </style>
