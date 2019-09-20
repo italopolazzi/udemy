@@ -17,13 +17,13 @@ const router = new VueRouter({
             path: '/portfolio',
             name: 'portfolio',
             component: () =>
-                import ('@/components/routes/Portfolio')
+                import ('@/components/routes/StockTrader')
         },
         {
             path: '/stock',
             name: 'stock',
             component: () =>
-                import ('@/components/routes/Stock')
+                import ('@/components/routes/StockTrader')
         },
     ]
 })
