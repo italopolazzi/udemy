@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <GlobalMessages />
-    <template v-if="is_loading">
-      <BubbleLoader />
-    </template>
-    <template v-else>
-      <LeftDrawer />
-      <router-view />
-    </template>
+    <Transition name="fade" mode="out-in" appear>
+      <div v-if="is_loading" key="loader">
+        <BubbleLoader />
+      </div>
+      <div v-else key="content">
+        <LeftDrawer />
+        <router-view />
+      </div>
+    </Transition>
   </div>
 </template>
 

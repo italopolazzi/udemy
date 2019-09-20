@@ -24,9 +24,15 @@ colors = {
     dark_9: darken(main_dark, 40)
   },
   commom: {
-    danger: red,
+    error: red,
     info: blue,
     success: green,
     alert: yellow
   }
 };
+
+for _class, value in (colors.commom) {
+  .{_class} {
+    background: value;
+  }
+}

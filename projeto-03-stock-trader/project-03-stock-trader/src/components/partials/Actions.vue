@@ -24,11 +24,3 @@ export default {
   }
 };
 </script>
-
-
-<style lang="stylus" scoped>
-button, .funds {
-  padding: 0.75rem 1.25rem;
-  margin-right: 1rem;
-}
-</style>
