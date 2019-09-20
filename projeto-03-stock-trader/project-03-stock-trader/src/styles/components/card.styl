@@ -1,7 +1,22 @@
+card = {
+  light: {
+    shadow: darken(theme[theme_type].super, 60)
+  },
+  dark: {
+    shadow: lighten(theme[theme_type].super, 0)
+  }
+};
+
 .card {
-  margin: 1rem;
+  margin: 0.5 * dimentions.default;
+  padding: dimentions.default;
   background: theme[theme_type].body_color_background;
-  box-shadow: 0 0 (dimentions.default / 4) theme[theme_type].body_color;
+  color: theme[theme_type].body_color;
+  box-shadow: 0 0 (dimentions.default / 4) card[theme_type].shadow;
   width: 100%;
-  // margin: theme.sizes.margin;
+}
+
+.card-title {
+  margin-bottom: dimentions.default;
+  font-weight: bold;
 }
