@@ -2,14 +2,16 @@
   <section :id="$route.name">
     <h1>{{$route.name}}</h1>
     <Container class="row">
-      <Flex v-for="(item, key) in currentStockTrader" :key="key" class="xs12 sm6 md4">
-        <Card>
-          <h3 slot="card-title">Card {{key}}</h3>
-          <div>
-            <component :is="currentCardComponent" :item="{key, ...item}"></component>
-          </div>
-        </Card>
-      </Flex>
+      <Transition-Group name="slide" mode="out-in">
+        <Flex v-for="(item, key) in currentStockTrader" :key="key" class="xs12 sm6 md4">
+          <Card>
+            <h3 slot="card-title">Card {{key}}</h3>
+            <div>
+              <component :is="currentCardComponent" :item="{key, ...item}"></component>
+            </div>
+          </Card>
+        </Flex>
+      </Transition-Group>
     </Container>
   </section>
 </template>
