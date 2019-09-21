@@ -7,9 +7,14 @@
 @import './alignments';
 @import './transitions';
 
+* {
+  outline: none;
+}
+
 body {
-  background: theme[theme_type].body_color_background;
-  color: theme[theme_type].body_color;
+  overflow: hidden;
+  background: theme[tt].body_color_background;
+  color: theme[tt].body_color;
   box-sizing: border-box;
   margin: 0;
   padding: 0;

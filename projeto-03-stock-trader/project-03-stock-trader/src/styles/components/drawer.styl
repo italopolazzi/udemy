@@ -1,12 +1,51 @@
 .drawer {
   position: absolute;
-  background: theme[theme_type].body_color;
-  color: theme[theme_type].body_color_background;
-  box-shadow: 0 0 (dimentions.default * 20) theme[theme_type].super;
+  background: theme[tt].body_color;
+  color: theme[tt].body_color_background;
+  box-shadow: defaults.box_shadow;
   padding: theme[sizes].padding;
   margin: theme[sizes].margin;
   border-radius: dimentions.default;
-  width: 30vw;
+  width: 40vw;
   height: calc(100vh - (4 * dimentions.default));
   z-index: 1;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  & > * {
+    width: 100%;
+    margin-bottom: dimentions.default;
+  }
+}
+
+.drawer-title {
+}
+
+.drawer-menu {
+  position: relative;
+  width: 100%;
+
+  .menu {
+    width: 100%;
+    // background: red;
+    display: flex;
+    flex-flow: column wrap;
+    position: relative;
+
+    .router-link {
+      flex: 0 1 100%;
+      line-height: 3 * theme.sizes.font;
+      font-weight: bold;
+      // padding-left: theme.sizes.font;
+    }
+  }
+}
+
+.drawer-actions {
+  // .funds, .buttons {
+  // padding: 1rem;
+  // padding-bottom: 0;
+  // }
 }

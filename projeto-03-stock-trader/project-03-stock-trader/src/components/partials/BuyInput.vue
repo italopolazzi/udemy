@@ -2,9 +2,9 @@
   <div class="buy-input">
     {{price | money}}
     <br />
-    <input class="sr-tl sr-bl" type="number" min="1" :max="item.quantity" v-model.number="quantity" />
+    <input class="sr-tl sr-bl raised" type="number" min="1" :max="item.quantity" v-model.number="quantity" />
     <button
-      class="sr-tr sr-br"
+      class="sr-tr sr-br raised"
       :class="{'error': button.disabled}"
       :disabled="button.disabled"
       @click="buy"

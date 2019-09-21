@@ -1,7 +1,13 @@
 <template>
   <div class="drawer">
-    <slot name="title" />
-    <slot name="menu" />
-    <slot name="actions" />
+    <div class="drawer-title">
+      <slot name="title" />
+    </div>
+    <div class="drawer-menu">
+      <slot name="menu" />
+    </div>
+    <div class="drawer-actions">
+      <slot name="actions" />
+    </div>
   </div>
 </template>

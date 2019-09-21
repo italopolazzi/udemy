@@ -91,7 +91,7 @@ const store = new Vuex.Store({
         SET_LOADING(state, bool) {
             setTimeout(() => {
                 state.loading = bool
-            }, 5000);
+            }, 1000);
         }
     },
     actions: {

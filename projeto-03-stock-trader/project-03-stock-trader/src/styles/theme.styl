@@ -40,3 +40,14 @@ theme = {
     alert: colors.commom.alert
   }
 };
+util = {
+  light: {
+    shadow_color: darken(theme[tt].super, 60)
+  },
+  dark: {
+    shadow_color: lighten(theme[tt].super, 0)
+  }
+};
+defaults = {
+  box_shadow: 0 0 (dimentions.default / 4) util[tt].shadow_color
+};
