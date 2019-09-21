@@ -1,10 +1,10 @@
 <template>
   <div id="home">
     <Card>
-      <div>
+      <!-- <div> -->
         Total funds:
         {{$store.state.funds | money }}
-      </div>
+      <!-- </div> -->
     </Card>
   </div>
 </template>

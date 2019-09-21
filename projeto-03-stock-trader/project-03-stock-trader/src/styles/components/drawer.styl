@@ -44,8 +44,32 @@
 }
 
 .drawer-actions {
-  // .funds, .buttons {
-  // padding: 1rem;
-  // padding-bottom: 0;
-  // }
+  #actions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .buttons {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-around;
+      padding: 1rem 0;
+    }
+
+    .funds {
+      width: 100%;
+      text-align: center;
+
+      span {
+        display: block;
+        font-weight: bold;
+      }
+    }
+  }
 }

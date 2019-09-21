@@ -8,17 +8,17 @@ theme = {
     super: white,
     body_color: colors.dark.dark_5,
     body_color_background: colors.light.light_5,
-    link_color: red,
-    link_color_hover: orange,
-    link_color_active: yellow
+    link_color: colors.light.light_5,
+    secondary: darken(colors.light.light_5, 40),
+    primary: lighten(colors.dark.dark_5, 40)
   },
   dark: {
     super: black,
     body_color: colors.light.light_5,
     body_color_background: colors.dark.dark_5,
-    link_color: blue,
-    link_color_hover: purple,
-    link_color_active: green
+    link_color: colors.dark.dark_5,
+    secondary: lighten(colors.dark.dark_5, 40),
+    primary: darken(colors.light.light_5, 40)
   },
   sizes: {
     grid_cols: 12,
