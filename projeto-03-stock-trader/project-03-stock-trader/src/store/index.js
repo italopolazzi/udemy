@@ -51,6 +51,13 @@ const store = new Vuex.Store({
         }
     },
     mutations: {
+        SET_STATE(state, payload) {
+            for (let key in payload) {
+                if (state.hasOwnProperty(key)) {
+                    state[key] = payload[key]
+                }
+            }
+        },
         BUY_QUANTITY(state, { key, quantity }) {
             state.portfolio[key].quantity += quantity
             state.stock[key].quantity -= quantity
@@ -146,7 +153,7 @@ const store = new Vuex.Store({
             commit('SET_LOADING', true)
             vm.$firebase('stock-trader.json')
                 .then(res =>
-                    state = res.data['-Lowh4zsRq4xON3JTpDw']
+                    commit('SET_STATE', res.data['-Lowh4zsRq4xON3JTpDw'])
                 )
                 .catch(err => console.error(err))
                 .finally(() => commit('SET_LOADING', false))
