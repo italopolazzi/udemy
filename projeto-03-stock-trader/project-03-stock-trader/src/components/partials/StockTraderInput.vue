@@ -13,7 +13,7 @@
       class="sr-tr sr-br raised"
       :class="{'error': button.disabled}"
       :disabled="button.disabled"
-      @click="sell"
+      @click="config.methods.name"
     >{{button.text}}</button>
   </div>
 </template>
@@ -22,6 +22,10 @@
 export default {
   props: {
     item: {
+      type: Object,
+      required: true
+    },
+    config: {
       type: Object,
       required: true
     }
@@ -35,10 +39,10 @@ export default {
     button() {
       const config =
         this.quantity < 1
-          ? { text: "Inválido", disabled: true }
+          ? { text: this.config.texts.invalid, disabled: true }
           : this.quantity > this.item.quantity
-          ? { text: "Indisponível", disabled: true }
-          : { text: "Vender", disabled: false };
+          ? { text: this.config.texts.unavaliable, disabled: true }
+          : { text: this.config.texts.valid, disabled: false };
       return {
         ...config
       };
@@ -47,15 +51,14 @@ export default {
       return this.$store.getters.price_ref(this.item.key);
     }
   },
-  methods: {
-    sell() {
-      this.$store.dispatch("sellItem", {
+  created() {    
+    this[this.config.methods.name] = () => {
+      this.$store.dispatch(this.config.methods.dispatch, {
         item: this.item,
         quantity: this.quantity
       });
-    }
+    };
   }
 };
-
 </script>
 

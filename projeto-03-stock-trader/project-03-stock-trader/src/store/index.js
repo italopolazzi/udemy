@@ -58,9 +58,6 @@ const store = new Vuex.Store({
         REMOVE_FUNDS(state, total) {
             state.funds -= total
         },
-        REMOVE_QUANTITY_OF_STOCK(state, { key, quantity }) {
-            state.stock[key].quantity -= quantity
-        },
         ADD_TO_PORTFOLIO(state, item) {
             item.quantity = 0
             state.portfolio[item.key] = item
@@ -91,7 +88,7 @@ const store = new Vuex.Store({
         SET_LOADING(state, bool) {
             setTimeout(() => {
                 state.loading = bool
-            }, 1000);
+            }, 0);
         }
     },
     actions: {
@@ -99,18 +96,29 @@ const store = new Vuex.Store({
             const key = item.key
             const total = quantity * state.price_refs[key]
 
-            if (state.stock[key] < quantity) {
+            if (state.stock[key].quantity < quantity) {
                 commit('THROW_ERROR', 'Estoque insuficiente!')
             } else if (state.funds < total) {
                 commit('THROW_ERROR', 'Saldo insuficiente!')
             }
 
             commit('REMOVE_FUNDS', total)
-            commit('REMOVE_QUANTITY_OF_STOCK', { key, quantity })
+                // TO REVIEW
+                /**
+                 * The problem was identified here cuz
+                 * at this point the quantity of stock
+                 * is being removed
+                 * and down the mutation
+                 * BUY_QUANTITY is being called
+                 * which also removes the quantity
+                 * from the stock.
+                 */
+                // commit('REMOVE_QUANTITY_OF_STOCK', { key, quantity })
 
             if (!state.portfolio.hasOwnProperty(key)) {
                 commit('ADD_TO_PORTFOLIO', item)
             }
+            // TO REVIEW
             commit('BUY_QUANTITY', { key, quantity })
         },
         sellItem({ commit, state }, { item, quantity }) {

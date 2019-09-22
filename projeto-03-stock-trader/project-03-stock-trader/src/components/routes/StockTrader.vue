@@ -1,6 +1,5 @@
 <template>
   <section :id="$route.name">
-    <h1>{{$route.name}}</h1>
     <Container class="row">
       <Transition-Group name="slide" mode="out-in">
         <Flex v-for="(item, key) in currentStockTrader" :key="key" class="xs12 sm6 md4">
@@ -27,10 +26,8 @@ import { mapGetters } from "vuex";
 export default {
   components: { Container, Flex, Card, BuyInput },
   computed: {
-    currentStockTrader: {
-      get() {
-        return this.$store.getters[this.$route.name];
-      }
+    currentStockTrader() {
+      return this.$store.getters[this.$route.name];
     },
     currentCardComponent() {
       const routesCards = {
@@ -41,4 +38,6 @@ export default {
     }
   }
 };
+
+
 </script>

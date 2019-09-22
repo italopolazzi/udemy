@@ -5,9 +5,11 @@
       <div v-if="is_loading" key="loader">
         <BubbleLoader />
       </div>
-      <div v-else key="content">
+      <div class="main-content" v-else key="content">
         <LeftDrawer />
-        <router-view />
+        <div class="router-view">
+          <router-view />
+        </div>
       </div>
     </Transition>
   </div>
