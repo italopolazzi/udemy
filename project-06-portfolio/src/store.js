@@ -3,14 +3,19 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import main from "@/store/main";
+
 export default new Vuex.Store({
-  state: {
+    modules: {
+        main
+    },
+    state: {
 
-  },
-  mutations: {
+    },
+    mutations: {
 
-  },
-  actions: {
+    },
+    actions: {
 
-  }
+    }
 })
