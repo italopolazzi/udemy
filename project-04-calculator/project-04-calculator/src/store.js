@@ -5,25 +5,32 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        result: 0,
-        expression: "3+3",
-        errors: []
+        calculator: {
+            result: 0,
+            expression: "",
+            errors: []
+        }
     },
     mutations: {
-        ADD_IN_EXPRESSION(state, key) {
-            state.expression += key
+        ADD_IN_EXPRESSION({ calculator }, key) {
+            calculator.expression += key
         },
-        CLEAR_ALL(state) {
-            state.result = 0
-            state.expression = ''
-            state.errors = []
+        CLEAR_ALL({ calculator }) {
+            calculator.result = 0
+            calculator.expression = ''
+            calculator.errors = []
         },
-        RESOLVE_EXPRESSION(state) {
+        RESOLVE_EXPRESSION({ calculator }) {
             try {
-                state.result = eval(state.expression)
-                state.errors = []
+                calculator.result = eval(calculator.expression)
+                calculator.errors = []
             } catch (error) {
-                state.errors.push(error)
+                calculator.errors.push(error)
+                if (calculator.errors.length) {
+                    setTimeout(() => {
+                        calculator.errors.shift()
+                    }, 5000);
+                }
             }
         }
     },
@@ -31,9 +38,8 @@ export default new Vuex.Store({
 
     },
     getters: {
-        result: state => state.result,
-        expression: state => state.expression,
-        errors: state => state.errors,
-
+        result: state => state.calculator.result,
+        expression: state => state.calculator.expression,
+        errors: state => state.calculator.errors
     }
 })
