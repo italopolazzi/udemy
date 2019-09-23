@@ -5,15 +5,16 @@
         <v-card>
           <v-container>
             <v-layout row v-for="(row, row_i) in keys" :key="row_i">
-              <v-flex xs3 pa-1 v-for="(col, col_i) in row" :key="col_i">
+              <v-flex xs3 pa-1 v-for="(key, key_i) in row" :key="key_i">
                 <v-btn
-                  :class="col.style"
+                  :class="key.style"
                   class="font-weight-bold title"
                   depressed
                   x-large
                   block
-                  @click="col.handler"
-                >{{col.symbol}}</v-btn>
+                  @click="key.handler"
+                  v-press="key"
+                >{{key.symbol}}</v-btn>
               </v-flex>
             </v-layout>
           </v-container>
@@ -25,6 +26,18 @@
 
 <script>
 export default {
+  directives: {
+    press: {
+      bind: (el, binding) => {
+        const { handler, symbol } = binding.value;
+        addEventListener("keydown", e => {
+          if (e.key === symbol) {
+            handler();
+          }
+        });
+      }
+    }
+  },
   data() {
     return {
       keys: [
