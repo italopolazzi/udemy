@@ -4,10 +4,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import main from "@/store/main";
+import projects from "@/store/projects";
 
 export default new Vuex.Store({
     modules: {
-        main
+        main,
+        projects
     },
     state: {
 
