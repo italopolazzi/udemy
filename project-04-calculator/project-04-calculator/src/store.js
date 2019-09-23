@@ -3,6 +3,15 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const secure_eval = expression => {
+    const matched = expression.split('').every(item => /\d|[().+-/*]/g.test(item))
+    if (matched) {
+        return eval(expression)
+    } else {
+        throw Error('Invalid expression')
+    }
+}
+
 export default new Vuex.Store({
     state: {
         calculator: {
@@ -20,9 +29,16 @@ export default new Vuex.Store({
             calculator.expression = ''
             calculator.errors = []
         },
-        RESOLVE_EXPRESSION({ calculator }) {
+        RESOLVE_EXPRESSION({ calculator }, resolve_symbol = "=") {
             try {
-                calculator.result = eval(calculator.expression)
+                switch (resolve_symbol) {
+                    case "%":
+                        calculator.result = secure_eval(calculator.expression) / 100
+                        break;
+                    default:
+                        calculator.result = secure_eval(calculator.expression)
+                        break;
+                }
                 calculator.errors = []
             } catch (error) {
                 calculator.errors.push(error)
