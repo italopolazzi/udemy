@@ -15,7 +15,15 @@
     <v-divider></v-divider>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-chip class="mr-2" x-small label outlined v-for="tag in project.tags" :key="tag">{{tag}}</v-chip>
+      <v-chip
+        class="mr-2"
+        x-small
+        label
+        outlined
+        v-for="tag in project.tags"
+        :key="tag"
+        @click="filterByTag(tag)"
+      >{{tag}}</v-chip>
     </v-card-actions>
     <v-card-actions>
       <v-spacer></v-spacer>
@@ -38,6 +46,9 @@ export default {
     seeThisProject() {
       this.$store.commit("SET_PROJECT", this.project);
       this.$router.push({ path: "details", append: true });
+    },
+    filterByTag(tag) {
+      this.$store.commit("ADD_TAG_TO_FILTER", tag);
     }
   }
 };
