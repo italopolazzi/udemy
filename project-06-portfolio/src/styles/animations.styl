@@ -1,0 +1,56 @@
+// $timing-function = cubic-bezier(0.42, 0, 0.21, 0.97);
+$timing-function = cubic-bezier(0.68, 1.32, 0.88, 0.6);
+
+// SLIDE_X
+.slide-enter, .slide-leave-to {
+  animation-name: slide;
+  animation-duration: 0.5s;
+  animation-timing-function: $timing-function;
+}
+
+.slide-enter-active {
+  animation-direction: normal;
+}
+
+.slide-leave-active {
+  animation-direction: reverse;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(20rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// SLIDE_Y
+.slide-y-enter, .slide-y-leave-to {
+  animation-name: slide-y;
+  animation-duration: 0.5s;
+  animation-timing-function: $timing-function;
+}
+
+.slide-y-enter-active {
+  animation-direction: normal;
+}
+
+.slide-y-leave-active {
+  animation-direction: reverse;
+}
+
+@keyframes slide-y {
+  from {
+    transform: translateY(20rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

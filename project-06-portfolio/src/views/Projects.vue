@@ -1,6 +1,8 @@
 <template>
   <div class="projects">
-    <router-view></router-view>
+    <transition name="slide-y" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 

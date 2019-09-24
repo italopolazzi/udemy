@@ -3,10 +3,11 @@
     <Toolbar />
 
     <v-content>
-      <router-view />
+      <transition name="slide" mode="out-in">
+        <router-view />
+      </transition>
     </v-content>
   </v-app>
-  
 </template>
 
 <script>
