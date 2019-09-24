@@ -3,10 +3,13 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex xs12 lg4>
-          <v-img :src="img.src" :alt="img.alt" :aspect-ratio="3/4"></v-img>
+          <v-img :src="img.src" :alt="img.alt" max-height="500" cover :aspect-ratio="4/7"></v-img>
         </v-flex>
         <v-flex xs12 lg8>
-          <v-card :loading="form.loading">
+          <v-card :loading="form.loading" height="100%" >
+            <v-card-title>
+              <div class="overline mb-4"># Contact me</div>
+            </v-card-title>
             <v-card-text>
               <v-form ref="contact_form" v-model.trim.lazy="form.valid" lazy-validation>
                 <v-container fluid>
@@ -55,11 +58,13 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn @click="reset" text>Limpar</v-btn>
-              <v-btn @click="resetValidation" text>Limpar validação</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn large @click="reset" text>Limpar</v-btn>
+              <!-- <v-btn @click="resetValidation" text>Limpar validação</v-btn> -->
               <v-spacer></v-spacer>
               <v-btn @click="validate" text>Validar</v-btn>
-              <v-btn @click="send">Enviar</v-btn>
+              <v-btn large @click="send" color="primary">Enviar</v-btn>
+              <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
         </v-flex>
