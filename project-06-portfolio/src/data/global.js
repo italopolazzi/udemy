@@ -15,7 +15,16 @@ export default {
                 name: 'projects',
                 icon: 'developer-board',
                 component: () =>
-                    import ( /* webpackChunkName: "projects" */ '@/views/Projects.vue')
+                    import ( /* webpackChunkName: "projects" */ '@/views/Projects.vue'),
+                children: [{
+                    path: '',
+                    component: () =>
+                        import ('@/components/Projects/ProjectsList.vue')
+                }, {
+                    path: 'details',
+                    component: () =>
+                        import ('@/components/Projects/ProjectDetails.vue')
+                }]
             },
 
             {
