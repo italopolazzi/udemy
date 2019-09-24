@@ -4,7 +4,7 @@
     <v-container fluid>
       <v-layout wrap row fill-height>
         <v-flex xs12 pa-2>
-          <v-flex xs3>
+          <v-flex xs12 md3>
             <div class="headline">Filters</div>
             <v-select
               append-icon="mdi-filter"

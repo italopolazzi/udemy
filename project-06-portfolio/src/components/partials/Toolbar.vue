@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app extended :prominent="false" flat>
+  <v-app-bar app extended dark :prominent="false" flat>
     <v-toolbar-title class="headline text-uppercase">
       <span class="font-weight-light">{{fname}}</span>
       <span class="font-weight-bold">{{lname}}</span>
