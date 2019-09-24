@@ -1,8 +1,8 @@
 <template>
   <v-card tile flat hover>
     <v-list-item three-line>
-      <v-list-item-avatar tile size="80" v-if="project.img.src">
-        <v-img :src="project.img.src" :alt="project.img.alt"></v-img>
+      <v-list-item-avatar tile size="80" color="primary">
+        <v-img v-if="project.img.src" :src="project.img.src" :alt="project.img.alt"></v-img>
       </v-list-item-avatar>
       <v-list-item-content>
         <div class="overline mb-4">{{project.name}}</div>

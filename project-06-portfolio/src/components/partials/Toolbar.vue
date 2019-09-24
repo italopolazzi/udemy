@@ -1,10 +1,21 @@
 <template>
-  <v-app-bar app extended dark :prominent="false" flat>
+  <v-app-bar app extended  :prominent="false" flat>
     <v-toolbar-title class="headline text-uppercase">
       <span class="font-weight-light">{{fname}}</span>
       <span class="font-weight-bold">{{lname}}</span>
     </v-toolbar-title>
     <v-spacer></v-spacer>
+    <v-toolbar-items>
+      <v-btn target="blank" :href="'/projects'" icon>
+        <v-icon>mdi-github-face</v-icon>
+      </v-btn>
+      <v-btn target="blank" :href="'/projects'" icon>
+        <v-icon>mdi-facebook-box</v-icon>
+      </v-btn>
+      <v-btn target="blank" :href="'/projects'" icon>
+        <v-icon>mdi-twitter</v-icon>
+      </v-btn>
+    </v-toolbar-items>
     <div slot="extension">
       <v-tooltip v-for="{name, path, icon} in links" :key="name" bottom :disabled="showTitles">
         <template v-slot:activator="{ on }">
@@ -17,7 +28,7 @@
       </v-tooltip>
     </div>
     <div slot="img">
-      <v-img :src="wallpaper" aspect-ratio="1"></v-img>
+      <!-- <v-img :src="'https://66.media.tumblr.com/8367a8d8b354e4992f109bef4b7ab602/tumblr_p3n8maJxJD1ulfp4fo3_1280.jpg'" aspect-ratio="1"></v-img> -->
     </div>
   </v-app-bar>
 </template>
