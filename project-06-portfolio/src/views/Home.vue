@@ -11,7 +11,7 @@
         <CVProfissionalExperience />
         <CVEducationalBackground />
       </v-flex>
-      <v-flex xs12 md4>
+      <v-flex xs12>
         <CVSkills />
       </v-flex>
       <v-flex xs12 md8></v-flex>

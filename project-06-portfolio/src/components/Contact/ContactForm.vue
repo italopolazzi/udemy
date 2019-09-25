@@ -45,6 +45,8 @@
                     <v-flex xs12 lg6 :class="addPadding">
                       <v-textarea
                         auto-grow
+                        single-line
+                        rows="1"
                         clearable
                         counter
                         v-model.trim.lazy="form.content.value"
@@ -62,7 +64,7 @@
               <v-btn large @click="reset" text>Limpar</v-btn>
               <!-- <v-btn @click="resetValidation" text>Limpar validação</v-btn> -->
               <v-spacer></v-spacer>
-              <v-btn @click="validate" text>Validar</v-btn>
+              <v-btn @click="validate" color="secondary">Validar</v-btn>
               <v-btn large @click="send" color="primary">Enviar</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>

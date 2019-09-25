@@ -10,7 +10,7 @@
 
     <v-footer>
       <v-spacer></v-spacer>
-      <div class="overline my-5">&copy; Ítalo Polazzi - 2019</div>
+      <div class="overline my-5">&copy; Ítalo Polazzi — {{new Date().getFullYear()}}</div>
       <v-spacer></v-spacer>
     </v-footer>
   </v-app>
