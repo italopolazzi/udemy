@@ -64,7 +64,7 @@
               <v-btn large @click="reset" text>Limpar</v-btn>
               <!-- <v-btn @click="resetValidation" text>Limpar validação</v-btn> -->
               <v-spacer></v-spacer>
-              <v-btn @click="validate" color="secondary">Validar</v-btn>
+              <v-btn @click="validate" color="secondary black--text" >Validar</v-btn>
               <v-btn large @click="send" color="primary">Enviar</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>

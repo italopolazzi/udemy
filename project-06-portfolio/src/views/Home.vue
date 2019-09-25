@@ -14,17 +14,6 @@
       <v-flex xs12>
         <CVSkills />
       </v-flex>
-      <v-flex xs12 md8></v-flex>
-      <v-flex xs12 md8>
-        <v-card flat tile class="cv-personal-info">
-          <v-card-text>PersonalInfo</v-card-text>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 md4>
-        <v-card flat tile class="cv-experience">
-          <v-card-text>Experience</v-card-text>
-        </v-card>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
