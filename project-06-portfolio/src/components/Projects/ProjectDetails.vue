@@ -78,15 +78,16 @@
                   >Suscipit quisquam laudantium, veritatis assumenda eaque sed, nemo architecto repellat. Ducimus quas accusamus minima fugiat est quisquam.</div>
                 </v-col>
                 <v-col md="8" class="pa-12">
+
                   <v-row>
-                    <div v-tc="1" v-tc:xsAndUp="1" v-tc:mdAndUp="3" class="text-justify">
+                    <VTextColumn class="text-justify" >
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
-                    </div>
+                    </VTextColumn>
                   </v-row>
                 </v-col>
               </v-row>
@@ -107,29 +108,11 @@
 </template>
 
 <script>
+import VTextColumn from "@/components/partials/VTextColumn.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "project-details",
-  directives: {
-    tc: {
-      bind(el, binding, vnode) {
-        const { value, arg } = binding;
-        const breakpoint = vnode.context.$vuetify.breakpoint;
-
-        if (!arg || breakpoint[arg]) {
-          if (value instanceof Object) {
-            const { count, rule, gap, width } = value;
-            el.style.columnCount = count;
-            el.style.columnRule = rule;
-            el.style.columnGap = gap;
-            el.style.columnWidth = width;
-          } else {
-            el.style.columnCount = value;
-          }
-        }
-      }
-    }
-  },
+  components: {VTextColumn},
   computed: {
     ...mapGetters(["project"])
   }
