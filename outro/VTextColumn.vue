@@ -3,25 +3,30 @@
     <v-row>
       <v-btn @click="obk = !obk">Alternar</v-btn>
     </v-row>
-    <div v-tc="1" v-tc:xsAndUp="1" v-tc:mdAndUp="3" v-if="obk">
-      <slot />
+    <div v-if="obk">
+      <slot v-if="false" />
+      <component :is="componentData"></component>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
 export default {
   name: "v-text-column",
   data() {
     return {
-      obk: true,
-      objectKey: true
+      obk: true
     };
   },
+  computed: {
+    componentData() {
+      return Vue.component("custom-text-column", {
+        template: `<div v-tc="1" v-tc:xsAndUp="1" v-tc:mdAndUp="3">${this.$slots.default[0].data}</div>`
+      });
+    }
+  },
   methods: {
-    // handleResize() {
-    //   this.objectKey = !this.objectKey;
-    // },
     handleObjectUpdate(el, binding, vnode) {
       const { value, arg } = binding;
       const breakpoint = vnode.context.$vuetify.breakpoint;
@@ -41,21 +46,17 @@ export default {
   },
   directives: {
     tc: {
-      // inserted(el, binding, vnode) {
-      //   if (binding.arg) {
-      //     window.addEventListener("resize", vnode.context.handleResize);
-      //   }
-      // },
       bind(el, binding, vnode) {
         vnode.context.handleObjectUpdate(el, binding, vnode);
       },
       update(el, binding, vnode) {
         vnode.context.handleObjectUpdate(el, binding, vnode);
-      },
-      // unbind(el, binding, vnode) {
-      //   window.removeEventListener("resize", vnode.context.handleResize);
-      // }
+      }
     }
+  },
+  beforeCreate() {
+    const attrs = this.$attrs;
+    console.log(this.$slots);
   }
 };
 </script>

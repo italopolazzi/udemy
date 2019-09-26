@@ -78,16 +78,15 @@
                   >Suscipit quisquam laudantium, veritatis assumenda eaque sed, nemo architecto repellat. Ducimus quas accusamus minima fugiat est quisquam.</div>
                 </v-col>
                 <v-col md="8" class="pa-12">
-
                   <v-row>
-                    <VTextColumn class="text-justify" >
+                    <div class="text-justify">
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eaque corrupti fugiat culpa numquam nostrum modi omnis. Assumenda qui, repudiandae dolor, ullam velit porro molestias asperiores quia eum quibusdam rem!
-                    </VTextColumn>
+                    </div>
                   </v-row>
                 </v-col>
               </v-row>
@@ -108,11 +107,9 @@
 </template>
 
 <script>
-import VTextColumn from "@/components/partials/VTextColumn.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "project-details",
-  components: {VTextColumn},
   computed: {
     ...mapGetters(["project"])
   }
