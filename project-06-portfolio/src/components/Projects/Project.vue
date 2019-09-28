@@ -12,7 +12,7 @@
     </v-list-item>
 
     <v-card-text>{{project.description}}</v-card-text>
-    <v-divider></v-divider>
+    <v-divider role="presentation"></v-divider>
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-chip

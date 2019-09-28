@@ -19,6 +19,11 @@
               <v-card-text class="text-justify">
                 <v-img :src="img.src"></v-img>
               </v-card-text>
+              <v-card-text>
+                <v-btn large color="accent">
+                  <v-icon left>mdi-eye</v-icon>Live demo
+                </v-btn>
+              </v-card-text>
             </v-card>
 
             <v-card flat>
@@ -62,6 +67,7 @@
             <v-container fluid>
               <v-layout row wrap>
                 <v-flex xs12 md4>
+                  <v-divider role="presentation" class="primary"></v-divider>
                   <v-card flat>
                     <v-card-title>
                       <div class="display-1">Características principais</div>
@@ -80,6 +86,7 @@
                 </v-flex>
 
                 <v-flex xs12 md4>
+                  <v-divider role="presentation" class="secondary"></v-divider>
                   <v-card flat>
                     <v-card-title>
                       <div class="display-1">Principais aprendizados</div>
@@ -98,6 +105,7 @@
                 </v-flex>
 
                 <v-flex xs12 md4>
+                  <v-divider role="presentation" class="primary"></v-divider>
                   <v-card flat>
                     <v-card-title>
                       <div class="display-1">Dificuldades</div>
@@ -111,6 +119,20 @@
                           <v-list-item-content v-html="item"></v-list-item-content>
                         </v-list-item>
                       </v-list>
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs12>
+                  <v-divider role="presentation" class="secondary"></v-divider>
+                  <v-card flat>
+                    <v-card-title>
+                      <div class="display-1">Tecnologias utilizadas</div>
+                    </v-card-title>
+                    <v-card-text>
+                      <v-chip-group  active-class="primary--text">
+                        <v-chip v-for="(item, i) in technologies" :key="i" v-html="item"></v-chip>
+                      </v-chip-group>
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -157,6 +179,7 @@ export default {
       difficulties: [
         "Desconsiderei a criação de um input tipo select personalizado, pois exigiria uma lógica mais complexa, principalmente para manter a acessibilidade do componente."
       ],
+      technologies: ["CSS3", "SASS", "HTML5", "JavaScript"],
       main_learnings: [
         "Uso das propriedades do Display Grid.",
         "Marcações para acessibilidade (a11y).",

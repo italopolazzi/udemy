@@ -15,7 +15,7 @@
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
-    <v-divider></v-divider>
+    <v-divider role="presentation"></v-divider>
 
     <v-card-text>
       <div class="overline mb-4"># Sobre mim</div>

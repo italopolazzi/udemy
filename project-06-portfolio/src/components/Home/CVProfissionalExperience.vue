@@ -1,6 +1,6 @@
 <template>
   <v-card flat tile class="cv-profissional-experience">
-    <v-divider></v-divider>
+    <v-divider role="presentation"></v-divider>
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title>

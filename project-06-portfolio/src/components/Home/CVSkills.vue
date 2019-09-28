@@ -58,7 +58,7 @@
         </v-col>
       </v-row>
     </v-card-text>
-    <v-divider></v-divider>
+    <v-divider role="presentation"></v-divider>
   </v-card>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <v-card flat tile class="cv-educational-background">
-    <v-divider></v-divider>
+    <v-divider role="presentation"></v-divider>
     <v-list-item three-line>
       <v-list-item-content>
         <div class="overline"># Educational</div>
