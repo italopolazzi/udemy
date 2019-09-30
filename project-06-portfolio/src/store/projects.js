@@ -4,10 +4,12 @@ export default {
     state: {
         projects: [],
         project: null,
-        errors: []
+        errors: [],
+        loading: false
     },
     getters: {
         projects: state => state.projects,
+        project: state => state.project,
         loading: state => state.loading
     },
     mutations: {
@@ -16,21 +18,21 @@ export default {
         },
         SET_PROJECTS(state, snapshot) {
             if (snapshot.empty) {
-                console.log("Sem documentos");
+
+                console.log("VAZIO!");
 
             } else {
                 const temp = []
                 snapshot.forEach(doc => temp.push({ id: doc.id, ...doc.data() }))
-                console.log(temp);
                 state.projects = temp
             }
         },
         SET_PROJECT(state, { doc, id }) {
             if (!doc.exists) {
-                console.log("Documento inexistente");
+                console.log("VAZIO!");
+
             } else {
                 state.project = { id, ...doc.data() }
-                console.log(state.project);
             }
         },
         PUSH_ERROR(state, error) {
@@ -39,22 +41,20 @@ export default {
     },
     actions: {
         async getProjects({ commit }) {
-            commit('LOADING_ALTERNATE', true)
             try {
+                commit('LOADING_ALTERNATE', true)
                 const snapshot = await firestore.collection('projects').get()
-                console.log(snapshot);
                 commit('SET_PROJECTS', snapshot)
-                commit('LOADING_ALTERNATE', false)
             } catch (error) {
                 console.error(error);
                 commit('PUSH_ERROR', error)
+            } finally {
+                commit('LOADING_ALTERNATE', false)
             }
         },
         async loadProjectDetails({ commit, state }, id) {
-            if (state.project.id != id) {
-                const doc = await firestore.collection('projects').doc(id).get()
-                commit('SET_PROJECT', { doc, id })
-            }
+            const doc = await firestore.collection('projects').doc(id).get()
+            commit('SET_PROJECT', { doc, id })
         }
     }
 }

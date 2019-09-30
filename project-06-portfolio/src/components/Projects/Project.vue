@@ -27,7 +27,8 @@
     </v-card-actions>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn @click="seeThisProject" text tile>Detalhes</v-btn>
+      <!-- <v-btn @click="loadProjectDetails(project.id)" text tile>Detalhes</v-btn> -->
+      <v-btn :to="{name: 'project-details', params: {id: project.id}}" text tile>Detalhes</v-btn>
       <v-btn :href="project.link" target="_blank" text tile>Visitar</v-btn>
     </v-card-actions>
   </v-card>
@@ -43,9 +44,9 @@ export default {
     }
   },
   methods: {
-    seeThisProject() {
-      this.$store.commit("SET_PROJECT", this.project);
-      this.$router.push({ path: "details", append: true });
+    loadProjectDetails(id) {
+      // this.$store.dispatch("loadProjectDetails", id);
+      this.$router.push({ name: "project-details", params: { id } });
     },
     filterByTag(tag) {
       this.$store.commit("ADD_TAG_TO_FILTER", tag);

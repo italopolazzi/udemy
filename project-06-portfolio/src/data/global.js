@@ -21,12 +21,13 @@ export default {
                     component: () =>
                         import ('@/components/Projects/ProjectsList.vue')
                 }, {
-                    path: 'details',
+                    name: 'project-details',
+                    path: ':id',
                     component: () =>
-                        import ('@/components/Projects/ProjectDetails.vue')
+                        import ('@/components/Projects/ProjectDetails.vue'),
+                    props: true
                 }]
             },
-
             {
                 path: '/contact',
                 name: 'contact',
