@@ -7,7 +7,7 @@
           <v-flex xs12 pa-2>
             <v-row>
               <v-col>
-                <v-progress-linear></v-progress-linear>
+                <v-progress-linear indeterminate></v-progress-linear>
               </v-col>
             </v-row>
             <v-row>

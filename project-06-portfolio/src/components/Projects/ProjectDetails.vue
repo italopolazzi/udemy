@@ -7,7 +7,7 @@
           <v-flex xs12 pa-2>
             <v-row>
               <v-col>
-                <v-progress-linear></v-progress-linear>
+                <v-progress-linear indeterminate></v-progress-linear>
               </v-col>
             </v-row>
             <v-row>
@@ -46,7 +46,7 @@
                 <v-card-title>
                   <div class="display-1">Motivação</div>
                 </v-card-title>
-                <v-card-text class="text-justify">{{motivation}}</v-card-text>
+                <v-card-text class="text-justify" v-html="motivation"></v-card-text>
               </v-card>
 
               <v-card flat>
@@ -71,7 +71,7 @@
                 </v-card-title>
                 <v-card-text class="text-justify">
                   <!-- <TextColumns :config="{mdAndUp: 3, mdAndDown: 1}"> -->
-                  <p>{{idea}}</p>
+                  <p v-html="idea"></p>
                   <!-- </TextColumns> -->
                 </v-card-text>
               </v-card>
