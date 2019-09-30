@@ -2,7 +2,22 @@
   <v-container fluid>
     <v-layout wrap row fill-height>
       <v-flex xs12>
-        <template v-if="project">
+        <!-- not loaded PROJECT -->
+        <template v-if="loading">
+          <v-flex xs12 pa-2>
+            <v-row>
+              <v-col>
+                <v-progress-linear></v-progress-linear>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>Carregando...</v-col>
+            </v-row>
+          </v-flex>
+        </template>
+
+        <!-- loaded PROJECT -->
+        <template v-else>
           <v-card tile flat>
             <v-card-text>
               <v-card flat>
@@ -31,9 +46,7 @@
                 <v-card-title>
                   <div class="display-1">Motivação</div>
                 </v-card-title>
-                <v-card-text
-                  class="text-justify"
-                >O projeto foi desenvolvido seguindo a história de usuário da seção “Responsive Web Design Projects”, que integra a primeira parte dos cursos ofertados pelo freeCodeCamp para desenvolvimento web. Com o tema “Página de Tributo” o desafio era desenvolver uma site responsivo, utilizando o trio básico da web JavaScript, CSS e HTML.</v-card-text>
+                <v-card-text class="text-justify">{{motivation}}</v-card-text>
               </v-card>
 
               <v-card flat>
@@ -58,10 +71,7 @@
                 </v-card-title>
                 <v-card-text class="text-justify">
                   <!-- <TextColumns :config="{mdAndUp: 3, mdAndDown: 1}"> -->
-                  <p>O projeto de referência apresentou um formulário simples, com os componentes sem nenhuma estilização dos padrões dos navegadores, com labels à esquerda e inputs à direita para viewports médios e superiores; labels acima e inputs abaixo em viewports pequenos.</p>
-                  <p>Quis personalizar os inputs, para que os estilos como cores, tamanhos, bordas e etc pudessem ser alterados prezando pelas funcionalidades originais e compatibilidade entre navegadores. Portanto, utilizei pseudo-elementos para sobrepor os componentes padrões.</p>
-                  <p>Também busquei acrescentar funcionalidades extras, como botões para setar o valor máximo ou mínimo em um input de número.</p>
-                  <p>O formulário final segue um estilo progressivo, assim o conteúdo pode ser dividido em partes. O objetivo é que seja apresentado um elemento relativamente pequeno, já que formulários de pesquisa costumam ser longos. Os itens podem ser agrupados por assunto, dando ao usuário a impressão de avanço cada vez que termina uma sessão.</p>
+                  <p>{{idea}}</p>
                   <!-- </TextColumns> -->
                 </v-card-text>
               </v-card>
@@ -142,32 +152,18 @@
             </v-card-text>
           </v-card>
         </template>
-        <!-- not loaded PROJECT -->
-        <template v-else>
-          <v-flex xs12 pa-2>
-            <v-row>
-              <v-col>
-                <v-progress-linear></v-progress-linear>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>Carregando...</v-col>
-            </v-row>
-          </v-flex>
-        </template>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import TextColumns from "@/components/partials/TextColumns";
 import { mapGetters } from "vuex";
 
 import image from "@/assets/projects/fcc_survey_form.png";
 
 export default {
-  name: "project-details",
+  name: "project_details",
   props: {
     id: {
       type: String,
@@ -182,11 +178,29 @@ export default {
       }
     };
   },
-  components: {
-    TextColumns
-  },
   computed: {
-    ...mapGetters(["project"])
+    ...mapGetters(["project", "loading"]),
+    motivation() {
+      return this.project.others.motivation;
+    },
+    user_story() {
+      return this.project.user_story;
+    },
+    idea() {
+      return this.project.others.idea;
+    },
+    technologies() {
+      return this.project.technologies;
+    },
+    main_features() {
+      return this.project.main_features;
+    },
+    main_learnings() {
+      return this.project.main_learnings;
+    },
+    difficulties() {
+      return this.project.difficulties;
+    }
   },
   created() {
     this.$store.dispatch("loadProjectDetails", this.id);

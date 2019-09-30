@@ -28,7 +28,7 @@
     <v-card-actions>
       <v-spacer></v-spacer>
       <!-- <v-btn @click="loadProjectDetails(project.id)" text tile>Detalhes</v-btn> -->
-      <v-btn :to="{name: 'project-details', params: {id: project.id}}" text tile>Detalhes</v-btn>
+      <v-btn :to="{name: 'project_details', params: {id: project.id}}" text tile>Detalhes</v-btn>
       <v-btn :href="project.link" target="_blank" text tile>Visitar</v-btn>
     </v-card-actions>
   </v-card>
@@ -46,7 +46,7 @@ export default {
   methods: {
     loadProjectDetails(id) {
       // this.$store.dispatch("loadProjectDetails", id);
-      this.$router.push({ name: "project-details", params: { id } });
+      this.$router.push({ name: "project_details", params: { id } });
     },
     filterByTag(tag) {
       this.$store.commit("ADD_TAG_TO_FILTER", tag);

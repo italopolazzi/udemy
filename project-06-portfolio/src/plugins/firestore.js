@@ -1,7 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyBv_5BYyXgXdHIbCOLAuB3qx5HQhfWKQhE",
     authDomain: "my-vue-course.firebaseapp.com",

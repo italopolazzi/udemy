@@ -28,11 +28,10 @@ export default {
             }
         },
         SET_PROJECT(state, { doc, id }) {
-            if (!doc.exists) {
-                console.log("VAZIO!");
-
-            } else {
+            if (doc.exists) {
                 state.project = { id, ...doc.data() }
+            } else {
+                console.log("VAZIO!");
             }
         },
         PUSH_ERROR(state, error) {
@@ -53,8 +52,15 @@ export default {
             }
         },
         async loadProjectDetails({ commit, state }, id) {
-            const doc = await firestore.collection('projects').doc(id).get()
-            commit('SET_PROJECT', { doc, id })
+            try {
+                commit('LOADING_ALTERNATE', true)
+                const doc = await firestore.collection('project_details').doc(` ${id}`).get()
+                commit('SET_PROJECT', { doc, id })
+            } catch (error) {
+                console.error(error)
+            } finally {
+                commit('LOADING_ALTERNATE', false)
+            }
         }
     }
 }

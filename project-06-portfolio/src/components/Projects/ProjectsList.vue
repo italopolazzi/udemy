@@ -1,6 +1,5 @@
 <template>
   <div class="projects-list">
-    <h2>Projects List</h2>
     <v-container fluid>
       <v-layout wrap row fill-height>
         <!-- not loaded PROJECTS -->

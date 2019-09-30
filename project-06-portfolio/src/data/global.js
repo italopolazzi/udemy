@@ -21,7 +21,7 @@ export default {
                     component: () =>
                         import ('@/components/Projects/ProjectsList.vue')
                 }, {
-                    name: 'project-details',
+                    name: 'project_details',
                     path: ':id',
                     component: () =>
                         import ('@/components/Projects/ProjectDetails.vue'),
