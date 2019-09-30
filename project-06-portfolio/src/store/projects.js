@@ -1,41 +1,60 @@
-import global from "@/data/global";
+import { firestore } from '@/plugins/firestore';
 
 export default {
     state: {
-        projects: global.projects,
+        projects: [],
         project: null,
-        filtering_by_tags: ['freeCodeCamp'],
-        /** 
-         * TODO
-         * Get all tags available in projects
-         * */
-        all_tags: ['html', 'responsive', 'css', 'freeCodeCamp']
-    },
-    mutations: {
-        SET_PROJECT(state, project) {
-            state.project = project
-        },
-        ADD_TAG_TO_FILTER(state, tag) {
-            if (!state.filtering_by_tags.includes(tag)) {
-                state.filtering_by_tags.push(tag)
-            }
-        },
-        REMOVE_TAG_FROM_FILTER(state, tag) {
-            state.filtering_by_tags.splice(state.filtering_by_tags.indexOf(tag), 1)
-        },
-        SET_TAGS_TO_FILTER(state, tags) {
-            state.filtering_by_tags = tags
-        }
+        errors: []
     },
     getters: {
-        projects: state => {
-            return state.filtering_by_tags.length ?
-                state.projects.filter(project => project.tags.some(tag => state.filtering_by_tags.includes(tag))) :
-                state.projects
-
+        projects: state => state.projects,
+        loading: state => state.loading
+    },
+    mutations: {
+        LOADING_ALTERNATE(state, loading = null) {
+            state.loading = loading ? loading : !state.loading
         },
-        project: state => state.project,
-        all_tags: state => state.all_tags,
-        filtering_by_tags: state => state.filtering_by_tags
+        SET_PROJECTS(state, snapshot) {
+            if (snapshot.empty) {
+                console.log("Sem documentos");
+
+            } else {
+                const temp = []
+                snapshot.forEach(doc => temp.push({ id: doc.id, ...doc.data() }))
+                console.log(temp);
+                state.projects = temp
+            }
+        },
+        SET_PROJECT(state, { doc, id }) {
+            if (!doc.exists) {
+                console.log("Documento inexistente");
+            } else {
+                state.project = { id, ...doc.data() }
+                console.log(state.project);
+            }
+        },
+        PUSH_ERROR(state, error) {
+            state.errors.push(error)
+        }
+    },
+    actions: {
+        async getProjects({ commit }) {
+            commit('LOADING_ALTERNATE', true)
+            try {
+                const snapshot = await firestore.collection('projects').get()
+                console.log(snapshot);
+                commit('SET_PROJECTS', snapshot)
+                commit('LOADING_ALTERNATE', false)
+            } catch (error) {
+                console.error(error);
+                commit('PUSH_ERROR', error)
+            }
+        },
+        async loadProjectDetails({ commit, state }, id) {
+            if (state.project.id != id) {
+                const doc = await firestore.collection('projects').doc(id).get()
+                commit('SET_PROJECT', { doc, id })
+            }
+        }
     }
 }
