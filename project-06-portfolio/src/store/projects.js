@@ -1,41 +1,66 @@
-import global from "@/data/global";
+import { firestore } from '@/plugins/firestore';
 
 export default {
     state: {
-        projects: global.projects,
+        projects: [],
         project: null,
-        filtering_by_tags: ['freeCodeCamp'],
-        /** 
-         * TODO
-         * Get all tags available in projects
-         * */
-        all_tags: ['html', 'responsive', 'css', 'freeCodeCamp']
-    },
-    mutations: {
-        SET_PROJECT(state, project) {
-            state.project = project
-        },
-        ADD_TAG_TO_FILTER(state, tag) {
-            if (!state.filtering_by_tags.includes(tag)) {
-                state.filtering_by_tags.push(tag)
-            }
-        },
-        REMOVE_TAG_FROM_FILTER(state, tag) {
-            state.filtering_by_tags.splice(state.filtering_by_tags.indexOf(tag), 1)
-        },
-        SET_TAGS_TO_FILTER(state, tags) {
-            state.filtering_by_tags = tags
-        }
+        errors: [],
+        loading: false
     },
     getters: {
-        projects: state => {
-            return state.filtering_by_tags.length ?
-                state.projects.filter(project => project.tags.some(tag => state.filtering_by_tags.includes(tag))) :
-                state.projects
-
-        },
+        projects: state => state.projects,
         project: state => state.project,
-        all_tags: state => state.all_tags,
-        filtering_by_tags: state => state.filtering_by_tags
+        loading: state => state.loading
+    },
+    mutations: {
+        LOADING_ALTERNATE(state, loading = null) {
+            state.loading = loading ? loading : !state.loading
+        },
+        SET_PROJECTS(state, snapshot) {
+            if (snapshot.empty) {
+
+                console.log("VAZIO!");
+
+            } else {
+                const temp = []
+                snapshot.forEach(doc => temp.push({ id: doc.id, ...doc.data() }))
+                state.projects = temp
+            }
+        },
+        SET_PROJECT(state, { doc, id }) {
+            if (doc.exists) {
+                state.project = { id, ...doc.data() }
+            } else {
+                console.log("VAZIO!");
+            }
+        },
+        PUSH_ERROR(state, error) {
+            state.errors.push(error)
+        }
+    },
+    actions: {
+        async getProjects({ commit }) {
+            try {
+                commit('LOADING_ALTERNATE', true)
+                const snapshot = await firestore.collection('projects').get()
+                commit('SET_PROJECTS', snapshot)
+            } catch (error) {
+                console.error(error);
+                commit('PUSH_ERROR', error)
+            } finally {
+                commit('LOADING_ALTERNATE', false)
+            }
+        },
+        async loadProjectDetails({ commit, state }, id) {
+            try {
+                commit('LOADING_ALTERNATE', true)
+                const doc = await firestore.collection('project_details').doc(` ${id}`).get()
+                commit('SET_PROJECT', { doc, id })
+            } catch (error) {
+                console.error(error)
+            } finally {
+                commit('LOADING_ALTERNATE', false)
+            }
+        }
     }
 }

@@ -3,10 +3,19 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex xs12 lg4>
-          <v-img :src="img.src" :alt="img.alt" :aspect-ratio="3/4"></v-img>
+          <v-img
+            :src="contact_img.src"
+            :alt="contact_img.alt"
+            max-height="500"
+            cover
+            :aspect-ratio="4/7"
+          ></v-img>
         </v-flex>
         <v-flex xs12 lg8>
-          <v-card :loading="form.loading">
+          <v-card :loading="form.loading" height="100%">
+            <v-card-title>
+              <div class="overline mb-4"># Contact me</div>
+            </v-card-title>
             <v-card-text>
               <v-form ref="contact_form" v-model.trim.lazy="form.valid" lazy-validation>
                 <v-container fluid>
@@ -42,6 +51,8 @@
                     <v-flex xs12 lg6 :class="addPadding">
                       <v-textarea
                         auto-grow
+                        single-line
+                        rows="1"
                         clearable
                         counter
                         v-model.trim.lazy="form.content.value"
@@ -54,13 +65,97 @@
                 </v-container>
               </v-form>
             </v-card-text>
+
+            <v-card>
+              <v-img :src="contact_cel.src">
+                <v-row class="align-center justify-center fill-height">
+                  
+                  <div>
+                    <v-subheader>Enviar com:</v-subheader>
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{on}">
+                        <v-btn
+                          v-on="on"
+                          large
+                          :href="whatsapp_link"
+                          target="_blank"
+                          color="green"
+                          x-large
+                          icon
+                        >
+                          <v-icon>mdi-whatsapp</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Enviar com WhatsApp</span>
+                    </v-tooltip>
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{on}">
+                        <v-btn v-on="on" large :href="email_link" target="_blank" color="red" x-large icon>
+                          <v-icon>mdi-email</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Enviar com E-mail</span>
+                    </v-tooltip>
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{on}">
+                        <v-btn
+                          v-on="on"
+                          large
+                          :href="twitter_link"
+                          target="_blank"
+                          color="cyan"
+                          x-large icon
+                        >
+                          <v-icon>mdi-twitter</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Enviar com Twitter</span>
+                    </v-tooltip>
+                  
+                  </div>
+                </v-row>
+              </v-img>
+            </v-card>
+
             <v-card-actions>
-              <v-btn @click="reset" text>Limpar</v-btn>
-              <v-btn @click="resetValidation" text>Limpar validação</v-btn>
               <v-spacer></v-spacer>
-              <v-btn @click="validate" text>Validar</v-btn>
-              <v-btn @click="send">Enviar</v-btn>
+              <v-btn large @click="reset" color="secondary" text>Limpar</v-btn>
+              <!-- <v-btn @click="resetValidation" text>Limpar validação</v-btn> -->
+              <v-spacer></v-spacer>
+              <!-- <v-btn @click="validate" color="secondary black--text">Validar</v-btn> -->
+              <!-- <a :href="email_link">Send mail with subject</a> -->
+              <v-subheader>Enviar com:</v-subheader>
+              <v-tooltip bottom>
+                <template v-slot:activator="{on}">
+                  <v-btn v-on="on" large :href="whatsapp_link" target="_blank" color="green" x-large icon>
+                    <v-icon>mdi-whatsapp</v-icon>
+                  </v-btn>
+                </template>
+                <span>Enviar com WhatsApp</span>
+              </v-tooltip>
+              <v-tooltip bottom>
+                <template v-slot:activator="{on}">
+                  <v-btn v-on="on" large :href="email_link" target="_blank" color="red" x-large icon>
+                    <v-icon>mdi-email</v-icon>
+                  </v-btn>
+                </template>
+                <span>Enviar com E-mail</span>
+              </v-tooltip>
+              <v-tooltip bottom>
+                <template v-slot:activator="{on}">
+                  <v-btn v-on="on" large :href="twitter_link" target="_blank" color="cyan" x-large icon>
+                    <v-icon>mdi-twitter</v-icon>
+                  </v-btn>
+                </template>
+                <span>Enviar com Twitter</span>
+              </v-tooltip>
+              <v-spacer></v-spacer>
             </v-card-actions>
+            {{whatsapp_link}}
+            <br />
+            {{email_link}}
+            <br />
+            {{twitter_link}}
           </v-card>
         </v-flex>
       </v-layout>
@@ -69,55 +164,39 @@
 </template>
 
 <script>
-const basic_rules = [
-  v => !!v || "Este campo precisa ser preenchido",
-  v => v.length >= 5 || "No mínimo 5 caracteres"
-];
+import { mapGetters } from "vuex";
 import contact_img from "@/assets/contact.jpg";
+import contact_cel from "@/assets/contact_cel.jpg";
 export default {
   name: "contact-form",
   data() {
     return {
-      img: {
+      contact_img: {
         src: contact_img,
         alt: ""
       },
-      form: {
-        valid: false,
-        loading: false,
-        name: {
-          label: "Nome",
-          value: "",
-          rules: [...basic_rules]
-        },
-        email: {
-          label: "E-mail",
-          value: "",
-          rules: [
-            ...basic_rules,
-            v => /.+@.+\..+/.test(v) || "E-mail precisa ser válido"
-          ]
-        },
-        subject: {
-          label: "Assunto",
-          value: "",
-          rules: [...basic_rules]
-        },
-        content: {
-          label: "Seu texto",
-          value: "",
-          rules: [
-            ...basic_rules,
-            v =>
-              v.length <= 5000 || "O conteúdo está limitado a 5000 caracteres"
-          ]
-        }
+      contact_cel: {
+        src: contact_cel,
+        alt: ""
       }
     };
   },
   computed: {
+    ...mapGetters(["form"]),
     addPadding() {
       return { "pa-4": this.$vuetify.breakpoint.lgAndUp };
+    },
+    encodeURI() {
+      return encodeURIComponent(this.form.content.value);
+    },
+    twitter_link() {
+      return `https://twitter.com/messages/compose?recipient_id=796843094503198720&text=${this.encodeURI}`;
+    },
+    whatsapp_link() {
+      return `https://wa.me/5531992972820/?text=${this.encodeURI}`;
+    },
+    email_link() {
+      return `mailto:itpzzi@gmail.com?subject=${this.encodeURI}`;
     }
   },
   methods: {
@@ -127,19 +206,11 @@ export default {
     resetValidation() {
       this.$refs.contact_form.resetValidation();
     },
-    validate() {
-      this.form.loading = true;
-      setTimeout(() => {
-        if (this.$refs.contact_form.validate()) {
-          console.log("Valido");
-        } else {
-          console.log("Invalido");
-        }
-        this.form.loading = false;
-      }, 5000);
-    },
     send() {
-      this.validate();
+      // this.$store.dispatch(
+      //   "validateAndSendContactForm",
+      //   this.$refs.contact_form
+      // );
     }
   }
 };
