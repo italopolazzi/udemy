@@ -10,13 +10,31 @@
           <v-container fluid fill-height>
             <v-layout align-center justify-center>
               <v-flex xs6 md4 class="contact-view-buttons white" text-center>
-                <v-btn text x-large icon color="cyan" @click="contact_form = 'twitter'">
+                <v-btn
+                  text
+                  x-large
+                  icon
+                  color="cyan"
+                  @click="contact_form = 'ContactFormTwitter'"
+                >
                   <v-icon>mdi-twitter</v-icon>
                 </v-btn>
-                <v-btn text x-large icon color="red" @click="contact_form = 'email'">
+                <v-btn
+                  text
+                  x-large
+                  icon
+                  color="red"
+                  @click="contact_form = 'ContactFormEmail'"
+                >
                   <v-icon>mdi-email</v-icon>
                 </v-btn>
-                <v-btn text x-large icon color="green" @click="contact_form = 'whatsapp'">
+                <v-btn
+                  text
+                  x-large
+                  icon
+                  color="green"
+                  @click="contact_form = 'ContactFormWhatsApp'"
+                >
                   <v-icon>mdi-whatsapp</v-icon>
                 </v-btn>
               </v-flex>
@@ -26,14 +44,18 @@
       </v-card-text>
     </v-card>
     <v-dialog v-model="dialog" fullscreen :persistent="false" :hide-overlay="false">
-      <ContactForm @closeDialog="dialog = false" :contact_form="contact_form" />
+      <ContactForm @closeDialog="dialog = false">
+        <component :is="contact_form" />
+      </ContactForm>
     </v-dialog>
   </div>
 </template>
 
 <script>
 import ContactForm from "./ContactForm/ContactForm";
-import ContactFormSlot from "./ContactForm/ContactFormSlot";
+import ContactFormTwitter from "./ContactForm/ContactFormTwitter";
+import ContactFormEmail from "./ContactForm/ContactFormEmail";
+import ContactFormWhatsApp from "./ContactForm/ContactFormWhatsApp";
 
 import contact_cel from "@/assets/contact_cel.jpg";
 
@@ -41,7 +63,9 @@ export default {
   name: "contact-view",
   components: {
     ContactForm,
-    ContactFormSlot
+    ContactFormTwitter,
+    ContactFormEmail,
+    ContactFormWhatsApp
   },
   data() {
     return {
