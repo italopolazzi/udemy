@@ -1,16 +1,16 @@
 <template>
   <div class="contact">
     <!-- <h1>This is an contact page</h1> -->
-    <ContactForm />
+    <ContactView />
   </div>
 </template>
 
 <script>
-import ContactForm from "@/components/Contact/ContactForm";
+import ContactView from "@/components/Contact/ContactView";
 export default {
   name: "contact",
   components: {
-    ContactForm
+    ContactView
   }
 };
 </script>

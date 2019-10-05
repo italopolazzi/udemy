@@ -48,7 +48,7 @@ export default {
         }
     },
     actions: {
-        async validateAndSendContactForm({ commit, state }, form) {
+        async validateAndSendContactView({ commit, state }, form) {
             try {
                 commit("LOADING_ALTERNATE", true)
                 if (!form.validate()) throw Error('Formulário invalido')
