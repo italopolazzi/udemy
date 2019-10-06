@@ -1,5 +1,10 @@
 <template>
-  <v-app-bar app elevation="1" dense>
+  <v-app-bar
+    app
+    elevation="1"
+    dense
+    v-scroll="{c1: 'white', c2: 'transparent', limit: $vuetify.application.top}"
+  >
     <v-toolbar-title class="headline text-uppercase">
       <span class="font-weight-light">{{fname}}</span>
       <span class="font-weight-bold">{{lname}}</span>
@@ -53,12 +58,32 @@ import { mapGetters } from "vuex";
 import global from "@/data/global";
 export default {
   name: "toolbar",
+  directives: {
+    scroll: {
+      inserted(el, binding, vnode) {
+        window.addEventListener(
+          "scroll",
+          vnode.context.changeBackground.bind(null, el, binding)
+        );
+      },
+      unbind(el, binding, vnode) {
+        window.removeEventListener("scroll", vnode.context.changeBackground);
+      }
+    }
+  },
   data() {
     return {
       links: [...global.routes.toolbar],
       wallpaper,
       logo
     };
+  },
+  methods: {
+    changeBackground(el, binding) {
+      el.style.background = window.scrollY > binding.value.limit
+        ? binding.value.c1
+        : binding.value.c2;
+    }
   },
   computed: {
     ...mapGetters(["user"]),

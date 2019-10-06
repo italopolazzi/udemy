@@ -11,7 +11,7 @@
 
     <v-card-text>
       <v-row>
-        <v-col v-for="skill in skills" :key="skill">
+        <v-col v-for="(skill, i) in skills" :key="i">
           <v-card height="100%" tile flat :color="skill.color">
             <v-card-text>
               <v-col class="d-flex justify-center">
@@ -23,7 +23,7 @@
             </v-card-text>
             <v-card-text>
               <v-list tile color="transparent" two-line>
-                <v-list-item v-for="item in skill.items" :key="item">
+                <v-list-item v-for="(item, j) in skill.items" :key="j">
                   <v-list-item-avatar>
                     <v-icon>mdi-{{item.icon}}</v-icon>
                   </v-list-item-avatar>
