@@ -1,9 +1,11 @@
 <template>
-  <v-card :loading="form.loading" height="100%" class="contact-form-slot">
-    <v-card-title>
-      <div class="overline mb-4"># Contact with</div>
-      <div class="title">{{config.name}}</div>
-    </v-card-title>
+  <v-card :loading="form.loading" height="100%" class="contact-form-slot mt-5">
+    <v-list-item two-line>
+      <v-list-item-title>
+        <div class="overline"># Contact with</div>
+        <div class="title">{{config.name}}</div>
+      </v-list-item-title>
+    </v-list-item>
     <v-card-text>
       <v-form ref="contact_form" v-model.trim.lazy="form.valid" lazy-validation>
         <v-container fluid>
@@ -57,9 +59,9 @@
     <v-card-actions>
       <v-btn large @click="reset" color="secondary" text>Limpar</v-btn>
       <v-spacer></v-spacer>
-      <v-btn v-on="on" large color="primary" @click="send">Enviar</v-btn>
+      <v-btn large color="primary" @click="send">Enviar</v-btn>
     </v-card-actions>
-    {{link}}
+    <!-- {{link}} -->
   </v-card>
 </template>
 
@@ -103,7 +105,8 @@ export default {
           throw Error("Formulário invalido");
         window.open(this.link, "_blank");
       } catch (error) {
-        window.alert(error);
+        // window.alert(error);
+        this.$store.dispatch("addGlobalErrorMessage", error.toString());
       }
     }
   }
