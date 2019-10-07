@@ -54,3 +54,26 @@ $timing-function = cubic-bezier(0.68, 1.32, 0.88, 0.6);
     opacity: 1;
   }
 }
+
+.pulse {
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
+  animation-timing-function: $timing-function;
+  animation-direction: normal;
+  animation-fill-mode: backwards;
+}
+
+@keyframes pulse {
+  0 {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

@@ -6,7 +6,7 @@
       </v-card-title>
 
       <v-card-text>
-        <v-img :src="contact_cel.src" :alt="contact_cel.alt">
+        <v-img :src="mão_celular_fundo_transparent.src" :alt="mão_celular_fundo_transparent.alt">
           <v-container fluid fill-height>
             <v-layout align-center justify-center>
               <v-flex xs6 md4 class="contact-view-buttons white" text-center>
@@ -35,7 +35,7 @@
 import ContactForm from "./ContactForm/ContactForm";
 import ContactFormSlot from "./ContactForm/ContactFormSlot";
 
-import contact_cel from "@/assets/contact_cel.jpg";
+import mão_celular_fundo_transparent from "@/assets/mão_celular_fundo_transparent.svg";
 
 export default {
   name: "contact-view",
@@ -45,8 +45,8 @@ export default {
   },
   data() {
     return {
-      contact_cel: {
-        src: contact_cel,
+      mão_celular_fundo_transparent: {
+        src: mão_celular_fundo_transparent,
         alt: ""
       },
       contact_form: null

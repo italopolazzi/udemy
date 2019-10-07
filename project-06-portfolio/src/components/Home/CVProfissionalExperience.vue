@@ -13,7 +13,7 @@
     <v-card-text>
       <v-list tile>
         <!-- ITEM -->
-        <v-list-item @click>
+        <v-list-item>
           <v-list-item-content>
             <v-list-item-title>
               <div class="title">Federal Police</div>
@@ -24,7 +24,7 @@
           </v-list-item-content>
         </v-list-item>
         <!-- ITEM -->
-        <v-list-item @click>
+        <v-list-item>
           <v-list-item-content>
             <v-list-item-title>
               <div class="title">Talkiddy Startup</div>

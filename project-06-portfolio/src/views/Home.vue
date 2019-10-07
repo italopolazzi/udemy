@@ -1,10 +1,10 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="pt-0">
     <v-layout row wrap>
       <v-flex xs12>
         <CVBanner />
       </v-flex>
-      <v-flex xs12 md8>
+      <v-flex xs12 md8 id="curriculum">
         <CVPersonalInfo />
       </v-flex>
       <v-flex xs12 md4>
@@ -30,7 +30,7 @@ export default {
     CVPersonalInfo,
     CVProfissionalExperience,
     CVEducationalBackground,
-    CVSkills,
+    CVSkills
   }
 };
 </script>

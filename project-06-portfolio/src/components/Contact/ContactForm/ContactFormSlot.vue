@@ -67,14 +67,14 @@
 
 <script>
 import { mapGetters } from "vuex";
-import contact_cel from "@/assets/contact_cel.jpg";
+import mão_celular_fundo_transparent from "@/assets/mão_celular_fundo_transparent.svg";
 export default {
   name: "contact-form-slot",
   props: ["config"],
   data() {
     return {
-      contact_cel: {
-        src: contact_cel,
+      mão_celular_fundo_transparent: {
+        src: mão_celular_fundo_transparent,
         alt: ""
       }
     };

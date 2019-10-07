@@ -34,20 +34,7 @@
         <v-icon>mdi-twitter</v-icon>
       </v-btn>
     </v-toolbar-items>
-    <!-- <div slot="extension">
-      <v-tooltip v-for="{name, path, icon} in links" :key="name" bottom :disabled="showTitles">
-        <template v-slot:activator="{ on }">
-          <v-btn v-on="on" text :to="path" :icon="!showTitles" class="mr-2">
-            <span class="mr-2" v-if="showTitles">{{name}}</span>
-            <v-icon>mdi-{{icon}}</v-icon>
-          </v-btn>
-        </template>
-        {{name}}
-      </v-tooltip>
-    </div>-->
-    <div slot="img">
-      <!-- <v-img :src="'https://66.media.tumblr.com/8367a8d8b354e4992f109bef4b7ab602/tumblr_p3n8maJxJD1ulfp4fo3_1280.jpg'" aspect-ratio="1"></v-img> -->
-    </div>
+
   </v-app-bar>
 </template>
 

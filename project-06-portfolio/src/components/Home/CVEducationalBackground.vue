@@ -11,7 +11,7 @@
     </v-list-item>
     <v-card-text>
       <v-list tile>
-        <v-list-item @click=" ">
+        <v-list-item>
           <v-list-item-content>
             <v-list-item-title>
               <div class="title">Centro Universitário de Belo Horizonte</div>
@@ -21,7 +21,7 @@
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click=" ">
+        <v-list-item>
           <v-list-item-content>
             <v-list-item-title>
               <div class="title">E. E. Francisco Menezes Filho</div>
