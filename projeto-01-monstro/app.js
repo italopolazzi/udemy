@@ -123,5 +123,14 @@ new Vue({
         iniciarNovoJogo() {
             this.reset()
         }
+    },
+    watch: {
+        jogadores: {
+            deep: true,
+            handler() {
+                if (this.jogadores.jogador.life < 0) this.jogadores.jogador.life = 0;
+                if (this.jogadores.monstro.life < 0) this.jogadores.monstro.life = 0;
+            }
+        }
     }
 })
