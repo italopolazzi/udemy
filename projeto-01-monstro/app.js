@@ -130,6 +130,8 @@ new Vue({
             handler() {
                 if (this.jogadores.jogador.life < 0) this.jogadores.jogador.life = 0;
                 if (this.jogadores.monstro.life < 0) this.jogadores.monstro.life = 0;
+                if (this.jogadores.jogador.life > 100) this.jogadores.jogador.life = 100;
+                if (this.jogadores.monstro.life > 100) this.jogadores.monstro.life = 100;
             }
         }
     }
