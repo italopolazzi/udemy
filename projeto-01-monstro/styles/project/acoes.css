@@ -1,0 +1,95 @@
+    #jogando {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+        justify-content: space-around;
+        position: relative;
+    }
+    
+    #acoes button {
+        /* border: calc(0.25 * var(--default-value)) solid rgba(0, 0, 0, .1); */
+        border: none;
+        border-radius: calc(0.25 * var(--default-value));
+        padding: calc(0.5 * var(--default-value));
+        margin: 0 calc(0.5 * var(--default-value));
+        flex: 0 1 100%;
+        font-size: var(--default-value);
+        font-weight: bolder;
+        letter-spacing: 2px;
+        color: rgba(0, 0, 0, 0.7);
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+    }
+    
+    #jogando button:first-child {
+        margin-left: 0;
+    }
+    
+    #jogando button:last-child {
+        margin-right: 0;
+    }
+    
+    #jogando button:before {
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background: transparent;
+        top: 100%;
+        left: 0;
+        z-index: -1;
+        transition: top 1s ease;
+    }
+    
+    #jogando button:focus-within:before,
+    #jogando button:hover:before {
+        background: var(--theme-darker);
+        top: -100%;
+    }
+    
+    #btn_ataque,
+    #btn_ataque_especial,
+    #btn_curar,
+    #btn_desistir {
+        background-color: var(--theme-tertiary);
+    }
+    
+    #btn_iniciarNovoJogo {
+        background-color: transparent;
+    }
+    
+    #btn_iniciarNovoJogo:hover {
+        background-color: var(--theme-accent);
+    }
+    
+    #fim>* {
+        display: block;
+        flex: 0 1 20%;
+    }
+    
+    #fim {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        /* background: yellow; */
+    }
+    
+    #fim span {
+        margin-bottom: var(--default-value);
+        font-size: 2em;
+    }
+    
+    .erro {
+        color: var(--theme-erro)
+    }
+    
+    .alert {
+        color: var(--theme-alert)
+    }
+    
+    .success {
+        color: var(--theme-success)
+    }

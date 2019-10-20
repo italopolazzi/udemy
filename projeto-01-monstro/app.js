@@ -12,7 +12,7 @@ const EMPATE = {
 }
 const ATTACKED_ACTION = "atingiu"
 const CURED_ACTION = "curou"
-const MAX_LIFE = 100
+const MAX_VIDA = 100
 const NO_WINNER = null
 
 new Vue({
@@ -21,10 +21,10 @@ new Vue({
         vencedor: NO_WINNER,
         jogadores: {
             jogador: {
-                life: MAX_LIFE
+                vida: MAX_VIDA
             },
             monstro: {
-                life: MAX_LIFE
+                vida: MAX_VIDA
             }
         },
         log: []
@@ -36,7 +36,7 @@ new Vue({
         logDesc() {
             return this.log.reverse()
         },
-        finalMessage() {
+        mensagemFinal() {
             switch (this.vencedor) {
                 case MONSTRO:
                     return `${MONSTRO.name} venceu!`
@@ -46,21 +46,21 @@ new Vue({
                     return "Empatou!"
             }
         },
-        finalMessageClass() {
+        mensagemFinalClasse() {
             if (this.vencedor == JOGADOR) {
                 return 'success'
             } else if (this.vencedor == MONSTRO) {
-                return 'error'
+                return 'erro'
             }
         }
     },
     methods: {
         testEnd() {
-            if (this.jogadores.monstro.life <= 0 && this.jogadores.jogador.life <= 0) {
+            if (this.jogadores.monstro.vida <= 0 && this.jogadores.jogador.vida <= 0) {
                 this.vencedor = EMPATE
-            } else if (this.jogadores.monstro.life <= 0) {
+            } else if (this.jogadores.monstro.vida <= 0) {
                 this.vencedor = JOGADOR
-            } else if (this.jogadores.jogador.life <= 0) {
+            } else if (this.jogadores.jogador.vida <= 0) {
                 this.vencedor = MONSTRO
             }
         },
@@ -68,17 +68,17 @@ new Vue({
         random5: () => Math.round(Math.random()) * 5,
         pushToLog(p1, p2) {
             this.log.push([
-                `${p2.name} ${p2.action} ${p1.name} com ${p2.action_value}.`,
-                `${p1.name} ${p1.action} ${p2.name} com ${p1.action_value}.`
+                `${p2.action} ${p1.name} com ${p2.action_value}`,
+                `${p1.action} ${p2.name} com ${p1.action_value}`
             ])
         },
         execAction(player_av, monster_av, action = 'atacar') {
             if (action == 'atacar') {
-                this.jogadores.monstro.life -= player_av
-                this.jogadores.jogador.life -= monster_av
+                this.jogadores.monstro.vida -= player_av
+                this.jogadores.jogador.vida -= monster_av
             } else if (action == 'curar') {
-                this.jogadores.jogador.life += player_av
-                this.jogadores.jogador.life -= monster_av
+                this.jogadores.jogador.vida += player_av
+                this.jogadores.jogador.vida -= monster_av
             }
             this.testEnd()
         },
@@ -113,8 +113,8 @@ new Vue({
         },
         reset() {
             this.log = []
-            this.jogadores.monstro.life = MAX_LIFE
-            this.jogadores.jogador.life = MAX_LIFE
+            this.jogadores.monstro.vida = MAX_VIDA
+            this.jogadores.jogador.vida = MAX_VIDA
             this.vencedor = NO_WINNER
         },
         desistir() {
@@ -128,10 +128,10 @@ new Vue({
         jogadores: {
             deep: true,
             handler() {
-                if (this.jogadores.jogador.life < 0) this.jogadores.jogador.life = 0;
-                if (this.jogadores.monstro.life < 0) this.jogadores.monstro.life = 0;
-                if (this.jogadores.jogador.life > 100) this.jogadores.jogador.life = 100;
-                if (this.jogadores.monstro.life > 100) this.jogadores.monstro.life = 100;
+                if (this.jogadores.jogador.vida < 0) this.jogadores.jogador.vida = 0;
+                if (this.jogadores.monstro.vida < 0) this.jogadores.monstro.vida = 0;
+                if (this.jogadores.jogador.vida > 100) this.jogadores.jogador.vida = 100;
+                if (this.jogadores.monstro.vida > 100) this.jogadores.monstro.vida = 100;
             }
         }
     }

@@ -1,0 +1,6 @@
+.round {
+    border-top-left-radius: 999999999999px;
+    border-bottom-left-radius: 999999999999px;
+    border-top-right-radius: 999999999999px;
+    border-bottom-right-radius: 999999999999px;
+}

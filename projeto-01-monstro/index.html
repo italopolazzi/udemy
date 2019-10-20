@@ -15,41 +15,51 @@
         <section id="jogo">
             <div id="resultados">
                 <div id="jogador" class="card">
-                    <span class="title">Jogador</span>
-                    <progress :class="jogadores.jogador.life > 20 ? 'error-background' : 'error-background'" :value="jogadores.jogador.life" max="100"></progress>
-                    <span>{{jogadores.jogador.life}}</span>
+                    <span class="titulo">Jogador</span>
+                    <progress class="vida" :class="jogadores.jogador.vida > 20 ? '' : 'vida-baixa'" :value="jogadores.jogador.vida" max="100"></progress>
+                    <transition name="slideX" mode="out-in" appear>
+                        <span class="vida" :key="jogadores.jogador.vida">
+                            {{jogadores.jogador.vida}}
+                        </span>
+                    </transition>
                 </div>
                 <div id="monstro" class="card">
-                    <span class="title">Monstro</span>
-                    <progress :class="jogadores.monstro.life > 20 ? 'error-background' : 'error-background'" :value="jogadores.monstro.life" max="100"></progress>
-                    <span>{{jogadores.monstro.life}}</span>
+                    <span class="titulo">Monstro</span>
+                    <progress class="vida" :class="jogadores.monstro.vida > 20 ? '' : 'vida-baixa'" :value="jogadores.monstro.vida" max="100"></progress>
+                    <transition name="slideX" mode="out-in" appear>
+                        <span class="vida" :key="jogadores.monstro.vida">
+                            {{jogadores.monstro.vida}}
+                        </span>
+                    </transition>
                 </div>
             </div>
             <div id="acoes" class="card">
                 <template v-if="vencedor">
-                    <div class="fim">
-                        <span :class="finalMessageClass">{{finalMessage}}</span>
+                    <div id="fim">
+                        <span :class="mensagemFinalClasse">{{mensagemFinal}}</span>
                         
-                        <button @click="iniciarNovoJogo" class="round" id="btn_iniciarNovoJogo">Iniciar novo jogo!</button>
+                        <button @click="iniciarNovoJogo"  id="btn_iniciarNovoJogo">Reiniciar</button>
                     </div>
 
                 </template>
                 <template v-else>
-                  <button @click="ataque" class="round" id="btn_ataque">Ataque</button>
-                  <button @click="ataque_especial" class="round" id="btn_ataque_especial">Ataque especial</button>
-                  <button @click="curar" class="round" id="btn_curar">Curar</button>
-                  <button @click="desistir" class="round" id="btn_desistir">Desistir</button>
+                    <div id="jogando">
+
+                        <button @click="ataque"  id="btn_ataque">Ataque</button>
+                        <button @click="ataque_especial"  id="btn_ataque_especial">Ataque especial</button>
+                        <button @click="curar"  id="btn_curar">Curar</button>
+                        <button @click="desistir"  id="btn_desistir">Desistir</button>
+                    </div>
                 </template>
             </div>
         </section>
         <section v-if="logNaoVazio" id="log" class="card">
-            <ul>
-                <template v-for="(item, index) in logDesc">
-                  <li class="monstro">{{item[0]}}</li>
-                  <li class="jogador">{{item[1]}}</li>
-                  <hr>
-                </template>
-            </ul>
+            <template v-for="(item, index) in logDesc">
+                <ul>
+                    <li class="monstro">{{item[0]}}</li>
+                    <li class="jogador">{{item[1]}}</li>
+                </ul>
+            </template>
         </section>
     </div>
 

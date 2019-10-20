@@ -1,0 +1,74 @@
+                  :root {
+                     --transition-duration: 200ms;
+                     --transition-timing-function: ease-in-out;
+                     --font-outline-size: 0.6em;
+                 }
+                 
+                 #jogador,
+                 #monstro {
+                     display: flex;
+                     flex-flow: row wrap;
+                     align-items: stretch;
+                     justify-content: center;
+                     font-weight: bolder;
+                 }
+                 
+                 .titulo {
+                     margin-bottom: var(--default-value);
+                     font-size: 1.5em
+                 }
+                 
+                 .titulo,
+                 .vida {
+                     display: block;
+                     flex: 0 1 100%;
+                 }
+                 
+                 progress.vida {
+                     /* background-color: red; */
+                     -webkit-appearance: none;
+                     -moz-appearance: none;
+                     appearance: none;
+                 }
+                 
+                 progress::-webkit-progress-bar {
+                     background-color: var(--theme-darker);
+                     /* border-radius: 2px; */
+                     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; */
+                 }
+                 
+                 progress::-webkit-progress-value {
+                     background-color: var(--theme-accent);
+                     width: 10px;
+                     transition: all var(--transition-duration) var(--transition-timing-function);
+                     /* border-radius: 2px; */
+                     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; */
+                 }
+                 
+                 progress.vida-baixa::-webkit-progress-value {
+                     background-color: var(--theme-erro);
+                 }
+                 
+                 span.vida {
+                     font-size: var(--font-outline-size);
+                     margin-top: var(--font-outline-size);
+                     align-self: flex-end;
+                     text-align: end;
+                 }
+                 
+                 .slideX-leave-active {
+                     animation-name: slideX;
+                     animation-direction: normal;
+                     animation-iteration-count: infinite;
+                     animation-duration: var(--transition-duration);
+                     animation-timing-function: var(--transition-timing-function)
+                 }
+                 
+                 @keyframes slideX {
+                     from {
+                         transform: translateX(-var(--default-value));
+                     }
+                     to {
+                         transform: translateX(0);
+                     }
+                 }

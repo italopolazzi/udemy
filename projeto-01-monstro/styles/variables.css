@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap');
+:root {
+    --default-value: 1rem;
+    --padding-005-100: calc(0.5 * var(--default-value)) var(--default-value);
+    --border-radius: calc(0.25 * var(--default-value));
+}
+
+
+/* COLORS */
+
+:root {
+    /* ini MONO */
+    --theme-primary: #54BFBD;
+    --theme-secondary: #38807E;
+    --theme-accent: #70FFFD;
+    --theme-darker: #1C403F;
+    --theme-tertiary: #65E6E3;
+    /* end MONO */
+    --theme-success: #29FF5B;
+    --theme-erro: #F03632;
+    --theme-alert: #F0FF5B;
+    --theme-background: var(--theme-darker);
+}
+
+html {
+    background: var(--theme-background);
+    font-weight: normal;
+    font-size: var(--default-value);
+    font-family: 'Open Sans', 'Helvetica', sans-serif;
+    color: var(--theme-darker);
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}

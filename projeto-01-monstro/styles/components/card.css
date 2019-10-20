@@ -1,0 +1,25 @@
+/* CARD */
+
+:root {
+    --card-background: white;
+    --card-radius: var(--border-radius);
+}
+
+.card {
+    background: var(--card-background);
+    border-radius: var( --card-radius);
+    padding: var(--default-value);
+    margin: var(--default-value) var(--default-value) 0;
+}
+
+#resultados {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: center;
+}
+
+#jogador,
+#monstro {
+    flex: 0 1 100%;
+}
