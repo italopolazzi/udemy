@@ -3,6 +3,9 @@
     --default-value: 1rem;
     --padding-005-100: calc(0.5 * var(--default-value)) var(--default-value);
     --border-radius: calc(0.25 * var(--default-value));
+    --transition-duration: 200ms;
+    --transition-timing-function: ease-in-out;
+    --font-outline-size: 0.6em;
 }
 
 

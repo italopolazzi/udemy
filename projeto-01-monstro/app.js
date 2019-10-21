@@ -34,7 +34,7 @@ new Vue({
             return this.log.length > 0
         },
         logDesc() {
-            return this.log.reverse()
+            return this.log.slice().reverse()
         },
         mensagemFinal() {
             switch (this.vencedor) {
@@ -64,8 +64,8 @@ new Vue({
                 this.vencedor = MONSTRO
             }
         },
-        random10: () => Math.round(Math.random()) * 10,
-        random5: () => Math.round(Math.random()) * 5,
+        random10: () => Math.round(Math.random() * 10),
+        random5: () => Math.round(Math.random() * 5),
         pushToLog(p1, p2) {
             this.log.push([
                 `${p2.action} ${p1.name} com ${p2.action_value}`,

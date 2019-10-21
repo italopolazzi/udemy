@@ -54,12 +54,14 @@
             </div>
         </section>
         <section v-if="logNaoVazio" id="log" class="card">
-            <template v-for="(item, index) in logDesc">
-                <ul>
+            <transition-group name="slideY" mode="out-in" appear>
+                <template v-for="(item, index) in logDesc">
+                <ul :key="item">
                     <li class="monstro">{{item[0]}}</li>
                     <li class="jogador">{{item[1]}}</li>
                 </ul>
-            </template>
+                </template>
+            </transition-group>
         </section>
     </div>
 

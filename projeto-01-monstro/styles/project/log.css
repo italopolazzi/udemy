@@ -1,0 +1,131 @@
+:root {
+    box-sizing: border-box;
+    --animation-ms: 300ms;
+    --animation-ms-delay: 100ms;
+    --animation-ms-delayed: calc(var(--animation-ms-delay) + var(--animation-ms));
+    --animation-slideY-distance: -10rem;
+    --animation-slideY_after-distance: -2rem;
+}
+
+#log {
+    overflow: hidden;
+    padding-top: 0;
+}
+
+#log ul {
+    box-sizing: border-box;
+    padding: calc(var(--default-value) * 3);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: calc(var(--default-value) * 2) var(--default-value) 0;
+}
+
+#log ul li {
+    margin-bottom: calc(var(--default-value) * 0.5)
+}
+
+#log ul:before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: calc(var(--default-value) * -0.375);
+    width: calc(var(--default-value) * 0.25);
+    height: 100%;
+    background: currentColor;
+}
+
+.monstro {
+    position: relative;
+}
+
+.jogador {
+    position: relative;
+}
+
+.monstro:before,
+.jogador:before {
+    display: inline-block;
+    /* margin-right: var(--default-value); */
+    margin-left: -2rem;
+    margin-right: 1rem;
+    margin-top: -0.25rem;
+    padding: 0.25rem;
+    padding-left: 2rem;
+    border-radius: 1rem;
+    /* background-color: var(--theme-darker) */
+}
+
+.monstro:before {
+    content: 'monstro';
+    color: var(--theme-primary);
+}
+
+.jogador:before {
+    content: 'jogador';
+    color: var(--theme-tertiary);
+}
+
+.monstro:after,
+.jogador:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: calc(var(--default-value) * -1.75);
+    width: var(--default-value);
+    height: var(--default-value);
+    border-radius: 50%;
+    animation-name: slideY_after;
+    animation-direction: normal;
+    animation-duration: var(--animation-ms);
+    transform: translateX(var(--animation-slideY_after-distance));
+    animation-fill-mode: both;
+    animation-timing-function: linear
+}
+
+.monstro:before {
+    color: var(--theme-primary);
+}
+
+.jogador:before {
+    color: var(--theme-tertiary);
+}
+
+.monstro:after {
+    background-color: var(--theme-primary);
+    animation-delay: var(--animation-ms-delayed);
+}
+
+.jogador:after {
+    background-color: var(--theme-tertiary);
+    animation-delay: var(--animation-ms);
+}
+
+.slideY-enter-active,
+.slideY-leave-active {
+    animation-name: slideY;
+    animation-direction: normal;
+    animation-duration: var(--animation-ms);
+    animation-timing-function: linear
+}
+
+@keyframes slideY {
+    from {
+        transform: translateY(var(--animation-slideY-distance));
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideY_after {
+    from {
+        transform: translateX(var(--animation-slideY_after-distance));
+    }
+    to {
+        transform: translateX(0);
+    }
+}
