@@ -9,7 +9,7 @@
     background: var(--card-background);
     border-radius: var( --card-radius);
     padding: var(--default-value);
-    margin: var(--default-value) var(--default-value) 0;
+    /* margin: var(--default-value) var(--default-value) 0; */
 }
 
 #resultados {

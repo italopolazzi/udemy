@@ -14,7 +14,7 @@
     <div id="app">
         <section id="jogo">
             <div id="resultados">
-                <div id="jogador" class="card">
+                <div id="jogador" class="card ma-4">
                     <span class="titulo">Jogador</span>
                     <progress class="vida" :class="jogadores.jogador.vida > 20 ? '' : 'vida-baixa'" :value="jogadores.jogador.vida" max="100"></progress>
                     <transition name="slideX" mode="out-in" appear>
@@ -23,7 +23,7 @@
                         </span>
                     </transition>
                 </div>
-                <div id="monstro" class="card">
+                <div id="monstro" class="card my-4 mr-4">
                     <span class="titulo">Monstro</span>
                     <progress class="vida" :class="jogadores.monstro.vida > 20 ? '' : 'vida-baixa'" :value="jogadores.monstro.vida" max="100"></progress>
                     <transition name="slideX" mode="out-in" appear>
@@ -33,7 +33,7 @@
                     </transition>
                 </div>
             </div>
-            <div id="acoes" class="card">
+            <div id="acoes" class="card mx-4">
                 <template v-if="vencedor">
                     <div id="fim">
                         <span :class="mensagemFinalClasse">{{mensagemFinal}}</span>
@@ -53,7 +53,7 @@
                 </template>
             </div>
         </section>
-        <section v-if="logNaoVazio" id="log" class="card">
+        <section v-if="logNaoVazio" id="log" class="card ma-4">
             <transition-group name="slideY" mode="out-in" appear>
                 <template v-for="(item, index) in logDesc">
                 <ul :key="item">

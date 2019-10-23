@@ -5,10 +5,14 @@
     --animation-ms-delayed: calc(var(--animation-ms-delay) + var(--animation-ms));
     --animation-slideY-distance: -10rem;
     --animation-slideY_after-distance: -2rem;
+    --monstro-color: var(--theme-erro);
+    --jogador-color: var(--theme-success);
 }
 
 #log {
     overflow: hidden;
+    overflow-y: auto;
+    max-height: 50vmin;
     padding-top: 0;
 }
 
@@ -60,12 +64,12 @@
 
 .monstro:before {
     content: 'monstro';
-    color: var(--theme-primary);
+    color: var(--monstro-color);
 }
 
 .jogador:before {
     content: 'jogador';
-    color: var(--theme-tertiary);
+    color: var(--jogador-color);
 }
 
 .monstro:after,
@@ -86,21 +90,13 @@
     animation-timing-function: linear
 }
 
-.monstro:before {
-    color: var(--theme-primary);
-}
-
-.jogador:before {
-    color: var(--theme-tertiary);
-}
-
 .monstro:after {
-    background-color: var(--theme-primary);
+    background-color: var(--monstro-color);
     animation-delay: var(--animation-ms-delayed);
 }
 
 .jogador:after {
-    background-color: var(--theme-tertiary);
+    background-color: var(--jogador-color);
     animation-delay: var(--animation-ms);
 }
 

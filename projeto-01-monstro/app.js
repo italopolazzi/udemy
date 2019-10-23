@@ -109,7 +109,7 @@ new Vue({
 
             this.execActionCurar(player_av, monster_av)
 
-            this.pushToLog({ name: JOGADOR.name, action: CURED_ACTION, action_value: player_av }, { name: MONSTRO.name, action: ATTACKED_ACTION, action_value: monster_av })
+            this.pushToLog({ name: JOGADOR.name, action: CURED_ACTION, action_value: player_av }, { name: JOGADOR.name, action: ATTACKED_ACTION, action_value: monster_av })
         },
         reset() {
             this.log = []

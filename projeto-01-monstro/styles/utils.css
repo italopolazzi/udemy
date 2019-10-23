@@ -4,3 +4,31 @@
     border-top-right-radius: 999999999999px;
     border-bottom-right-radius: 999999999999px;
 }
+
+.mx-4 {
+    margin: 0 1rem
+}
+
+.my-4 {
+    margin: 1rem 0
+}
+
+.mt-4 {
+    margin-top: 1rem
+}
+
+.mb-4 {
+    margin-bottom: 1rem
+}
+
+.ml-4 {
+    margin-left: 1rem
+}
+
+.mr-4 {
+    margin-right: 1rem
+}
+
+.ma-4 {
+    margin: 1rem
+}

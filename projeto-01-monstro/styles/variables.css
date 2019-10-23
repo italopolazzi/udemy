@@ -13,14 +13,14 @@
 
 :root {
     /* ini MONO */
-    --theme-primary: #54BFBD;
-    --theme-secondary: #38807E;
-    --theme-accent: #70FFFD;
-    --theme-darker: #1C403F;
-    --theme-tertiary: #65E6E3;
+    --theme-primary: #66A6FF;
+    --theme-secondary: #335380;
+    --theme-accent: #B3D2FF;
+    --theme-darker: #596980;
+    --theme-tertiary: #5285CC;
     /* end MONO */
-    --theme-success: #29FF5B;
-    --theme-erro: #F03632;
+    --theme-success: #52CCA7;
+    --theme-erro: #CC210C;
     --theme-alert: #F0FF5B;
     --theme-background: var(--theme-darker);
 }
@@ -32,8 +32,16 @@ html {
     font-family: 'Open Sans', 'Helvetica', sans-serif;
     color: var(--theme-darker);
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 button {
     cursor: pointer;
+}
+
+@media screen and (min-width: 996px) {
+    #app {
+        max-width: 50vmax;
+        margin: 0 auto;
+    }
 }
