@@ -11,7 +11,7 @@ export default {
   props: ["tarefas"],
   computed: {
     porcentagem() {
-      const total_de_concluidas = this.tarefas.filter(v => v.status).length;
+      const total_de_concluidas = Object.keys(this.tarefas).filter(key => this.tarefas[key].status).length;
       const total_de_tarefas = this.tarefas.length;
       const resultado = (total_de_concluidas / total_de_tarefas) * 100;
       const valido = resultado ? resultado : 0;

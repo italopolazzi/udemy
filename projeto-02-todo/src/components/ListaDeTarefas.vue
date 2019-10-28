@@ -4,13 +4,13 @@
       <li
         tabindex="1"
         class="tarefa"
-        :class="statusDeConclusao(status)"
-        v-for="({status, legenda}, index) in tarefas"
-        @click="inverterStatus(index)"
-        :key="index"
+        :class="statusDeConclusao(tarefa.status)"
+        v-for="(tarefa, id) in tarefas"
+        @click="inverterStatus(id)"
+        :key="id"
       >
-        {{legenda}}
-        <i @click="deletarTarefa(index)" class="excluir material-icons">delete</i>
+        {{tarefa.legenda}}
+        <i @click.stop="deletarTarefa(id)" class="excluir material-icons">delete</i>
       </li>
     </ul>
   </div>
@@ -24,16 +24,16 @@ export default {
   props: ["tarefas"],
   computed: {
     ha_tarefas() {
-      return this.tarefas.length > 0;
+      return Object.keys(this.tarefas).length > 0;
     }
   },
   methods: {
     statusDeConclusao: v => (v ? "concluida" : "nao-concluida"),
-    inverterStatus(index) {
-      this.tarefas[index].status = !this.tarefas[index].status;
+    inverterStatus(id) {
+      this.$emit("inverterStatus", id);
     },
-    deletarTarefa(index) {
-      this.tarefas.splice(index, 1);
+    deletarTarefa(id) {
+      this.$emit("deletarTarefa", id);
     }
   }
 };
