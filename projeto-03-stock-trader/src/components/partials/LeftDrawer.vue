@@ -1,5 +1,5 @@
 <template>
-  <Drawer class="left">
+  <Drawer class="right">
     <h1 slot="title">{{$route.name}}</h1>
     <Menu slot="menu" />
     <Actions slot="actions">{{funds | money}}</Actions>
@@ -18,10 +18,3 @@ export default {
   }
 };
 </script>
-
-<style lang="stylus" scoped>
-.left {
-  // left: 0;
-  right: 0;
-}
-</style>
