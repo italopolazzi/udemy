@@ -1,6 +1,6 @@
 <template>
-  <div v-if="ha_tarefas" id="lista-de-tarefas">
-    <ul>
+  <div id="lista-de-tarefas">
+    <transition-group tag="ul" name="slide" mode="out-in" appear>
       <li
         tabindex="1"
         class="tarefa"
@@ -12,21 +12,13 @@
         {{tarefa.legenda}}
         <i @click.stop="deletarTarefa(id)" class="excluir material-icons">delete</i>
       </li>
-    </ul>
-  </div>
-  <div v-else>
-    <h2>Você está em dia :)</h2>
+    </transition-group>
   </div>
 </template>
 
 <script>
 export default {
   props: ["tarefas"],
-  computed: {
-    ha_tarefas() {
-      return Object.keys(this.tarefas).length > 0;
-    }
-  },
   methods: {
     statusDeConclusao: v => (v ? "concluida" : "nao-concluida"),
     inverterStatus(id) {
@@ -43,6 +35,7 @@ export default {
 #lista-de-tarefas {
   width: 100%;
   margin: 0;
+  /* overflow: scroll; */
 }
 #lista-de-tarefas ul {
   display: flex;
@@ -95,5 +88,32 @@ export default {
 .tarefa:hover .excluir,
 .tarefa:focus .excluir {
   display: flex;
+}
+
+/* ANIMATIONS */
+
+.slide-enter-active,
+.slide-leave-active {
+  animation-name: slide;
+  animation-direction: normal;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+.slide-leave-active {
+  animation-direction: reverse;
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

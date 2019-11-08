@@ -1,16 +1,22 @@
 <template>
   <div id="app">
-    <NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
+    <div class="container">
+      <NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
 
-    <h1 class="dark">Tarefas</h1>
+      <h1 class="dark">Tarefas</h1>
 
-    <BarraDeProgresso :tarefas="tarefas" />
-    <ControlesDeEstado :botoes="botoes" @filtroDeEstadoSelecionado="filtrarPorEstado" />
-    <ListaDeTarefas
-      :tarefas="tarefas_filtradas"
-      @inverterStatus="inverterStatus"
-      @deletarTarefa="deletarTarefa"
-    />
+      <BarraDeProgresso :tarefas="tarefas" />
+      <ControlesDeEstado :botoes="botoes" @filtroDeEstadoSelecionado="filtrarPorEstado" />
+      <ListaDeTarefas
+        v-if="ha_tarefas"
+        :tarefas="tarefas_filtradas"
+        @inverterStatus="inverterStatus"
+        @deletarTarefa="deletarTarefa"
+      />
+      <div v-else>
+        <h2>{{mensagem_final}}</h2>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -56,6 +62,21 @@ export default {
         }
       }
     };
+  },
+  computed: {
+    ha_tarefas() {
+      return Object.keys(this.tarefas_filtradas).length > 0;
+    },
+    mensagem_final() {
+      switch (this.filtro_selecionado) {
+        case "concluidos":
+          return "Não há tarefas concluídas";
+        case "nao_concluidos":
+          return "Não há tarefas não concluídas";
+        default:
+          return "Você está em dia :)";
+      }
+    }
   },
   methods: {
     adicionarNovaTarefa(valor) {
