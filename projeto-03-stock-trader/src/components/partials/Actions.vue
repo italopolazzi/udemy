@@ -8,19 +8,23 @@
         <button class="sr flat" @click="saveAll()">Salvar</button>
       </Dropdown>
     </div>
-    <div class="funds">
-      <span class="chip">
-        <slot />
-      </span>
-    </div>
+
+    <transition name="funds" mode="out-in" appear>
+      <span class="chip funds" :key="funds">{{funds}}</span>
+    </transition>
   </div>
 </template>
 
 <script>
 import Dropdown from "@/components/components/Dropdown";
+import { mapGetters } from "vuex";
 export default {
   components: { Dropdown },
+  computed: {
+    ...mapGetters(["funds"])
+  },
   methods: {
+    funds_key: 0,
     endDay() {
       this.$store.dispatch("endDay");
     },

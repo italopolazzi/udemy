@@ -4,8 +4,8 @@
       <Flex class="xs12 sm6 md4">
         <Card>
           <!-- <div> -->
-          Total funds:
-          {{$store.state.funds | money }}
+          <span slot="card-title">Total funds</span>
+          <div class="funds">{{$store.state.funds}}</div>
           <!-- </div> -->
         </Card>
       </Flex>
@@ -22,6 +22,3 @@ export default {
   components: { Card, Flex, Container }
 };
 </script>
-
-<style>
-</style>

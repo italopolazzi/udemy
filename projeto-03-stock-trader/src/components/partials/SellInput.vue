@@ -3,9 +3,9 @@
     <div class="header">
       <div class="title">{{item.key}}</div>
       <div class="price">
-        <div class="chip round">
-          {{price | money}}
-        </div>
+        <transition name="funds" mode="out-in" appear>
+          <div class="chip round funds" :key="price">{{price}}</div>
+        </transition>
       </div>
     </div>
     <div class="actions">

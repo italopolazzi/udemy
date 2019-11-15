@@ -3,7 +3,7 @@
     <h1 slot="title">{{$route.name}}</h1>
     <Menu slot="menu" />
     <Actions slot="actions">
-      {{funds | money}} 
+      <div class="funds">{{funds}}</div>
     </Actions>
   </Toolbar>
 </template>
