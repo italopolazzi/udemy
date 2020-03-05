@@ -34,7 +34,7 @@
 body {
     font-size: var(--default-size);
     font-family: "Lato", sans-serif;
-    background: linear-gradient(to bottom, #e1eec3, #f05053);
+    background: linear-gradient(to bottom, #e1eec3, #f05053) no-repeat fixed;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -45,16 +45,17 @@ button {
     cursor: pointer;
 }
 
-#app {
+.container {
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: center;
+    margin-top: var(--bar-size);
+    /* justify-content: center; */
     align-items: center;
     height: 100vh;
 }
 
-#app h1 {
+.container h1 {
     margin-bottom: 5px;
     font-weight: 300;
     font-size: 3rem;

@@ -3,12 +3,9 @@
     <Container class="row">
       <Transition-Group name="slide" mode="out-in">
         <Flex v-for="(item, key) in currentStockTrader" :key="key" class="xs12 sm6 md4">
-          <Card>
-            <h3 slot="card-title">Card {{key}}</h3>
-            <div>
+          <div class="stock-trader">
               <component :is="currentCardComponent" :item="{key, ...item}"></component>
-            </div>
-          </Card>
+          </div>
         </Flex>
       </Transition-Group>
     </Container>
@@ -38,6 +35,4 @@ export default {
     }
   }
 };
-
-
 </script>

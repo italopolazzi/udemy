@@ -11,8 +11,8 @@ export default {
   props: ["tarefas"],
   computed: {
     porcentagem() {
-      const total_de_concluidas = this.tarefas.filter(v => v.status).length;
-      const total_de_tarefas = this.tarefas.length;
+      const total_de_concluidas = Object.keys(this.tarefas).filter(key => this.tarefas[key].status).length;
+      const total_de_tarefas = Object.keys(this.tarefas).length;
       const resultado = (total_de_concluidas / total_de_tarefas) * 100;
       const valido = resultado ? resultado : 0;
       const arredondado = valido.toFixed(2);
@@ -44,6 +44,7 @@ export default {
   align-items: center;
   justify-content: center;
   position: relative;
+  
 }
 #barra-de-progresso:before {
   content: "";
@@ -53,6 +54,7 @@ export default {
   position: absolute;
   align-self: flex-start;
   background: greenyellow;
+  transition: all 300ms linear;
 }
 #porcentagem {
   position: absolute;

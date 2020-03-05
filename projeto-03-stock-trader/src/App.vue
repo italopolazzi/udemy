@@ -6,7 +6,7 @@
         <BubbleLoader />
       </div>
       <div class="main-content" v-else key="content">
-        <LeftDrawer />
+        <RightDrawer />
         <div class="router-view">
           <router-view />
         </div>
@@ -17,7 +17,7 @@
 
 <script>
 import GlobalMessages from "@/components/partials/GlobalMessages";
-import LeftDrawer from "@/components/partials/LeftDrawer";
+import RightDrawer from "@/components/partials/RightDrawer";
 import BubbleLoader from "@/components/partials/BubbleLoader";
 import { mapGetters } from "vuex";
 
@@ -25,7 +25,7 @@ export default {
   name: "app",
   components: {
     GlobalMessages,
-    LeftDrawer,
+    RightDrawer,
     BubbleLoader
   },
   created() {

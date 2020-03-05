@@ -1,37 +1,42 @@
 <template>
   <div class="dropdown">
-    <div class="activator" @click="swicthActive" @keydown="swicthActive">
-      <slot name="activator"></slot>
-    </div>
-    <Transition name="fade" mode="out-in">
-      <div class="content" v-if="isActive">
-        <slot></slot>
+    <button
+      slot="activator"
+      class="sr flat"
+      @click="swicthActive"
+      @keydown="swicthActive"
+    >{{dropdown_message}}</button>
+    <transition name="slide" mode="out-in" appear>
+    <template v-if="is_active">
+      <div class="dropdown-content">
+        <!-- <slot name="activator"></slot> -->
+        <button class @click="loadAll()">Carregar</button>
+        <button class @click="saveAll()">Salvar</button>
       </div>
-    </Transition>
+    </template>
+    </transition>
   </div>
 </template>
+
+// class="sr flat"
 
 <script>
 export default {
   data() {
     return {
-      isActive: false
+      comp: "",
+      is_active: falsey
     };
+  },
+  computed: {
+    dropdown_message() {
+      return this.is_active ? "Fechar" : "Abrir";
+    }
   },
   methods: {
     swicthActive() {
-      this.isActive = !this.isActive;
+      this.is_active = !this.is_active;
     }
   }
 };
 </script>
-
-<style>
-.dropdown {
-  position: relative;
-}
-.content {
-  position: absolute;
-  top: 0;
-}
-</style>

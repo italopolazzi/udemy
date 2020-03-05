@@ -1,20 +1,28 @@
 <template>
   <div class="sell-input">
-    {{price | money}}
-    <br />
-    <input
-      class="sr-tl sr-bl raised"
-      type="number"
-      min="1"
-      :max="item.quantity"
-      v-model.number="quantity"
-    />
-    <button
-      class="sr-tr sr-br raised"
-      :class="{'error': button.disabled}"
-      :disabled="button.disabled"
-      @click="sell"
-    >{{button.text}}</button>
+    <div class="header">
+      <div class="title">{{item.key}}</div>
+      <div class="price">
+        <transition name="funds" mode="out-in" appear>
+          <div class="chip round funds" :key="price">{{price}}</div>
+        </transition>
+      </div>
+    </div>
+    <div class="actions">
+      <input
+        class="sr-tl sr-bl raised"
+        type="number"
+        min="1"
+        :max="item.quantity"
+        v-model.number="quantity"
+      />
+      <button
+        class="sr-tr sr-br raised"
+        :class="{'error': button.disabled}"
+        :disabled="button.disabled"
+        @click="sell"
+      >{{button.text}}</button>
+    </div>
   </div>
 </template>
 
@@ -56,6 +64,4 @@ export default {
     }
   }
 };
-
 </script>
-

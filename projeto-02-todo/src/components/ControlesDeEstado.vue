@@ -1,10 +1,10 @@
 <template>
   <div id="controles-de-estado">
     <button
-      v-for="({nome, icon}, index) in botoes"
-      :key="index"
+      v-for="({nome, icon}, key) in botoes"
+      :key="key"
       :title="nome"
-      @click="$emit('filtroDeEstadoSelecionado', index)"
+      @click="$emit('filtroDeEstadoSelecionado', key)"
     >
       <i class="material-icons">{{icon}}</i>
     </button>
@@ -15,7 +15,7 @@
 export default {
   props: {
     botoes: {
-      type: Array,
+      type: Object,
       required: true
     }
   }

@@ -1,5 +1,5 @@
 main_light = white;
-main_dark = #2c3e50;
+main_dark = #FF2B33;
 colors = {
   light: {
     light_1: lighten(main_light, 40),
@@ -24,15 +24,20 @@ colors = {
     dark_9: darken(main_dark, 40)
   },
   commom: {
-    error: red,
+    error: #FF2B33,
     info: blue,
     success: green,
-    alert: yellow
+    alert: yellow,
+    dark: #333,
+    light: #fafafa
   }
 };
 
 for _class, value in (colors.commom) {
   .{_class} {
     background: value!important;
+  }
+  .text-{_class} {
+    color: value !important;
   }
 }

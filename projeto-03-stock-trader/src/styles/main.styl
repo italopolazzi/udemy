@@ -2,10 +2,11 @@
 @import './config';
 @import './colors';
 @import './theme';
-@import './components';
 @import './sizes';
 @import './alignments';
 @import './transitions';
+@import './utils';
+@import './components';
 
 * {
   outline: none;
@@ -15,8 +16,8 @@
 
 body {
   overflow: hidden;
-  background: theme[tt].body_color_background;
-  color: theme[tt].body_color;
+  background: theme[tt].body.background;
+  color: theme[tt].body.color;
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
@@ -48,27 +49,4 @@ h5 {
 
 h6 {
   font-size: 1.2rem;
-}
-
-.sr {
-  border-top-left-radius: 99999999999px;
-  border-top-right-radius: 99999999999px;
-  border-bottom-left-radius: 99999999999px;
-  border-bottom-right-radius: 99999999999px;
-}
-
-.sr-tl {
-  border-top-left-radius: 99999999999px;
-}
-
-.sr-tr {
-  border-top-right-radius: 99999999999px;
-}
-
-.sr-bl {
-  border-bottom-left-radius: 99999999999px;
-}
-
-.sr-br {
-  border-bottom-right-radius: 99999999999px;
 }

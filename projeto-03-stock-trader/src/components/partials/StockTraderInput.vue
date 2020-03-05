@@ -1,6 +1,6 @@
 <template>
   <div class="sell-input">
-    {{price | money}}
+   <div class="funds">{{funds}}</div>
     <br />
     <input
       class="sr-tl sr-bl raised"

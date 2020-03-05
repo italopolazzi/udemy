@@ -1,19 +1,40 @@
 button = {
   padding: 0.75 * theme.sizes.padding 1.25 * theme.sizes.padding,
-  background: theme[tt].secondary
+  light: {
+    color: colors.dark.dark_5,
+    background: colors.light.light_5,
+    error: {
+      color: colors.commom.error,
+      background: transparent
+    }
+  },
+  dark: {
+    color: colors.dark.light_5,
+    background: colors.light.dark_5,
+    error: {
+      color: colors.light.light_5,
+      background: transparent
+    }
+  }
 };
 
 button {
-  background: transparent;
+  cursor: pointer;
+  color: button[tt].color;
+  background: button[tt].background;
   padding: button.padding;
   border: none;
 }
 
 button.flat {
-  background: button.background;
 }
 
 button.raised {
-  background: button.background;
   box-shadow: defaults.box_shadow;
+}
+
+button.error {
+  color: button[tt].error.color !important;
+  background: button[tt].error.background !important;
+  cursor: no-drop;
 }

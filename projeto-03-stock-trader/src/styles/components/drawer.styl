@@ -1,75 +1,45 @@
 .drawer {
   position: absolute;
-  background: theme[tt].body_color;
-  color: theme[tt].body_color_background;
-  box-shadow: defaults.box_shadow;
-  padding: theme[sizes].padding;
-  margin: theme[sizes].margin;
-  border-radius: dimentions.default;
-  width: 40vw;
-  height: calc(100vh - (4 * dimentions.default));
+  top: 0;
+  color: theme[tt].super;
+  background: theme[tt].secondary;
   z-index: 1;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  margin: dimentions.default;
+}
 
-  & > * {
-    width: 100%;
-    margin-bottom: dimentions.default;
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.drawer-activator {
+  button {
+    background: green;
   }
 }
 
-.drawer-title {
-}
-
-.drawer-menu {
-  position: relative;
+.drawer-content {
   width: 100%;
-
-  .menu {
-    width: 100%;
-    // background: red;
-    display: flex;
-    flex-flow: column wrap;
-    position: relative;
-
-    .router-link {
-      flex: 0 1 100%;
-      line-height: 3 * theme.sizes.font;
-      font-weight: bold;
-      // padding-left: theme.sizes.font;
-    }
-  }
+  min-width: 50vmax;
+  padding: dimentions.default;
 }
 
-.drawer-actions {
-  #actions {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    flex: 0 1 auto;
-    box-sizing: border-box;
-    align-items: flex-start;
-    justify-content: flex-start;
+.drawer-title, .drawer-menu, .drawer-actions, .drawer-actions button {
+  margin-bottom: dimentions.default;
+}
 
-    .buttons {
-      width: 100%;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: space-around;
-      padding: 1rem 0;
-    }
+.drawer-actions > button {
+  display: flex;
+}
 
-    .funds {
-      width: 100%;
-      text-align: center;
+#actions .buttons {
+  display: flex;
+  align-items: baseline;
+}
 
-      span {
-        display: block;
-        font-weight: bold;
-      }
-    }
-  }
+.funds {
+  color: theme[tt].secondary;
 }

@@ -11,19 +11,19 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: () =>
-                import ('@/components/routes/Home')
+                import ('@/components/components/routes/Home')
         },
         {
             path: '/portfolio',
             name: 'portfolio',
             component: () =>
-                import ('@/components/routes/StockTrader')
+                import ('@/components/components/routes/StockTrader')
         },
         {
             path: '/stock',
             name: 'stock',
             component: () =>
-                import ('@/components/routes/StockTrader')
+                import ('@/components/components/routes/StockTrader')
         },
     ]
 })

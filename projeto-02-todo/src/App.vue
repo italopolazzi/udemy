@@ -1,12 +1,22 @@
 <template>
   <div id="app">
-    <NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
+    <div class="container">
+      <NovaTarefa @novaTarefaAdicionada="adicionarNovaTarefa" />
 
-    <h1 class="dark">Tarefas</h1>
+      <h1 class="dark">Tarefas</h1>
 
-    <BarraDeProgresso :tarefas="tarefas" />
-    <ControlesDeEstado :botoes="botoes" @filtroDeEstadoSelecionado="filtrarPorEstado" />
-    <ListaDeTarefas :tarefas="tarefas_filtradas" />
+      <BarraDeProgresso :tarefas="tarefas" />
+      <ControlesDeEstado :botoes="botoes" @filtroDeEstadoSelecionado="filtrarPorEstado" />
+      <ListaDeTarefas
+        v-if="ha_tarefas"
+        :tarefas="tarefas_filtradas"
+        @inverterStatus="inverterStatus"
+        @deletarTarefa="deletarTarefa"
+      />
+      <div v-else>
+        <h2>{{mensagem_final}}</h2>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +26,15 @@ import ControlesDeEstado from "@/components/ControlesDeEstado.vue";
 import NovaTarefa from "@/components/NovaTarefa.vue";
 import ListaDeTarefas from "@/components/ListaDeTarefas.vue";
 
+const uniq_id = () => `id-${new Date().getTime()}`;
+const filtrarTarefas = (tarefas, filtro) => {
+  return Object.keys(tarefas).reduce((acc, key) => {
+    const item = tarefas[key];
+    if (filtro(item)) acc[key] = item;
+    return acc;
+  }, {});
+};
+
 export default {
   components: {
     BarraDeProgresso,
@@ -23,35 +42,76 @@ export default {
     NovaTarefa,
     ListaDeTarefas
   },
-  computed: {
-    tarefas_filtradas() {
-      const filtro = this.botoes[this.filtro_selecionado].filtro;
-      return this.tarefas.filter(filtro);
-    }
-  },
   data() {
     return {
-      tarefas: [],
-      filtro_selecionado: 0,
-      botoes: [
-        { nome: "Todos", icon: "home", filtro: item => item },
-        { nome: "Concluídos", icon: "done", filtro: item => item.status },
-        { nome: "Não concluídos", icon: "block", filtro: item => !item.status }
-      ]
+      control_key: 0,
+      tarefas: {},
+      tarefas_filtradas: {},
+      filtro_selecionado: "todos",
+      botoes: {
+        todos: { nome: "Todos", icon: "home", filtro: item => item },
+        concluidos: {
+          nome: "Concluídos",
+          icon: "done",
+          filtro: item => item.status
+        },
+        nao_concluidos: {
+          nome: "Não concluídos",
+          icon: "block",
+          filtro: item => !item.status
+        }
+      }
     };
+  },
+  computed: {
+    ha_tarefas() {
+      return Object.keys(this.tarefas_filtradas).length > 0;
+    },
+    mensagem_final() {
+      switch (this.filtro_selecionado) {
+        case "concluidos":
+          return "Não há tarefas concluídas";
+        case "nao_concluidos":
+          return "Não há tarefas não concluídas";
+        default:
+          return "Você está em dia :)";
+      }
+    }
   },
   methods: {
     adicionarNovaTarefa(valor) {
-      this.tarefas.push({ legenda: valor, status: false });
+      this.$set(this.tarefas, uniq_id(), { legenda: valor, status: false });
+      this.contabilizarAcao();
     },
-    filtrarPorEstado(index) {
-      this.filtro_selecionado = index;
+    filtrarPorEstado(key) {
+      this.filtro_selecionado = key;
+    },
+    contabilizarAcao() {
+      this.control_key++;
+    },
+    inverterStatus(id) {
+      this.tarefas[id].status = !this.tarefas[id].status;
+      this.contabilizarAcao();
+    },
+    deletarTarefa(id) {
+      this.$delete(this.tarefas, id);
+      this.contabilizarAcao();
     }
   },
   watch: {
-    tarefas: {
+    filtro_selecionado(new_value, old_value) {
+      this.tarefas_filtradas = filtrarTarefas(
+        this.tarefas,
+        this.botoes[new_value].filtro
+      );
+    },
+    control_key: {
       deep: true,
-      handler() {
+      handler(val) {
+        this.tarefas_filtradas = filtrarTarefas(
+          this.tarefas,
+          this.botoes[this.filtro_selecionado].filtro
+        );
         const string = JSON.stringify(this.tarefas);
         localStorage.setItem("tarefas", string);
       }
@@ -59,6 +119,7 @@ export default {
   },
   created() {
     this.tarefas = JSON.parse(localStorage.getItem("tarefas") || []);
+    this.contabilizarAcao();
   }
 };
 </script>
