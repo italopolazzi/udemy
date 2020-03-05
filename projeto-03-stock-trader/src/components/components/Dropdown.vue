@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       comp: "",
-      is_active: false
+      is_active: falsey
     };
   },
   computed: {
