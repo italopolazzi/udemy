@@ -1,0 +1,33 @@
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active, .slide-leave-active {
+  animation-name: slide;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+}
+
+.slide-enter {
+  animation-direction: normal;
+}
+
+.slide-leave-to {
+  animation-direction: reverse;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-10rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

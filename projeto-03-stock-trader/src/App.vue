@@ -3,27 +3,30 @@
     <GlobalMessages />
     <Transition name="fade" mode="out-in" appear>
       <div v-if="is_loading" key="loader">
-        <b-spinner />
+        <BubbleLoader />
       </div>
       <div class="main-content" v-else key="content">
         <RightDrawer />
-
-        <router-view />
+        <div class="router-view">
+          <router-view />
+        </div>
       </div>
     </Transition>
   </div>
 </template>
 
 <script>
-import GlobalMessages from "@/components/GlobalMessages";
-import RightDrawer from "@/components/RightDrawer";
+import GlobalMessages from "@/components/partials/GlobalMessages";
+import RightDrawer from "@/components/partials/RightDrawer";
+import BubbleLoader from "@/components/partials/BubbleLoader";
 import { mapGetters } from "vuex";
 
 export default {
   name: "app",
   components: {
     GlobalMessages,
-    RightDrawer
+    RightDrawer,
+    BubbleLoader
   },
   created() {
     this.$store.dispatch("loadAll", this);

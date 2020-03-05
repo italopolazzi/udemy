@@ -1,0 +1,39 @@
+.stock-trader {
+  width: 20rem;
+  padding: dimentions.default;
+  margin-bottom: dimentions.default;
+  background: theme[tt].super;
+  box-shadow: defaults.box_shadow;
+}
+
+.header {
+  justify-content: space-between;
+  margin-bottom: dimentions.default;
+}
+
+.price {
+  text-align: right;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: theme[tt].secondary;
+}
+
+.header, .actions {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.price, .title, .actions > input, .actions > button {
+  flex: 0 1 100%;
+}
+
+.title {
+  color: theme[tt].secondary;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: thin;
+}
+
+button {
+  color: theme[tt].secondary;
+}

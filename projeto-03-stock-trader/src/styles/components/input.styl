@@ -1,0 +1,19 @@
+input = {
+  padding: 0.75 * theme.sizes.padding 1.25 * theme.sizes.padding,
+  background: theme[tt].primary
+};
+
+input {
+  background: transparent;
+  padding: input.padding;
+  border: none;
+}
+
+input.flat {
+  background: input.background;
+}
+
+input.raised {
+  background: input.background;
+  box-shadow: defaults.box_shadow;
+}

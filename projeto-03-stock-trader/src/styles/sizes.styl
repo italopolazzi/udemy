@@ -1,0 +1,17 @@
+cols = theme.sizes.grid_cols;
+
+for key, value in (theme.sizes.media) {
+  @media (min-width: value) {
+    for i in (1 .. cols) {
+      result = (100 / cols * i)%;
+
+      .{key}{i} {
+        flex-basis: result;
+      }
+
+      .offset-{key}{i} {
+        margin-left: result;
+      }
+    }
+  }
+}

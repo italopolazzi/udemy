@@ -1,0 +1,15 @@
+chip = {
+  padding: 0.75 * theme.sizes.padding 1.25 * theme.sizes.padding,
+  background: theme[tt].body.background
+};
+
+.chip {
+  display: inline-block;
+  padding: chip.padding;
+  border: none;
+  background: chip.background;
+}
+
+.chip.round {
+  @extend .sr;
+}
