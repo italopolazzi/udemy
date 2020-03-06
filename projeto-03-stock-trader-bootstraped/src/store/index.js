@@ -61,6 +61,11 @@ const store = new Vuex.Store({
         BUY_QUANTITY(state, { key, quantity }) {
             state.portfolio[key].quantity += quantity
             state.stock[key].quantity -= quantity
+            state.global.messages.push({
+                variant: 'primary',
+                title: `Comprado (${quantity})`,
+                text: `Stock: ${key}`
+            })
         },
         REMOVE_FUNDS(state, total) {
             state.funds -= total
@@ -72,6 +77,11 @@ const store = new Vuex.Store({
         SELL_QUANTITY(state, { key, quantity }) {
             state.stock[key].quantity += quantity
             state.portfolio[key].quantity -= quantity
+            state.global.messages.push({
+                variant: 'success',
+                title: `Vendido (${quantity})`,
+                text: `Stock: ${key}`
+            })
         },
         ADD_FUNDS(state, total) {
             state.funds += total
@@ -89,7 +99,7 @@ const store = new Vuex.Store({
             state.price_refs[key] += total
         },
         THROW_ERROR(state, text) {
-            state.global.messages.push({ type: 'error', text })
+            state.global.messages.push({ variant: 'danger', text })
             throw Error(text)
         },
         SET_LOADING(state, bool) {
@@ -110,18 +120,6 @@ const store = new Vuex.Store({
             }
 
             commit('REMOVE_FUNDS', total)
-                // TO REVIEW
-                /**
-                 * The problem was identified here cuz
-                 * at this point the quantity of stock
-                 * is being removed
-                 * and down the mutation
-                 * BUY_QUANTITY is being called
-                 * which also removes the quantity
-                 * from the stock.
-                 */
-                // commit('REMOVE_QUANTITY_OF_STOCK', { key, quantity })
-
             if (!state.portfolio.hasOwnProperty(key)) {
                 commit('ADD_TO_PORTFOLIO', item)
             }

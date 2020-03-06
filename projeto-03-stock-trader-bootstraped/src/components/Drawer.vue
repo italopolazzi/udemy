@@ -2,7 +2,9 @@
   <div class="drawer">
     <div v-responsive.xs.sm.md>
       <div class="drawer-activator">
-        <b-button @click="toggleDrawer">{{ drawer_activator_button_icon }}</b-button>
+        <b-button @click="toggleDrawer">
+          <fa-icon icon="bars" />
+        </b-button>
       </div>
       <transition name="slideLeft" mode="out-in" appear>
         <template v-if="drawer_is_open ">
@@ -40,9 +42,6 @@
 <script>
 export default {
   name: "drawer",
-  created() {
-    console.log(this);
-  },
   data() {
     return {
       drawer_is_open: false
@@ -50,7 +49,7 @@ export default {
   },
   computed: {
     drawer_activator_button_icon() {
-      return this.drawer_is_open ? "mdi-close" : "mdi-menu";
+      return this.drawer_is_open ? "arrow-left" : "arrow-right";
     }
   },
   methods: {

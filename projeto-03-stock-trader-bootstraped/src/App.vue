@@ -12,7 +12,7 @@
           </template>
           <template v-else>
             <Transition name="fadeDown" mode="out-in" appear>
-              <router-view key="$route.name" />
+              <router-view :key="$route.name" />
             </Transition>
           </template>
         </b-col>

@@ -14,8 +14,11 @@ import store from '@/store/index'
 // -------------------------------
 // FILTERS
 import '@/filters/index'
+// GLOBAL COMPONENTS 
+import '@/components/global/index'
 
 Vue.config.productionTip = false
+
 
 new Vue({
     store,
