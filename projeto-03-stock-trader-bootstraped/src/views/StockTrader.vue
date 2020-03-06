@@ -1,37 +1,23 @@
 <template>
   <section :id="$route.name">
-    <Container class="row">
-      <Transition-Group name="slide" mode="out-in">
-        <Flex v-for="(item, key) in currentStockTrader" :key="key" class="xs12 sm6 md4">
-          <div class="stock-trader">
-              <component :is="currentCardComponent" :item="{key, ...item}"></component>
-          </div>
-        </Flex>
-      </Transition-Group>
-    </Container>
+    <b-row>
+      <b-col cols="12" lg="4" v-for="(item, key) in currentStockTrader" :key="key">
+        <!-- <component :is="currentCardComponent" :item="{key, ...item}"></component> -->
+        <StockTraderInput :item="{key, ...item}" />
+      </b-col>
+    </b-row>
   </section>
 </template>
 
 <script>
-import Container from "@/components/partials/Container";
-import Flex from "@/components/partials/Flex";
-import Card from "@/components/partials/Card";
-import BuyInput from "@/components/BuyInput";
-import SellInput from "@/components/SellInput";
+import StockTraderInput from "@/components/StockTraderInput";
 
 import { mapGetters } from "vuex";
 export default {
-  components: { Container, Flex, Card, BuyInput },
+  components: { StockTraderInput },
   computed: {
     currentStockTrader() {
       return this.$store.getters[this.$route.name];
-    },
-    currentCardComponent() {
-      const routesCards = {
-        stock: BuyInput,
-        portfolio: SellInput
-      };
-      return routesCards[this.$route.name];
     }
   }
 };

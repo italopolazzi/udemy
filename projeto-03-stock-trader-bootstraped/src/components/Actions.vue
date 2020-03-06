@@ -1,12 +1,12 @@
 <template>
   <div id="actions">
     <div class="buttons">
-      <button class="sr flat" @click="endDay()">Finalizar dia</button>
-      <Dropdown>
-        <button slot="activator" class="sr flat">Abrir</button>
-        <button class="sr flat" @click="loadAll()">Carregar</button>
-        <button class="sr flat" @click="saveAll()">Salvar</button>
-      </Dropdown>
+      <b-button class="sr flat" @click="endDay()">Finalizar dia</b-button>
+      <b-dropdown>
+        <b-dropdown-item slot="activator" class="sr flat">Abrir</b-dropdown-item>
+        <b-dropdown-item class="sr flat" @click="loadAll()">Carregar</b-dropdown-item>
+        <b-dropdown-item class="sr flat" @click="saveAll()">Salvar</b-dropdown-item>
+      </b-dropdown>
     </div>
 
     <transition name="funds" mode="out-in" appear>
@@ -16,10 +16,8 @@
 </template>
 
 <script>
-import Dropdown from "@/components/partials/Dropdown";
 import { mapGetters } from "vuex";
 export default {
-  components: { Dropdown },
   computed: {
     ...mapGetters(["funds"])
   },

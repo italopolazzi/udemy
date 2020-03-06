@@ -1,25 +1,16 @@
 <template>
-  <div class="sell-input">
-   <div class="funds">{{funds}}</div>
-    <br />
-    <input
-      class="sr-tl sr-bl raised"
-      type="number"
-      min="1"
-      :max="item.quantity"
-      v-model.number="quantity"
-    />
-    <button
-      class="sr-tr sr-br raised"
-      :class="{'error': button.disabled}"
-      :disabled="button.disabled"
-      @click="config.methods.name"
-    >{{button.text}}</button>
+  <div class="stock-trader-input">
+    <b-card>
+      <b-card-text>
+        {{item}}
+      </b-card-text>
+    </b-card>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'stock-trader-input',
   props: {
     item: {
       type: Object,

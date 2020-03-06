@@ -1,0 +1,13 @@
+// Theme color default definitions
+// custom theme here
+$animationDuration: 300ms;
+// Include Bootstrap and BootstrapVue SCSS files
+@import '~vue2-animate/src/sass/vue2-animate.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+.fill-viewport {
+    width: 100vw;
+    min-width: 100%;
+    height: 100vh;
+    min-height: 100%;
+}
