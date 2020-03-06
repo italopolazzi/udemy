@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12" lg="4" v-for="(item, key) in currentStockTrader" :key="key">
         <!-- <component :is="currentCardComponent" :item="{key, ...item}"></component> -->
-        <StockTraderInput :item="{key, ...item}" />
+        <StockTraderInput :item="{key, ...item, ...config}" />
       </b-col>
     </b-row>
   </section>
@@ -18,6 +18,31 @@ export default {
   computed: {
     currentStockTrader() {
       return this.$store.getters[this.$route.name];
+    },
+    config() {
+      const config = {
+        portfolio: {
+          button: {
+            labels: {
+              invalid: "Inválido",
+              unavaliable: "Indisponível",
+              valid: "Vender"
+            }
+          },
+          method_name: "sellItem"
+        },
+        stock: {
+          button: {
+            labels: {
+              invalid: "Inválido",
+              unavaliable: "Indisponível",
+              valid: "Comprar"
+            }
+          },
+          method_name: "buyItem"
+        }
+      };
+      return config[this.$route.name];
     }
   }
 };

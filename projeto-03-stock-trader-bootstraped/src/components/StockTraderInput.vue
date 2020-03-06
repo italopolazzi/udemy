@@ -1,22 +1,25 @@
 <template>
   <div class="stock-trader-input">
-    <b-card>
+    <b-card :title="item.key" :sub-title="price | money" class="ma-2">
       <b-card-text>
-        {{item}}
+        <b-form-input v-model="quantity" type="number" />
       </b-card-text>
+      <b-button
+        size="lg"
+        @click="buttonAction"
+        :variant="button.variant"
+        :disabled="button.disabled"
+        v-text="button.label"
+      />
     </b-card>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'stock-trader-input',
+  name: "stock-trader-input",
   props: {
     item: {
-      type: Object,
-      required: true
-    },
-    config: {
       type: Object,
       required: true
     }
@@ -30,21 +33,31 @@ export default {
     button() {
       const config =
         this.quantity < 1
-          ? { text: this.config.texts.invalid, disabled: true }
+          ? {
+              label: this.item.button.labels.invalid,
+              disabled: true,
+              variant: "danger"
+            }
           : this.quantity > this.item.quantity
-          ? { text: this.config.texts.unavaliable, disabled: true }
-          : { text: this.config.texts.valid, disabled: false };
-      return {
-        ...config
-      };
+          ? {
+              label: this.item.button.labels.unavaliable,
+              disabled: true,
+              variant: ""
+            }
+          : {
+              label: this.item.button.labels.valid,
+              disabled: false,
+              variant: "success"
+            };
+      return config;
     },
     price() {
       return this.$store.getters.price_ref(this.item.key);
     }
   },
-  created() {    
-    this[this.config.methods.name] = () => {
-      this.$store.dispatch(this.config.methods.dispatch, {
+  created() {
+    this.buttonAction = () => {
+      this.$store.dispatch(this.item.method_name, {
         item: this.item,
         quantity: this.quantity
       });
