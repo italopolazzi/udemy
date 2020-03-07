@@ -14,8 +14,8 @@
 
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus fuga culpa error omnis, nostrum obcaecati sint odio ratione quos reiciendis amet rerum sequi voluptas doloremque quisquam nisi aspernatur ea sed!</p>
 
-      <b-button class="mr-4" size="lg"  variant="primary" :to="{name: 'stock'}">Comprar</b-button>
-      <b-button class="mr-4" size="lg"  variant="success" :to="{name: 'portfolio'}">Vender</b-button>
+      <b-button class="mr-4" size="lg"  variant="primary" :to="{name: 'stock'}">Buy</b-button>
+      <b-button class="mr-4" size="lg"  variant="success" :to="{name: 'portfolio'}">Sell</b-button>
     </b-jumbotron>
   </section>
 </template>

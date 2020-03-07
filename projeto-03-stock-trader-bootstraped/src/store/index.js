@@ -1,6 +1,6 @@
 /* eslint-disable */
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue"
+import Vuex from "vuex"
 
 Vue.use(Vuex)
 
@@ -18,7 +18,7 @@ const store = new Vuex.Store({
             twitter: {
                 id: 1,
                 quantity: 12,
-                name: 'Twitter'
+                name: "Twitter"
             }
         },
         price_refs: {
@@ -31,22 +31,22 @@ const store = new Vuex.Store({
             twitter: {
                 id: 1,
                 quantity: 5,
-                name: 'Twitter'
+                name: "Twitter"
             },
             google: {
                 id: 2,
                 quantity: 5,
-                name: 'Google'
+                name: "Google"
             },
             bmw: {
                 id: 3,
                 quantity: 5,
-                name: 'BMW'
+                name: "BMW"
             },
             facebook: {
                 id: 4,
                 quantity: 5,
-                name: 'Facebook Inc.'
+                name: "Facebook Inc."
             },
         }
     },
@@ -62,8 +62,8 @@ const store = new Vuex.Store({
             state.portfolio[key].quantity += quantity
             state.stock[key].quantity -= quantity
             state.global.messages.push({
-                variant: 'primary',
-                title: `Comprado (${quantity})`,
+                variant: "primary",
+                title: `Purchased (${quantity})`,
                 text: `Stock: ${key}`
             })
         },
@@ -78,8 +78,8 @@ const store = new Vuex.Store({
             state.stock[key].quantity += quantity
             state.portfolio[key].quantity -= quantity
             state.global.messages.push({
-                variant: 'success',
-                title: `Vendido (${quantity})`,
+                variant: "success",
+                title: `Sold (${quantity})`,
                 text: `Stock: ${key}`
             })
         },
@@ -99,7 +99,7 @@ const store = new Vuex.Store({
             state.price_refs[key] += total
         },
         THROW_ERROR(state, text) {
-            state.global.messages.push({ variant: 'danger', text })
+            state.global.messages.push({ variant: "danger", text })
             throw Error(text)
         },
         SET_LOADING(state, bool) {
@@ -114,58 +114,65 @@ const store = new Vuex.Store({
             const total = quantity * state.price_refs[key]
 
             if (state.stock[key].quantity < quantity) {
-                commit('THROW_ERROR', 'Estoque insuficiente!')
+                commit("THROW_ERROR", "Insuficient stock!")
             } else if (state.funds < total) {
-                commit('THROW_ERROR', 'Saldo insuficiente!')
+                commit("THROW_ERROR", "Insufficient funds!")
             }
 
-            commit('REMOVE_FUNDS', total)
+            commit("REMOVE_FUNDS", total)
             if (!state.portfolio.hasOwnProperty(key)) {
-                commit('ADD_TO_PORTFOLIO', item)
+                commit("ADD_TO_PORTFOLIO", item)
             }
             // TO REVIEW
-            commit('BUY_QUANTITY', { key, quantity })
+            commit("BUY_QUANTITY", { key, quantity })
         },
         sellItem({ commit, state }, { item, quantity }) {
             const key = item.key
 
             if (state.portfolio[key].quantity < quantity) {
-                commit('THROW_ERROR', 'Você não possui está quantidade para vender')
+                commit("THROW_ERROR", "You don't have that quantity to sell.")
             } else if (quantity < 1) {
-                commit('THROW_ERROR', 'Você não pode vender uma quantidade nula ou negativa')
+                commit("THROW_ERROR", "You can't sell a null or negative quantity.")
             } else if (!state.portfolio.hasOwnProperty(key)) {
-                commit('THROW_ERROR', 'Você não possui este item para vender')
+                commit("THROW_ERROR", "You don't have that item to sell.")
             }
 
             const total = quantity * state.price_refs[key]
 
-            commit('SELL_QUANTITY', { key, quantity })
-            commit('ADD_FUNDS', total)
+            commit("SELL_QUANTITY", { key, quantity })
+            commit("ADD_FUNDS", total)
         },
         endDay({ state, commit }) {
             for (let key in state.price_refs) {
-                commit('FLOAT_PRICE_REF', key)
+                commit("FLOAT_PRICE_REF", key)
             }
         },
         loadAll({ state, commit }, vm) {
-            commit('SET_LOADING', true)
-            vm.$firebase('stock-trader.json')
+            commit("SET_LOADING", true)
+            vm.$firebase("stock-trader.json")
                 .then(res =>
-                    commit('SET_STATE', res.data['-Lowh4zsRq4xON3JTpDw'])
+                    commit("SET_STATE", res.data["-Lowh4zsRq4xON3JTpDw"])
                 )
                 .catch(err => console.error(err))
-                .finally(() => commit('SET_LOADING', false))
+                .finally(() => commit("SET_LOADING", false))
         },
         saveAll({ state, commit }, vm) {
-            commit('SET_LOADING', true)
-            vm.$firebase.put('stock-trader.json', { '-Lowh4zsRq4xON3JTpDw': state })
+            commit("SET_LOADING", true)
+            vm.$firebase.put("stock-trader.json", { "-Lowh4zsRq4xON3JTpDw": state })
                 .then(res => console.log(res))
                 .catch(err => console.error(err))
-                .finally(() => commit('SET_LOADING', false))
+                .finally(() => commit("SET_LOADING", false))
         }
     },
     getters: {
         funds: state => state.funds,
+        stock_funds: state => {
+
+            return Object.keys(state.portfolio).reduce((acc, key) => {
+                acc += state.price_refs[key] * state.portfolio[key].quantity
+                return acc
+            }, 0)
+        },
         portfolio: state => state.portfolio,
         stock: state => state.stock,
         global_messages: state => state.global.messages,

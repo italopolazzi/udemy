@@ -26,9 +26,9 @@ export default {
         portfolio: {
           button: {
             labels: {
-              invalid: "Inválido",
-              unavaliable: "Indisponível",
-              valid: "Vender"
+              invalid: "Invalid",
+              unavaliable: "Unavalaible",
+              valid: "Sell"
             }
           },
           method_name: "sellItem"
@@ -36,9 +36,9 @@ export default {
         stock: {
           button: {
             labels: {
-              invalid: "Inválido",
-              unavaliable: "Indisponível",
-              valid: "Comprar"
+              invalid: "Invalid",
+              unavaliable: "Unavalaible",
+              valid: "Buy"
             }
           },
           method_name: "buyItem"

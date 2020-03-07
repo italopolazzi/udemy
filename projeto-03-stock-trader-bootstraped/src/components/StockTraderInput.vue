@@ -2,7 +2,10 @@
   <b-card class="stock-trader-input" :border-variant="button.variant">
     <b-card-text class="h4">
       <div class="d-flex justify-content-between align-items-start">
-        <div class="h1">{{item.key}}</div>
+        <div class="d-flex flex-column justify-content-center">
+          <div class="lead text-muted">{{item.key}}</div>
+          <div class="h1">{{item.name}}</div>
+        </div>
         <div class="badge badge-pill badge-warning">{{price | money}}</div>
       </div>
     </b-card-text>
@@ -20,6 +23,7 @@
             :variant="button.variant"
             :disabled="button.disabled"
             v-text="button.label"
+            size="lg"
           />
         </div>
         <div class="d-flex h4 border-warning flex-row">

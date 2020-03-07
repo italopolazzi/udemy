@@ -16,7 +16,7 @@ export default {
 
       d.forEach(message => {
         this.$bvToast.toast(message, {
-          title: message.title || "Mensagem",
+          title: message.title || "Notification",
           autoHideDelay: 4000,
           variant: message.variant,
           appendToast: false

@@ -5,9 +5,7 @@ $animationDuration: 300ms;
 @import '~vue2-animate/src/sass/vue2-animate.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';
-.fill-viewport {
-    width: 100vw;
-    min-width: 100%;
+.fill-height {
     height: 100vh;
     min-height: 100%;
 }
