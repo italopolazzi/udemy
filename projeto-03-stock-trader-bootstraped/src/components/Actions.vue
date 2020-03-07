@@ -3,7 +3,7 @@
     <div class="h4">Actions</div>
     <b-row no-gutters>
       <b-col cols="4" v-for="(action, action_index) in actions" :key="action_index">
-        <b-button class="w-100" variant="light" @click="action.method">
+        <b-button squared class="w-100" variant="light" @click="action.method">
           <!-- <template #default=""> -->
           <div class="d-flex flex-column justify-content-center">
             <span>
@@ -18,7 +18,7 @@
     <div class="h4 mt-4">Income from shares</div>
     <b-row>
       <b-col>
-        <b-table :items="items" />
+        <b-table class="bg-dark text-light" :items="items" />
       </b-col>
     </b-row>
   </div>

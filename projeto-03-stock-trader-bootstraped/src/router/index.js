@@ -25,6 +25,12 @@ const router = new VueRouter({
             component: () =>
                 import ('@/views/StockTrader')
         },
+        {
+            path: '/charts',
+            name: 'charts',
+            component: () =>
+                import ('@/views/Charts')
+        },
     ]
 })
 

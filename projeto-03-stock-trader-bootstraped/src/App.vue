@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <GlobalMessages />
-    <b-container class="fill-height " fluid>
+    <b-container class="fill-height bg-dark" fluid>
       <b-row>
         <b-col cols="12" lg="3">
           <SideDrawer />
@@ -11,7 +11,7 @@
             <b-spinner label="loading" />
           </template>
           <template v-else>
-            <Transition name="fadeDown" mode="out-in" appear>
+            <Transition name="fadeLeft" mode="out-in" appear>
               <router-view :key="$route.name" />
             </Transition>
           </template>

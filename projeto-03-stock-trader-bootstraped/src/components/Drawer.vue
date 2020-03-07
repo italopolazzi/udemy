@@ -2,7 +2,7 @@
   <div class="drawer">
     <div v-responsive.xs.sm.md>
       <div class="drawer-activator">
-        <b-button @click="toggleDrawer">
+        <b-button @click="toggleDrawer" class="bg-success text-dark mb-5">
           <fa-icon icon="bars" />
         </b-button>
       </div>
