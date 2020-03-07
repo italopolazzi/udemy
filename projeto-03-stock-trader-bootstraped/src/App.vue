@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <GlobalMessages />
-    <b-container class="fill-viewport">
+    <b-container class="fill-viewport ">
       <b-row>
         <b-col cols="12" lg="3">
           <SideDrawer />

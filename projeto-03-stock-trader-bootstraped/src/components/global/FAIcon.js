@@ -11,6 +11,7 @@ Vue.component('fa-icon', {
         const classes = {}
         classes['fas'] = true
         classes[`fa-${icon}`] = true
+        classes['fa-lg'] = true
         return createElement(
             'i', {
                 class: {...classes }

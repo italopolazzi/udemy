@@ -1,11 +1,13 @@
 <template>
   <section :id="$route.name">
-    <b-row>
-      <b-col cols="12" lg="4" v-for="(item, key) in currentStockTrader" :key="key">
-        <!-- <component :is="currentCardComponent" :item="{key, ...item}"></component> -->
-        <StockTraderInput :item="{key, ...item, ...config}" />
-      </b-col>
-    </b-row>
+    <b-container>
+      <b-row no-gutters>
+        <b-col cols="12" lg="4"  v-for="(item, key) in currentStockTrader" :key="key">
+          <!-- <component :is="currentCardComponent" :item="{key, ...item}"></component> -->
+          <StockTraderInput class="m-2" :item="{key, ...item, ...config}" />
+        </b-col>
+      </b-row>
+    </b-container>
   </section>
 </template>
 

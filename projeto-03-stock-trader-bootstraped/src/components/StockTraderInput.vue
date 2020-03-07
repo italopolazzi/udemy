@@ -1,18 +1,36 @@
 <template>
-  <div class="stock-trader-input">
-    <b-card :title="item.key" :sub-title="price | money" class="ma-2">
-      <b-card-text>
-        <b-form-input v-model="quantity" type="number" />
-      </b-card-text>
-      <b-button
-        size="lg"
-        @click="buttonAction"
-        :variant="button.variant"
-        :disabled="button.disabled"
-        v-text="button.label"
-      />
-    </b-card>
-  </div>
+  <b-card class="stock-trader-input" :border-variant="button.variant">
+    <b-card-text class="h4">
+      <div class="d-flex justify-content-between align-items-start">
+        <div class="h1">{{item.key}}</div>
+        <div class="badge badge-pill badge-warning">{{price | money}}</div>
+      </div>
+    </b-card-text>
+
+    <b-card-text>
+      <label :for="item.key" class="lead">Quantity</label>
+      <b-form-spinbutton :id="item.key" min="1" :max="item.quantity" v-model="quantity" />
+    </b-card-text>
+
+    <b-card-text>
+      <div class="d-flex justify-content-between align-items-end">
+        <div>
+          <b-button
+            @click="buttonAction"
+            :variant="button.variant"
+            :disabled="button.disabled"
+            v-text="button.label"
+          />
+        </div>
+        <div class="d-flex h4 border-warning flex-row">
+          <div class="badge badge-pill badge-light pr-4">Total</div>
+          <div class="badge badge-pill badge-dark ml-n3">
+            <div>{{total | money}}</div>
+          </div>
+        </div>
+      </div>
+    </b-card-text>
+  </b-card>
 </template>
 
 <script>
@@ -30,6 +48,9 @@ export default {
     };
   },
   computed: {
+    total() {
+      return this.quantity * this.price;
+    },
     button() {
       const config =
         this.quantity < 1
