@@ -1,0 +1,21 @@
+// Theme color default definitions
+// custom theme here
+$animationDuration: 300ms;
+// $enable-rounded: false;
+// Theme color default definitions
+$primary: #6800D5 !default;
+// $secondary: $gray-600 !default;
+$success: #00D99D !default;
+$info: #009FD7 !default;
+$warning: #FFAC00 !default;
+$danger: #FC3D55 !default;
+// $light: $gray-100 !default;
+$dark: #0A0042!default;
+// Include Bootstrap and BootstrapVue SCSS files
+@import '~vue2-animate/src/sass/vue2-animate.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+.fill-height {
+    height: 100vh;
+    min-height: 100%;
+}
