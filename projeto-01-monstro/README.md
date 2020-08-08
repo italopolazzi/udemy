@@ -5,7 +5,7 @@
 | Tags: HTML5, Vue.js, CSS3, Game, JavaScript                                 |
 | <img src="https://img.shields.io/badge/status-conclu%C3%ADdo-green"/> |
 |    [Demonstração](https://portfolio-polazzi-projects-1.web.app/) |
-|    [Postagem](https://italopolazzi.github.io/the-monster-primeiro-projeto-do-curso-de-vue-js/) |
+|    [Postagem](https://italopolazzi.github.io/projects/monster/) |
 
 
 ## 
